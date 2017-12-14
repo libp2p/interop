@@ -3,8 +3,8 @@
 ## Story 1 - Two nodes start, one dials the other using TCP
 
 **Cast:**
-  - PeerA
-  - PeerB
+  - [PeerA](./peer-a.json)
+  - [PeerB](./peer-b.json)
 **Dramatization:**
   - PeerA and PeerB start a libp2p Node with only the TCP transport enabled on port 10000 and 10001 respectively
   - PeerA dials to PeerB
@@ -16,8 +16,8 @@
 ## Story 2 - Two nodes start, one dials the other using WebSockets
 
 **Cast:**
-  - PeerA
-  - PeerB
+  - [PeerA](./peer-a.json)
+  - [PeerB](./peer-b.json)
 **Dramatization:**
   - PeerA and PeerB start a libp2p Node with only the WebSockets transport enabled on port 10000 and 10001 respectively
   - PeerA dials to PeerB
@@ -29,11 +29,10 @@
 ## Story 3 - Two nodes start, one dials the other but fails due to lack of a mutual supported transport.
 
 **Cast:**
-  - PeerA
-  - PeerB
+  - [PeerA](./peer-a.json)
+  - [PeerB](./peer-b.json)
 **Dramatization:**
   - PeerA starts with only the TCP transport enabled on port 10000
   - PeerA starts with only the WebSockets transport enabled on port 10000
   - PeerA dials to PeerB and fails
   - Both peers shutdown and the test ends
-
