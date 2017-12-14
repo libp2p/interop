@@ -1,13 +1,28 @@
-# Interoperability Tests for libp2p
+# Interoperability Compliance Test Stories for libp2p
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
 [![](https://img.shields.io/badge/project-libp2p-blue.svg?style=flat-square)](http://ipfs.io/)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-> Interoperability tests for libp2p Implementations
+> In this repo you will find the [PDD (Protocol Driven Development)](https://github.com/ipfs/pdd) stories that enable you to test a libp2p implementation against other implementations.
 
-This repository will be used for interop tests. Please jump into the issues if you'd like to help out setting this up!
+## PDD Compliance Test Stories
+
+Each Test Story has actors and a dramatization.
+
+- **Qualitative** - Test Stories that check feature interoperability and compliance.
+  - [Transports](./PDD-TRANSPORTS.md)
+  - [Protocol and Stream Multiplexing](./PDD-PROTOCOL-AND-STREAM-MULTIPLEXING.md)
+  - [Identify](./PDD-IDENTIFY)
+  - [Encrypted Communications](./PDD-ENCRYPTED-COMMUNICATIONS.md)
+  - [Peer Routing](./PDD-PEER-ROUTING.md)
+  - [Content Routing](./PDD-CONTENT-ROUTING.md)
+  - [PubSub](./PDD-PUBSUB.md)
+  - [Circuit Relay](./PDD-CIRCUIT-RELAY.md)
+- **Quantitative** - Test Stories focused on stress testing the implementations against each other.
+  - [Thousands of Muxed Streams](./PDD-THOUSANDS-OF-MUXED-STREAMS.md)
+  - [Hundreds of Peer Connections](./PDD-HUNDREDS-OF-PEER-CONNECTIONS.md)
 
 ## Contribute
 
