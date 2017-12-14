@@ -20,6 +20,7 @@ Each Test Story has actors and a dramatization.
   - [Content Routing](./PDD-CONTENT-ROUTING.md)
   - [PubSub](./PDD-PUBSUB.md)
   - [Circuit Relay](./PDD-CIRCUIT-RELAY.md)
+  - [The IPFS bundle](./PDD-THE-IPFS-BUNDLE.md)
 - **Quantitative** - Test Stories focused on stress testing the implementations against each other.
   - [Thousands of Muxed Streams](./PDD-THOUSANDS-OF-MUXED-STREAMS.md)
   - [Hundreds of Peer Connections](./PDD-HUNDREDS-OF-PEER-CONNECTIONS.md)
@@ -35,4 +36,3 @@ This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/c
 ## License
 
 MIT
-

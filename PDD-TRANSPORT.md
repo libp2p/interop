@@ -1,7 +1,5 @@
 # Transports - Compliance Test Stories
 
-## Table of Contents
-
 ## Story 1 - Two nodes start, one dials the other using TCP
 
 **Cast:**
