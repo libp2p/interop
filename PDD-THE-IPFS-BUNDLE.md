@@ -74,7 +74,17 @@ class Node extends libp2p {
   - [PeerB](./peer-b.json)
   - [PeerC](./peer-c.json)
 **Dramatization:**
-  - 
+  - PeerA starts listening on port 10000 with a TCP transport.
+  - PeerB starts listening on port 10001 with a TCP transport.
+  - PeerC starts listening on port 10002 with a TCP transport.
+  - PeerA dials to PeerB
+  - PeerB dials to PeerC
+  - PeerC subscribes to the topic 'interplanetary recipes'
+  - PeerB subscribes to the topic 'interplanetary recipes'
+  - PeerA publish on the topic 'interplanetary recipes' a 'secret space meatballs sauce' message.
+  - PeerB receives the message.
+  - PeerC receives the message.
+  - The three peers shutdown and the test ends.
 
 ## Story 4 - Five nodes are connected in a ring, every node can find their addresses through Peer Routing
 
@@ -85,7 +95,22 @@ class Node extends libp2p {
   - [PeerD](./peer-d.json)
   - [PeerE](./peer-e.json)
 **Dramatization:**
-  - 
+  - PeerA starts listening on port 10000 with a TCP transport.
+  - PeerB starts listening on port 10001 with a TCP transport.
+  - PeerC starts listening on port 10002 with a TCP transport.
+  - PeerD starts listening on port 10003 with a TCP transport.
+  - PeerE starts listening on port 10004 with a TCP transport.
+  - PeerA dials to PeerB.
+  - PeerB dials to PeerC.
+  - PeerC dials to PeerD.
+  - PeerD dials to PeerE.
+  - PeerE dials to PeerA.
+  - PeerA does a PeerRouting .findPeer call to find PeerC, it is successful.
+  - PeerB does a PeerRouting .findPeer call to find PeerD, it is successful.
+  - PeerC does a PeerRouting .findPeer call to find PeerE, it is successful.
+  - PeerD does a PeerRouting .findPeer call to find PeerA, it is successful.
+  - PeerE does a PeerRouting .findPeer call to find PeerB, it is successful.
+  - The five peers shutdown and the test ends.
 
 ## Story 5 - Five nodes are connected in a ring, PeerA provides a block, PeerC finds who is providing through Content Routing
 
@@ -96,4 +121,16 @@ class Node extends libp2p {
   - [PeerD](./peer-d.json)
   - [PeerE](./peer-e.json)
 **Dramatization:**
-  - 
+  - PeerA starts listening on port 10000 with a TCP transport.
+  - PeerB starts listening on port 10001 with a TCP transport.
+  - PeerC starts listening on port 10002 with a TCP transport.
+  - PeerD starts listening on port 10003 with a TCP transport.
+  - PeerE starts listening on port 10004 with a TCP transport.
+  - PeerA dials to PeerB.
+  - PeerB dials to PeerC.
+  - PeerC dials to PeerD.
+  - PeerD dials to PeerE.
+  - PeerE dials to PeerA.
+  - PeerA does a ContentRouting .provide call to provide a the following CID 'QmVCsaHeMYJecUWpiuYj6UP4PRZz6PoQnAVL89EX6xvaJR'
+  - PeerC does a ContentRouting .findProviders call to find PeerA multiaddrs as the provider for the same CID.
+  - The five peers shutdown and the test ends.
