@@ -14,7 +14,7 @@ Each Test Story has actors and a dramatization.
 - **Qualitative** - Test Stories that check feature interoperability and compliance.
   - [Transports](./PDD-TRANSPORTS.md)
   - [Protocol and Stream Multiplexing](./PDD-PROTOCOL-AND-STREAM-MULTIPLEXING.md)
-  - [Identify](./PDD-IDENTIFY)
+  - [Identify](./PDD-IDENTIFY.md)
   - [Encrypted Communications](./PDD-ENCRYPTED-COMMUNICATIONS.md)
   - [Peer Routing](./PDD-PEER-ROUTING.md)
   - [Content Routing](./PDD-CONTENT-ROUTING.md)
