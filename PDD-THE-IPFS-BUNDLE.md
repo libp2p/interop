@@ -5,6 +5,9 @@
 The basic IPFS bundle is composed by:
 
 ```
+// JS based code to describe the bundle. Other language implementations will
+// have their own setup.
+
 class Node extends libp2p {
   constructor () {
     const modules = {
@@ -23,13 +26,13 @@ class Node extends libp2p {
         ]
       },
       discovery: [
-        wsstar.discovery,
         new MulticastDNS(peerInfo, 'ipfs.local'),
         new Railing()
       ],
       DHT: KadDHT,
       // Currently, PeerRouting and ContentRouting are attached
-      // from the KadDHT package. In the future we will have both systems in its own separate modules.
+      // from the KadDHT package. In the future we will have both systems
+      // in its own separate modules.
       // PeerRouting: [],
       // ContentRouting: []
     }
@@ -52,7 +55,7 @@ class Node extends libp2p {
   - PeerA dials to PeerB on '/ping/1.0.0', it is successful.
   - PeerB dials to PeerA on '/ping/1.0.0', it is successful.
   - PeerA dials to PeerB on '/echo/1.0.0' and sends a Buffer with a String "Hey", it is successful.
-  - PeerB dials to PeerA on '/time/1.0.0' and receives the time from PeerA, confirms that it is a time from the past (thinks to himself that this time time is hard).
+  - PeerB dials to PeerA on '/time/1.0.0' and receives the time from PeerA, confirms that it is a time from the past (thinks to himself that this clock sync thing is hard).
   - Both peers shutdown and the test ends.
 
 ## Story 2 - Two nodes discover each other through MulticastDNS

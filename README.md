@@ -7,6 +7,10 @@
 
 > In this repo you will find the [PDD (Protocol Driven Development)](https://github.com/ipfs/pdd) stories that enable you to test a libp2p implementation against other implementations.
 
+## ❗️ Important
+
+**The setup for these tests is still in flux, please make sure to read the latest update at: https://github.com/libp2p/interop/issues/1**
+
 ## PDD Compliance Test Stories
 
 Each Test Story has actors and a dramatization.
