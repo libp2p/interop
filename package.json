@@ -1,19 +1,44 @@
 {
-  "name": "libp2p-interop",
+  "name": "interop-libp2p",
   "version": "0.0.0",
-  "description": "",
-  "main": " ",
+  "description": "Interoperability Tests for libp2p",
+  "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
+  "main": "",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">6.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "aegir lint",
+    "test": "cross-env IPFS_REUSEPORT=false aegir test -t node -f test/node.js",
+    "test:node": "cross-env IPFS_REUSEPORT=false aegir test -t node -f test/node.js",
+    "test:browser": "cross-env IPFS_REUSEPORT=false aegir test -t browser --no-cors -f test/browser.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/libp2p/interop.git"
   },
-  "author": "David Dias <daviddias@ipfs.io>",
+  "keywords": [
+    "libp2p"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/libp2p/interop/issues"
   },
-  "homepage": "https://github.com/libp2p/interop#readme"
+  "homepage": "https://github.com/libp2p/interop#readme",
+  "devDependencies": {
+    "aegir": "^17.0.1",
+    "chai": "^4.2.0",
+    "chai-checkmark": "^1.0.1",
+    "cross-env": "^5.2.0",
+    "dirty-chai": "^2.0.1",
+    "go-libp2p-dep": "^6.0.30",
+    "libp2p-daemon": "~0.1.2",
+    "libp2p-daemon-client": "~0.0.3",
+    "rimraf": "^2.6.3"
+  },
+  "contributors": [],
+  "dependencies": {
+    "execa": "^1.0.0"
+  }
 }

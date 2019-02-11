@@ -1,33 +1,40 @@
-# Interoperability Compliance Test Stories for libp2p
+# Interoperability Tests for libp2p
 
-<a href="http://protocol.ai"><img src="https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square" /></a>
-<a href="http://libp2p.io/"><img src="https://img.shields.io/badge/project-libp2p-yellow.svg?style=flat-square" /></a>
-<a href="http://webchat.freenode.net/?channels=%23libp2p"><img src="https://img.shields.io/badge/freenode-%23libp2p-yellow.svg?style=flat-square" /></a>
-<a href="https://waffle.io/libp2p/libp2p"><img src="https://img.shields.io/badge/pm-waffle-yellow.svg?style=flat-square" /></a>
+[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](https://protocol.ai/)
+[![](https://img.shields.io/badge/project-libp2p-yellow.svg?style=flat-square)](http://libp2p.io/)
+[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23libp2p)
 
-> In this repo you will find the [PDD (Protocol Driven Development)](https://github.com/ipfs/pdd) stories that enable you to test a libp2p implementation against other implementations.
+> Interoperability tests for libp2p Implementations
 
-## ❗️ Important
+This repository will be used for interop tests.
 
-**The setup for these tests is still in flux, please make sure to read the latest update at: https://github.com/libp2p/interop/issues/1**
+## Lead Maintainer
 
-## PDD Compliance Test Stories
+[Vasco Santos](https://github.com/vasco-santos)
 
-Each Test Story has actors and a dramatization.
+## Usage
 
-- **Qualitative** - Test Stories that check feature interoperability and compliance.
-  - [Transports](./PDD-TRANSPORTS.md)
-  - [Protocol and Stream Multiplexing](./PDD-PROTOCOL-AND-STREAM-MULTIPLEXING.md)
-  - [Identify](./PDD-IDENTIFY.md)
-  - [Encrypted Communications](./PDD-ENCRYPTED-COMMUNICATIONS.md)
-  - [Peer Routing](./PDD-PEER-ROUTING.md)
-  - [Content Routing](./PDD-CONTENT-ROUTING.md)
-  - [PubSub](./PDD-PUBSUB.md)
-  - [Circuit Relay](./PDD-CIRCUIT-RELAY.md)
-  - [The IPFS bundle](./PDD-THE-IPFS-BUNDLE.md)
-- **Quantitative** - Test Stories focused on stress testing the implementations against each other.
-  - [Thousands of Muxed Streams](./PDD-THOUSANDS-OF-MUXED-STREAMS.md)
-  - [Hundreds of Peer Connections](./PDD-HUNDREDS-OF-PEER-CONNECTIONS.md)
+### Install
+
+```
+> git clone git@github.com:libp2p/interop.git
+> cd interop
+> npm install
+```
+
+### Run the tests
+
+```
+> npm test
+```
+
+### Test with a non yet released version of js-ipfs
+
+TODO
+
+### Test with a non yet released version of go-ipfs
+
+TODO
 
 ## Contribute
 
