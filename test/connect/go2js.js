@@ -19,29 +19,43 @@ describe('connect', () => {
     goDaemon = new Daemon('go')
     jsDaemon = new Daemon('js')
 
-    await goDaemon.start()
-    await jsDaemon.start()
+    await Promise.all([
+      goDaemon.start(),
+      jsDaemon.start()
+    ])
   })
 
   // Stop daemons
   after(async function () {
-    await goDaemon.stop()
-    await jsDaemon.stop()
+    await Promise.all([
+      goDaemon.stop(),
+      jsDaemon.stop()
+    ])
   })
 
   it('go peer to js peer', async function () {
     this.timeout(10 * 1000)
 
     const identifyJs = await jsDaemon.client.identify()
+    const identifyGo = await goDaemon.client.identify()
 
-    const knownPeersBeforeConnect = await goDaemon.client.listPeers()
-    expect(knownPeersBeforeConnect).to.have.lengthOf(0)
+    // verify connected peers
+    const knownPeersBeforeConnectJs = await jsDaemon.client.listPeers()
+    expect(knownPeersBeforeConnectJs).to.have.lengthOf(0)
+
+    const knownPeersBeforeConnectGo = await goDaemon.client.listPeers()
+    expect(knownPeersBeforeConnectGo).to.have.lengthOf(0)
 
     // connect peers
     await goDaemon.client.connect(identifyJs.peerId, identifyJs.addrs)
 
-    const knownPeersAfterConnect = await goDaemon.client.listPeers()
-    expect(knownPeersAfterConnect).to.have.lengthOf(1)
-    expect(knownPeersAfterConnect[0].toB58String()).to.equal(identifyJs.peerId.toB58String())
+    // verify connected peers
+    const knownPeersAfterConnectGo = await goDaemon.client.listPeers()
+    expect(knownPeersAfterConnectGo).to.have.lengthOf(1)
+    expect(knownPeersAfterConnectGo[0].toB58String()).to.equal(identifyJs.peerId.toB58String())
+
+    const knownPeersAfterConnectJs = await jsDaemon.client.listPeers()
+    expect(knownPeersAfterConnectJs).to.have.lengthOf(1)
+    expect(knownPeersAfterConnectJs[0].toB58String()).to.equal(identifyGo.peerId.toB58String())
   })
 })

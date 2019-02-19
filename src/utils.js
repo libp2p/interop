@@ -2,7 +2,9 @@
 
 const os = require('os')
 const path = require('path')
-const isWindows = Boolean(os.type().match(/windows/gi))
+const isWindows = os.platform() === 'win32'
+
+exports.isWindows = isWindows
 
 exports.getSockPath = (sockPath) => isWindows
   ? path.join('\\\\?\\pipe', sockPath)

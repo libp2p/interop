@@ -3,14 +3,11 @@
 const assert = require('assert')
 const execa = require('execa')
 const fs = require('fs')
-const os = require('os')
 const path = require('path')
 const rimraf = require('rimraf')
 
 const Client = require('libp2p-daemon-client')
-const { getSockPath } = require('./utils')
-
-const isWindows = os.platform() === 'win32'
+const { getSockPath, isWindows } = require('./utils')
 
 // process path
 const processPath = process.cwd()
@@ -48,6 +45,7 @@ class Daemon {
 
   /**
    * Get binary path according to implementation and OS
+   * @private
    * @param {String} type daemon implementation type ("go" or "js")
    * @returns {String}
    */
@@ -89,6 +87,7 @@ class Daemon {
 
   /**
    * Starts the specifiec daemon and wait for its start.
+   * @private
    * @returns {Promise}
    */
   _startDaemon () {
@@ -117,6 +116,7 @@ class Daemon {
 
   /**
    * Cleans the unix socket.
+   * @private
    * @returns {Promise}
    */
   _cleanUnixSocket () {

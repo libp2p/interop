@@ -10,9 +10,9 @@
   },
   "scripts": {
     "lint": "aegir lint",
-    "test": "cross-env IPFS_REUSEPORT=false aegir test -t node -f test/node.js",
-    "test:node": "cross-env IPFS_REUSEPORT=false aegir test -t node -f test/node.js",
-    "test:browser": "cross-env IPFS_REUSEPORT=false aegir test -t browser --no-cors -f test/browser.js"
+    "test": "aegir test -t node -f test/node.js",
+    "test:node": "aegir test -t node -f test/node.js",
+    "test:browser": "aegir test -t browser --no-cors -f test/browser.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/libp2p/interop#readme",
   "devDependencies": {
-    "aegir": "^17.0.1",
+    "aegir": "^18.1.0",
     "chai": "^4.2.0",
     "chai-checkmark": "^1.0.1",
     "cross-env": "^5.2.0",
