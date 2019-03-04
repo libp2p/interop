@@ -92,7 +92,14 @@ class Daemon {
    */
   _startDaemon () {
     return new Promise((resolve, reject) => {
-      const options = this._type === 'go' ? ['-listen', `/unix${this._sock}`] : ['--sock', this._sock]
+      let options
+
+      if (this._type === 'go') {
+        options = ['-listen', `/unix${this._sock}`, '-dht']
+      } else {
+        options = ['--sock', this._sock, '--dht']
+      }
+
       const daemon = execa(this._binPath, options)
 
       daemon.stdout.once('data', () => {
