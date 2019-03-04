@@ -41,6 +41,7 @@
   },
   "contributors": [],
   "dependencies": {
+    "cids": "~0.5.7",
     "execa": "^1.0.0"
   }
 }
