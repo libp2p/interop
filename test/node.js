@@ -1,4 +1,5 @@
 'use strict'
 
 require('./connect')
-require('./dht')
+/require('./dht')
+require('./switch')
