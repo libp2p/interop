@@ -36,6 +36,7 @@
     "go-libp2p-dep": "^6.0.30",
     "libp2p-daemon": "~0.1.2",
     "libp2p-daemon-client": "libp2p/js-libp2p-daemon-client#fix/dht-find-providers",
+    "libp2p-switch": "libp2p/js-libp2p-switch#feat/ls",
     "rimraf": "^2.6.3"
   },
   "contributors": [],
