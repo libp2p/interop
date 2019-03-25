@@ -17,7 +17,7 @@ describe('connect', () => {
     this.timeout(20 * 1000)
 
     jsDaemon1 = new Daemon('js')
-    jsDaemon2 = new Daemon('js', '/tmp/p2pd-js2.sock')
+    jsDaemon2 = new Daemon('js', '/tmp/p2pd-js2.sock', 9090)
 
     await Promise.all([
       jsDaemon1.start(),

@@ -17,7 +17,7 @@ describe('connect', () => {
     this.timeout(20 * 1000)
 
     goDaemon1 = new Daemon('go')
-    goDaemon2 = new Daemon('go', '/tmp/p2pd-go2.sock')
+    goDaemon2 = new Daemon('go', '/tmp/p2pd-go2.sock', 9090)
 
     await Promise.all([
       goDaemon1.start(),
