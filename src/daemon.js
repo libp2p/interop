@@ -7,20 +7,20 @@ const path = require('path')
 const rimraf = require('rimraf')
 
 const Client = require('libp2p-daemon-client')
-const { getSockPath, isWindows } = require('./utils')
+const { getMultiaddr, isWindows } = require('./utils')
 
 // process path
 const processPath = process.cwd()
 
 // go-libp2p defaults
 const goDaemon = {
-  defaultSock: getSockPath('/tmp/p2pd-go.sock'),
+  defaultAddr: getMultiaddr('/tmp/p2pd-go.sock'),
   bin: path.join('go-libp2p-dep', 'go-libp2p', isWindows ? 'p2pd.exe' : 'p2pd')
 }
 
 // js-libp2p defaults
 const jsDaemon = {
-  defaultSock: getSockPath('/tmp/p2pd-js.sock'),
+  defaultAddr: getMultiaddr('/tmp/p2pd-js.sock'),
   bin: path.join('libp2p-daemon', 'src', 'cli', 'bin.js')
 }
 
@@ -28,18 +28,19 @@ class Daemon {
   /**
    * @constructor
    * @param {String} type daemon implementation type ("go" or "js")
-   * @param {String} sock unix socket path
+   * @param {Multiaddr} addr multiaddr for the client to connect to
+   * @param {Number} port port for the client to connect to
    */
-  constructor (type, sock) {
+  constructor (type, addr, port) {
     assert(type === 'go' || type === 'js', 'invalid type received. Should be "go" or "js"')
 
     this._client = undefined
     this._type = type
     this._binPath = this._getBinPath(type)
-    this._sock = sock && getSockPath(sock)
+    this._addr = addr && getMultiaddr(addr, port)
 
-    if (!this._sock) {
-      this._sock = type === 'go' ? goDaemon.defaultSock : jsDaemon.defaultSock
+    if (!this._addr) {
+      this._addr = type === 'go' ? goDaemon.defaultAddr : jsDaemon.defaultAddr
     }
   }
 
@@ -80,7 +81,7 @@ class Daemon {
     await this._startDaemon()
 
     // start client
-    this._client = new Client(this._sock)
+    this._client = new Client(this._addr)
 
     await this._client.attach()
   }
@@ -92,7 +93,7 @@ class Daemon {
    */
   _startDaemon () {
     return new Promise((resolve, reject) => {
-      const options = this._type === 'go' ? ['-listen', `/unix${this._sock}`] : ['--sock', this._sock]
+      const options = this._type === 'go' ? ['-listen', `${this._addr}`] : ['--listen', this._addr]
       const daemon = execa(this._binPath, options)
 
       daemon.stdout.once('data', () => {
@@ -121,7 +122,12 @@ class Daemon {
    */
   _cleanUnixSocket () {
     return new Promise((resolve, reject) => {
-      rimraf(this._sock, (err) => {
+      const path = this._addr.getPath()
+      if (!path) {
+        return resolve()
+      }
+
+      rimraf(path, (err) => {
         if (err) {
           return reject(err)
         }
