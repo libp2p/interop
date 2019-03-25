@@ -17,7 +17,7 @@ describe('dht.contentRouting', () => {
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(2, ['go', 'js'])
+    daemons = await spawnDaemons(2, ['go', 'js'], { dht: true })
 
     // connect them
     identify0 = await daemons[0].client.identify()

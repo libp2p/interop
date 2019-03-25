@@ -15,7 +15,7 @@ describe('dht.contentFetching', () => {
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(2, 'js')
+    daemons = await spawnDaemons(2, 'js', { dht: true })
 
     // connect them
     const identify0 = await daemons[0].client.identify()

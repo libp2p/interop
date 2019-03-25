@@ -15,7 +15,7 @@ describe('dht.peerRouting', () => {
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(3, ['go', 'go', 'js'])
+    daemons = await spawnDaemons(3, ['go', 'go', 'js'], { dht: true })
   })
 
   // Stop daemons
