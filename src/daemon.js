@@ -122,12 +122,12 @@ class Daemon {
    */
   _cleanUnixSocket () {
     return new Promise((resolve, reject) => {
-      const path = this._addr.toString().split('/unix')
+      const path = this._addr.getPath()
       if (!path) {
         return resolve()
       }
 
-      rimraf(path[1], (err) => {
+      rimraf(path, (err) => {
         if (err) {
           return reject(err)
         }
