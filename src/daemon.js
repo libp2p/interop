@@ -70,15 +70,17 @@ class Daemon {
   /**
    * @async
    * Starts a daemon and a client associated with it.
+   * @param {Object} options daemon options
+   * @param {bool} options.dht dht enabled (false)
    * @returns {void}
    */
-  async start () {
+  async start (options = {}) {
     if (this._client) {
       throw new Error('Daemon has already started')
     }
 
     // start daemon
-    await this._startDaemon()
+    await this._startDaemon(options)
 
     // start client
     this._client = new Client(this._addr)
@@ -89,12 +91,28 @@ class Daemon {
   /**
    * Starts the specifiec daemon and wait for its start.
    * @private
+   * @param {Object} options daemon options
+   * @param {bool} options.dht dht enabled (false)
    * @returns {Promise}
    */
-  _startDaemon () {
+  _startDaemon (options) {
     return new Promise((resolve, reject) => {
-      const options = this._type === 'go' ? ['-listen', `${this._addr}`] : ['--listen', this._addr]
-      const daemon = execa(this._binPath, options)
+      let execOptions
+
+      // TODO refactor this once we daemon supports a json config
+      if (this._type === 'go') {
+        execOptions = ['-listen', this._addr]
+
+        options.dht && execOptions.push('-dht')
+        options.pubsub && execOptions.push('-pubsub')
+      } else {
+        execOptions = ['--listen', this._addr]
+
+        options.dht && execOptions.push('--dht')
+        options.pubsub && execOptions.push('--pubsub')
+      }
+
+      const daemon = execa(this._binPath, execOptions)
 
       daemon.stdout.once('data', () => {
         return resolve()
