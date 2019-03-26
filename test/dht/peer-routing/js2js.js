@@ -26,8 +26,6 @@ describe('dht.peerRouting', () => {
   })
 
   it('js peer to js peer', async function () {
-    this.timeout(10 * 1000)
-
     const identify1 = await daemons[1].client.identify()
     const identify2 = await daemons[2].client.identify()
 
@@ -37,6 +35,9 @@ describe('dht.peerRouting', () => {
 
     // connect 0 => 2
     await daemons[0].client.connect(identify2.peerId, identify2.addrs)
+
+    // daemons[0] will take some time to have the peers in the routing table
+    await new Promise(resolve => setTimeout(resolve, 1000))
 
     // peer 1 find peer 2
     const peerInfo = await daemons[1].client.dht.findPeer(identify2.peerId)

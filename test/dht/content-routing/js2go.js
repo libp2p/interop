@@ -36,8 +36,6 @@ describe('dht.contentRouting', () => {
   })
 
   it('go peer to js peer', async function () {
-    this.timeout(30 * 1000)
-
     const cid = new CID('QmVzw6MPsF96TyXBSRs1ptLoVMWRv5FCYJZZGJSVB2Hp39')
 
     await daemons[0].client.dht.provide(cid)

@@ -26,8 +26,6 @@ describe('dht.peerRouting', () => {
   })
 
   it('go peer to go peer', async function () {
-    this.timeout(10 * 1000)
-
     const identify1 = await daemons[1].client.identify()
     const identify2 = await daemons[2].client.identify()
 
