@@ -72,6 +72,7 @@ class Daemon {
    * Starts a daemon and a client associated with it.
    * @param {Object} options daemon options
    * @param {bool} options.dht dht enabled (false)
+   * @param {bool} options.pubsub pubsub enabled (false)
    * @returns {void}
    */
   async start (options = {}) {
@@ -93,6 +94,7 @@ class Daemon {
    * @private
    * @param {Object} options daemon options
    * @param {bool} options.dht dht enabled (false)
+   * @param {bool} options.pubsub pubsub enabled (false)
    * @returns {Promise}
    */
   _startDaemon (options) {
