@@ -35,12 +35,13 @@
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "^6.0.30",
     "libp2p-daemon": "~0.2.0",
-    "libp2p-daemon-client": "~0.1.1",
+    "libp2p-daemon-client": "~0.1.2",
     "multiaddr": "^6.0.6",
     "rimraf": "^2.6.3"
   },
   "contributors": [],
   "dependencies": {
+    "cids": "~0.5.7",
     "execa": "^1.0.0"
   }
 }
