@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/libp2p/interop#readme",
   "devDependencies": {
-    "libp2p-daemon": "^0.2.2",
     "aegir": "^19.0.5",
     "chai": "^4.2.0",
     "chai-bytes": "~0.1.2",
@@ -35,6 +34,7 @@
     "cross-env": "^5.2.0",
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.1.0",
+    "libp2p-daemon": "libp2p/js-libp2p-daemon#feat/integrate-gossipsub-by-default",
     "libp2p-daemon-client": "~0.2.1",
     "multiaddr": "^6.0.6",
     "rimraf": "^2.6.3"
