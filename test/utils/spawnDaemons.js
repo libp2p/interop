@@ -1,6 +1,7 @@
 'use strict'
 
 const assert = require('assert')
+const path = require('path')
 
 const Daemon = require('../../src/daemon')
 
@@ -8,51 +9,57 @@ const startPortNumber = 9000
 
 /**
  * @param {number} n number of nodes to spawn
- * @param {string|array} type nodes type (default: js)
+ * @param {string|array} specs node specs (default: 'js')
  * @param {Object|array} options daemon options
  */
-async function spawnDaemons (n, type = 'js', options) {
+async function spawnDaemons (n, specs = 'js', options) {
   assert(n, 'spawnDaemons require a number of nodes to start')
-  assert(validType(n, type), 'spawnDaemons type is not valid')
 
-  let types = type
-
-  if (!Array.isArray(types)) {
-    types = new Array(n).fill(type)
+  if (!Array.isArray(specs)) {
+    specs = new Array(n).fill(specs)
   }
+  specs = specs.map((spec) => {
+    if (typeof spec === 'string') {
+      return {
+        type: spec
+      }
+    }
+
+    return spec
+  })
+  validateSpecs(n, specs)
 
   let daemonOptions = options
-
   if (!Array.isArray(daemonOptions)) {
     daemonOptions = new Array(n).fill(options)
   }
 
   const daemons = []
-  let daemon
-
   for (let i = 0; i < n; i++) {
-    daemon = new Daemon(types[i], `/tmp/p2pd-${i}.sock`, startPortNumber + i)
+    const spec = specs[i]
+    const daemon = new Daemon(spec.type, `/tmp/p2pd-${i}.sock`, startPortNumber + i)
     daemons.push(daemon)
   }
 
-  await Promise.all(daemons.map((daemon, i) => daemon.start(daemonOptions[i])))
+  await Promise.all(daemons.map((daemon, i) => {
+    const spec = specs[i]
+    const opts = daemonOptions[i] || {}
+    opts.keyFile = spec.keyType != null
+      ? path.resolve(__dirname, `../resources/keys/${spec.type}.${spec.keyType}.key`) : null
+    return daemon.start(opts)
+  }))
 
   return daemons
 }
 
-function validType (n, type) {
-  // validate string type
-  if (typeof type === 'string' && (type === 'js' || type === 'go')) {
-    return true
-  }
+function validateSpecs (n, specs) {
+  assert(specs.length === n, 'number of specs must be equal to n')
 
-  // validate array of types
-  if (Array.isArray(type) && type.length === n &&
-    !type.filter((t) => (t !== 'go' && t !== 'js')).length) {
-    return true
-  }
-
-  return false
+  specs.forEach((spec) => {
+    assert(spec.type === 'js' || spec.type === 'go', `invalid spec type ${spec.type}`)
+    assert(spec.keyType == null || spec.keyType === 'rsa' || spec.keyType === 'secp256k1',
+      `invalid spec key type ${spec.keyType}`)
+  })
 }
 
 module.exports = spawnDaemons
