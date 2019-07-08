@@ -11,6 +11,7 @@ const { decode } = require('length-prefixed-stream')
 const ma = require('multiaddr')
 const { StreamInfo } = require('libp2p-daemon/src/protocol')
 const { ends, isWindows } = require('libp2p-daemon/src/util')
+const tmp = require('tmp')
 
 const spawnDaemons = require('../utils/spawnDaemons')
 
@@ -40,7 +41,7 @@ describe('streams', () => {
 
     const addr = isWindows
       ? ma('/ip4/0.0.0.0/tcp/9090')
-      : ma(`/unix${path.resolve(os.tmpdir(), '/tmp/p2p-echo-handler.sock')}`)
+      : ma(`/unix${tmp.tmpNameSync()}`)
 
     const sendingIdentity = await daemons[0].client.identify()
     const receivingIdentity = await daemons[1].client.identify()
