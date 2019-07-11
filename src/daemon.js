@@ -119,8 +119,11 @@ class Daemon {
       daemon.stdout.once('data', () => {
         return resolve()
       })
-      daemon.stderr.once('data', (data) => {
-        return reject(data.toString())
+
+      daemon.stderr.on('data', (data) => {
+        if (!data.toString().includes('Warning')) {
+          return reject(data.toString())
+        }
       })
     })
   }
