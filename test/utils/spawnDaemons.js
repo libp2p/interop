@@ -57,7 +57,7 @@ function validateSpecs (n, specs) {
 
   specs.forEach((spec) => {
     assert(['js', 'go'].includes(spec.type), `invalid spec type ${spec.type}`)
-    assert(spec.keyType == null || spec.keyType === 'rsa' || spec.keyType === 'secp256k1',
+    assert([undefined, null, 'rsa', 'secp256k1'].includes(spec.keyType),
       `invalid spec key type ${spec.keyType}`)
   })
 }
