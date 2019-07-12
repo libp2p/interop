@@ -56,7 +56,7 @@ function validateSpecs (n, specs) {
   assert(specs.length === n, 'number of specs must be equal to n')
 
   specs.forEach((spec) => {
-    assert(spec.type === 'js' || spec.type === 'go', `invalid spec type ${spec.type}`)
+    assert(['js', 'go'].includes(spec.type), `invalid spec type ${spec.type}`)
     assert(spec.keyType == null || spec.keyType === 'rsa' || spec.keyType === 'secp256k1',
       `invalid spec key type ${spec.keyType}`)
   })
