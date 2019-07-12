@@ -27,17 +27,15 @@ const jsDaemon = {
 class Daemon {
   /**
    * @constructor
-   * @param {String} spec daemon implementation spec (type "go" or "js")
+   * @param {String} type daemon implementation type ("go" or "js")
    * @param {Multiaddr} addr multiaddr for the client to connect to
    * @param {Number} port port for the client to connect to
    */
-  constructor (spec, addr, port) {
-    const { type, keyFile } = spec
+  constructor (type, addr, port) {
     assert(type === 'go' || type === 'js', 'invalid type received. Should be "go" or "js"')
 
     this._client = undefined
     this._type = type
-    this._keyFile = keyFile
     this._binPath = this._getBinPath(type)
     this._addr = addr && getMultiaddr(addr, port)
 
