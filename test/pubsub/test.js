@@ -21,7 +21,7 @@ exports.pubsubTest = async (daemons) => {
 
   const publisher = async () => {
     // wait for subscription stream
-    await new Promise(resolve => setTimeout(resolve, 200))
+    await new Promise(resolve => setTimeout(resolve, 800))
     daemons[0].client.pubsub.publish(topic, data)
   }
 

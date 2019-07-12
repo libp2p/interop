@@ -34,7 +34,7 @@
     "cross-env": "^5.2.0",
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.1.0",
-    "libp2p-daemon": "libp2p/js-libp2p-daemon#feat/integrate-gossipsub-by-default",
+    "libp2p-daemon": "~0.2.3",
     "libp2p-daemon-client": "~0.2.1",
     "multiaddr": "^6.0.6",
     "rimraf": "^2.6.3"

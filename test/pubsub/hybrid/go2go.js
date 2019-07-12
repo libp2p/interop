@@ -4,14 +4,19 @@
 const spawnDaemons = require('../../utils/spawnDaemons')
 const { pubsubTest } = require('../test')
 
-describe('pubsub - gossipsub', () => {
+describe('pubsub - hybrid', () => {
   let daemons
 
   // Start daemons
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(2, ['js', 'go'], { pubsub: true })
+    const daemonOptions = [
+      { pubsub: true, pubsubRouter: 'floodsub' },
+      { pubsub: true, pubsubRouter: 'gossipsub' }
+    ]
+
+    daemons = await spawnDaemons(2, 'go', daemonOptions)
 
     // connect them
     const identify0 = await daemons[0].client.identify()
@@ -25,7 +30,7 @@ describe('pubsub - gossipsub', () => {
     )
   })
 
-  it('js publish to go subscriber', function () {
+  it('go floodsub publish to go gossipsub subscriber', function () {
     this.timeout(20 * 1000)
 
     return pubsubTest(daemons)

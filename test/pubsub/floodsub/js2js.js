@@ -26,7 +26,7 @@ describe('pubsub - floodsub', () => {
   })
 
   it('js publish to js subscriber', function () {
-    this.timeout(10 * 1000)
+    this.timeout(30 * 1000)
 
     return pubsubTest(daemons)
   })

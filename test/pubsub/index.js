@@ -2,3 +2,4 @@
 
 require('./gossipsub')
 require('./floodsub')
+require('./hybrid')
