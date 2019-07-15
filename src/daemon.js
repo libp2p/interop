@@ -100,29 +100,36 @@ class Daemon {
   _startDaemon (options) {
     return new Promise((resolve, reject) => {
       let execOptions
+      const addr = this._addr.toString()
 
       // TODO refactor this once we daemon supports a json config
       if (this._type === 'go') {
-        execOptions = ['-listen', this._addr]
+        execOptions = ['-listen', addr]
 
         options.dht && execOptions.push('-dht')
         options.pubsub && execOptions.push('-pubsub')
       } else {
-        execOptions = ['--listen', this._addr]
+        execOptions = ['--listen', addr]
 
         options.dht && execOptions.push('--dht')
         options.pubsub && execOptions.push('--pubsub')
+      }
+      if ((options.keyFile || '') !== '') {
+        execOptions.push(`--id=${options.keyFile}`)
       }
 
       const daemon = execa(this._binPath, execOptions)
 
       daemon.stdout.once('data', () => {
-        return resolve()
+        resolve()
       })
-
-      daemon.stderr.on('data', (data) => {
-        if (!data.toString().includes('Warning')) {
-          return reject(data.toString())
+      daemon.on('exit', (code, signal) => {
+        if (code !== 0) {
+          reject(new Error(`daemon exited with status code ${code}`))
+        } else if ((signal || '') !== '') {
+          reject(new Error(`daemon exited due to signal ${signal}`))
+        } else {
+          resolve()
         }
       })
     })
