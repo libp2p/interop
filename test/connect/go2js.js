@@ -8,46 +8,86 @@ const expect = chai.expect
 
 const spawnDaemons = require('../utils/spawnDaemons')
 
-describe('connect', () => {
-  let daemons
+const beforeConnect = (ctx, keyType) => {
+  ctx.timeout(20 * 1000)
 
-  // Start Daemons
-  before(async function () {
-    this.timeout(20 * 1000)
+  return spawnDaemons(2, [{ type: 'go', keyType }, { type: 'js', keyType }])
+}
 
-    daemons = await spawnDaemons(2, ['go', 'js'])
+const afterConnect = async (daemons) => {
+  if (daemons == null) {
+    return
+  }
+
+  await Promise.all(
+    daemons.map(async (daemon) => {
+      // Ignore errors
+      try {
+        await daemon.stop()
+      } catch (_) {
+      }
+    })
+  )
+}
+
+const performTest = async (ctx, daemons) => {
+  ctx.timeout(10 * 1000)
+
+  const identifyGo = await daemons[0].client.identify()
+  const goId = identifyGo.peerId.toB58String()
+  const identifyJs = await daemons[1].client.identify()
+  const jsId = identifyJs.peerId.toB58String()
+
+  // verify connected peers
+  const knownPeersBeforeConnectGo = await daemons[0].client.listPeers()
+  expect(knownPeersBeforeConnectGo).to.have.lengthOf(0)
+
+  const knownPeersBeforeConnectJs = await daemons[1].client.listPeers()
+  expect(knownPeersBeforeConnectJs).to.have.lengthOf(0)
+
+  // connect peers
+  await daemons[0].client.connect(identifyJs.peerId, identifyJs.addrs)
+
+  // verify connected peers
+  const knownPeersAfterConnectGo = await daemons[0].client.listPeers()
+  expect(knownPeersAfterConnectGo).to.have.lengthOf(1)
+  expect(knownPeersAfterConnectGo[0].toB58String()).to.equal(jsId)
+
+  const knownPeersAfterConnectJs = await daemons[1].client.listPeers()
+  expect(knownPeersAfterConnectJs).to.have.lengthOf(1)
+  expect(knownPeersAfterConnectJs[0].toB58String()).to.equal(goId)
+}
+
+describe('connecting go peer to js peer', () => {
+  describe('with RSA keys', () => {
+    let daemons
+
+    before(async function () {
+      daemons = await beforeConnect(this, 'rsa')
+    })
+
+    after(async () => {
+      await afterConnect(daemons)
+    })
+
+    it('should work', async function () {
+      await performTest(this, daemons)
+    })
   })
 
-  // Stop daemons
-  after(async function () {
-    await Promise.all(
-      daemons.map((daemon) => daemon.stop())
-    )
-  })
+  describe('with SECP256k1 keys', () => {
+    let daemons
 
-  it('go peer to js peer', async function () {
-    this.timeout(10 * 1000)
+    before(async function () {
+      daemons = await beforeConnect(this, 'secp256k1')
+    })
 
-    const identifyJs = await daemons[0].client.identify()
-    const identifyGo = await daemons[1].client.identify()
+    after(async () => {
+      await afterConnect(daemons)
+    })
 
-    // verify connected peers
-    const knownPeersBeforeConnectJs = await daemons[0].client.listPeers()
-    expect(knownPeersBeforeConnectJs).to.have.lengthOf(0)
-
-    const knownPeersBeforeConnectGo = await daemons[1].client.listPeers()
-    expect(knownPeersBeforeConnectGo).to.have.lengthOf(0)
-
-    // connect peers
-    await daemons[1].client.connect(identifyJs.peerId, identifyJs.addrs)
-
-    // verify connected peers
-    const knownPeersAfterConnectGo = await daemons[1].client.listPeers()
-    expect(knownPeersAfterConnectGo).to.have.lengthOf(1)
-    expect(knownPeersAfterConnectGo[0].toB58String()).to.equal(identifyJs.peerId.toB58String())
-
-    const knownPeersAfterConnectJs = await daemons[0].client.listPeers()
-    expect(knownPeersAfterConnectJs).to.have.lengthOf(1)
-    expect(knownPeersAfterConnectJs[0].toB58String()).to.equal(identifyGo.peerId.toB58String())
+    it('should work', async function () {
+      await performTest(this, daemons)
+    })
   })
 })
