@@ -48,6 +48,9 @@ const performTest = async (ctx, daemons) => {
   // connect peers
   await daemons[0].client.connect(identifyGo.peerId, identifyGo.addrs)
 
+  // Wait for connections to complete
+  await new Promise(resolve => setTimeout(resolve, 250))
+
   // verify connected peers
   const knownPeersAfterConnectJs = await daemons[0].client.listPeers()
   expect(knownPeersAfterConnectJs).to.have.lengthOf(1)
@@ -80,6 +83,22 @@ describe('connecting js peer to go peer', () => {
 
     before(async function () {
       daemons = await beforeConnect(this, 'secp256k1')
+    })
+
+    after(async () => {
+      await afterConnect(daemons)
+    })
+
+    it('should work', async function () {
+      await performTest(this, daemons)
+    })
+  })
+
+  describe('with ED25519 keys', () => {
+    let daemons
+
+    before(async function () {
+      daemons = await beforeConnect(this, 'ed25519')
     })
 
     after(async () => {
