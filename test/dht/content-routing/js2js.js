@@ -41,7 +41,7 @@ describe('dht.contentRouting', () => {
     await daemons[0].client.dht.provide(cid)
 
     const findProviders = daemons[1].client.dht.findProviders(cid)
-    let providers = []
+    const providers = []
 
     for await (const provider of findProviders) {
       providers.push(provider)
