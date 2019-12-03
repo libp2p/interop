@@ -1,5 +1,8 @@
 'use strict'
 
+const debug = require('debug')
+const log = debug('daemon')
+
 const assert = require('assert')
 const execa = require('execa')
 const fs = require('fs')
@@ -85,8 +88,6 @@ class Daemon {
 
     // start client
     this._client = new Client(this._addr)
-
-    await this._client.attach()
   }
 
   /**
@@ -122,6 +123,10 @@ class Daemon {
 
       daemon.stdout.once('data', () => {
         resolve()
+
+        daemon.stdout.on('data', (data) => {
+          log(data.toString())
+        })
       })
       daemon.on('exit', (code, signal) => {
         if (code !== 0) {
