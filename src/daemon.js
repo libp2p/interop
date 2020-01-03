@@ -108,11 +108,13 @@ class Daemon {
 
         options.dht && execOptions.push('-dht')
         options.pubsub && execOptions.push('-pubsub')
+        options.pubsubRouter && execOptions.push('-pubsubRouter', options.pubsubRouter)
       } else {
         execOptions = ['--listen', addr]
 
         options.dht && execOptions.push('--dht')
         options.pubsub && execOptions.push('--pubsub')
+        options.pubsubRouter && execOptions.push('--pubsubRouter', options.pubsubRouter)
       }
       if ((options.keyFile || '') !== '') {
         execOptions.push(`--id=${options.keyFile}`)
