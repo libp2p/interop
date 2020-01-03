@@ -12,7 +12,9 @@
     "lint": "aegir lint",
     "test": "aegir test -t node -f test/node.js",
     "test:node": "aegir test -t node -f test/node.js",
-    "test:browser": "aegir test -t browser --no-cors -f test/browser.js"
+    "test:browser": "aegir test -t browser --no-cors -f test/browser.js",
+    "release": "aegir release --target node",
+    "release-minor": "aegir release --type minor --target node"
   },
   "repository": {
     "type": "git",
