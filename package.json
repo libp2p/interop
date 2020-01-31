@@ -34,8 +34,8 @@
     "cross-env": "^6.0.3",
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.5.0",
-    "libp2p-daemon": "libp2p/js-libp2p-daemon#refactor/streams-fix",
-    "libp2p-daemon-client": "libp2p/js-libp2p-daemon-client#chore/update-deps-20191203",
+    "libp2p-daemon": "^0.3.0",
+    "libp2p-daemon-client": "^0.3.0",
     "multiaddr": "^7.2.1",
     "rimraf": "^3.0.0"
   },
