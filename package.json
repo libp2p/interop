@@ -4,6 +4,10 @@
   "description": "Interoperability Tests for libp2p",
   "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
   "main": "",
+  "files": [
+    "test",
+    "src"
+  ],
   "engines": {
     "node": ">=10.0.0",
     "npm": ">6.0.0"
