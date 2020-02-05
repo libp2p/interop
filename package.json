@@ -1,6 +1,6 @@
 {
   "name": "interop-libp2p",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Interoperability Tests for libp2p",
   "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
   "main": "",
@@ -17,8 +17,8 @@
     "test": "aegir test -t node -f test/node.js",
     "test:node": "aegir test -t node -f test/node.js",
     "test:browser": "aegir test -t browser --no-cors -f test/browser.js",
-    "release": "aegir release --target node",
-    "release-minor": "aegir release --type minor --target node"
+    "release": "aegir release --target node --build=false",
+    "release-minor": "aegir release --type minor --target node  --build=false"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,14 @@
     "multiaddr": "^7.2.1",
     "rimraf": "^3.0.0"
   },
-  "contributors": [],
+  "contributors": [
+    "Arve Knudsen <arve.knudsen@gmail.com>",
+    "David Dias <daviddias.p@gmail.com>",
+    "Jacob Heun <jacobheun@gmail.com>",
+    "Mantas Vidutis <mantas.a.vidutis@gmail.com>",
+    "Vasco Santos <vasco.santos@moxy.studio>",
+    "Vasco Santos <vasco.santos@ua.pt>"
+  ],
   "dependencies": {
     "cids": "~0.7.1",
     "debug": "^4.1.1",
