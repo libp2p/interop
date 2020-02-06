@@ -37,7 +37,7 @@
     "chai": "^4.2.0",
     "chai-bytes": "~0.1.2",
     "chai-checkmark": "^1.0.1",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.5.0",
     "libp2p-daemon": "^0.3.0",
