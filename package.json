@@ -40,7 +40,7 @@
     "cross-env": "^7.0.0",
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.5.0",
-    "libp2p-daemon": "^0.3.0",
+    "libp2p-daemon": "libp2p/js-libp2p-daemon#feat/noise",
     "libp2p-daemon-client": "^0.3.0",
     "multiaddr": "^7.2.1",
     "rimraf": "^3.0.0"

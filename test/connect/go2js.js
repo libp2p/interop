@@ -8,10 +8,10 @@ const expect = chai.expect
 
 const spawnDaemons = require('../utils/spawnDaemons')
 
-const beforeConnect = (ctx, keyType) => {
+const beforeConnect = (ctx, keyType, config) => {
   ctx.timeout(20 * 1000)
 
-  return spawnDaemons(2, [{ type: 'go', keyType }, { type: 'js', keyType }])
+  return spawnDaemons(2, [{ type: 'go', keyType }, { type: 'js', keyType }], config)
 }
 
 const afterConnect = async (daemons) => {
@@ -58,36 +58,38 @@ const performTest = async (ctx, daemons) => {
   expect(knownPeersAfterConnectJs[0].toB58String()).to.equal(goId)
 }
 
-describe('connecting go peer to js peer', () => {
-  describe('with RSA keys', () => {
-    let daemons
+module.exports = (name, config) => {
+  describe(`connecting go peer to js peer ${name}`, () => {
+    describe('with RSA keys', () => {
+      let daemons
 
-    before(async function () {
-      daemons = await beforeConnect(this, 'rsa')
+      before(async function () {
+        daemons = await beforeConnect(this, 'rsa', config)
+      })
+
+      after(async () => {
+        await afterConnect(daemons)
+      })
+
+      it('should work', async function () {
+        await performTest(this, daemons)
+      })
     })
 
-    after(async () => {
-      await afterConnect(daemons)
-    })
+    describe('with SECP256k1 keys', () => {
+      let daemons
 
-    it('should work', async function () {
-      await performTest(this, daemons)
+      before(async function () {
+        daemons = await beforeConnect(this, 'secp256k1', config)
+      })
+
+      after(async () => {
+        await afterConnect(daemons)
+      })
+
+      it('should work', async function () {
+        await performTest(this, daemons)
+      })
     })
   })
-
-  describe('with SECP256k1 keys', () => {
-    let daemons
-
-    before(async function () {
-      daemons = await beforeConnect(this, 'secp256k1')
-    })
-
-    after(async () => {
-      await afterConnect(daemons)
-    })
-
-    it('should work', async function () {
-      await performTest(this, daemons)
-    })
-  })
-})
+}
