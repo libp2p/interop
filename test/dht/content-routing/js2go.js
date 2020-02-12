@@ -9,48 +9,46 @@ const expect = chai.expect
 const CID = require('cids')
 const spawnDaemons = require('../../utils/spawnDaemons')
 
-;[{ secio: true, noise: false }, { secio: false, noise: true }].forEach(config => {
-  describe('dht.contentRouting', () => {
-    let daemons
-    let identify0
+describe('dht.contentRouting', () => {
+  let daemons
+  let identify0
 
-    // Start Daemons
-    before(async function () {
-      this.timeout(20 * 1000)
+  // Start Daemons
+  before(async function () {
+    this.timeout(20 * 1000)
 
-      daemons = await spawnDaemons(2, ['js', 'go'], { ...config, ...{ dht: true }})
+    daemons = await spawnDaemons(2, ['js', 'go'], { dht: true })
 
-      // connect them
-      identify0 = await daemons[0].client.identify()
+    // connect them
+    identify0 = await daemons[0].client.identify()
 
-      await daemons[1].client.connect(identify0.peerId, identify0.addrs)
+    await daemons[1].client.connect(identify0.peerId, identify0.addrs)
 
-      // get the peers in the table
-      await new Promise(resolve => setTimeout(resolve, 1000))
-    })
+    // get the peers in the table
+    await new Promise(resolve => setTimeout(resolve, 1000))
+  })
 
-    // Stop daemons
-    after(async function () {
-      await Promise.all(
-        daemons.map((daemon) => daemon.stop())
-      )
-    })
+  // Stop daemons
+  after(async function () {
+    await Promise.all(
+      daemons.map((daemon) => daemon.stop())
+    )
+  })
 
-    it('go peer to js peer', async function () {
-      const cid = new CID('QmVzw6MPsF96TyXBSRs1ptLoVMWRv5FCYJZZGJSVB2Hp39')
+  it('go peer to js peer', async function () {
+    const cid = new CID('QmVzw6MPsF96TyXBSRs1ptLoVMWRv5FCYJZZGJSVB2Hp39')
 
-      await daemons[0].client.dht.provide(cid)
+    await daemons[0].client.dht.provide(cid)
 
-      const findProviders = daemons[1].client.dht.findProviders(cid)
-      const providers = []
+    const findProviders = daemons[1].client.dht.findProviders(cid)
+    const providers = []
 
-      for await (const provider of findProviders) {
-        providers.push(provider)
-      }
+    for await (const provider of findProviders) {
+      providers.push(provider)
+    }
 
-      expect(providers).to.exist()
-      expect(providers[0]).to.exist()
-      expect(providers[0].id.toB58String()).to.equal(identify0.peerId.toB58String())
-    })
+    expect(providers).to.exist()
+    expect(providers[0]).to.exist()
+    expect(providers[0].id.toB58String()).to.equal(identify0.peerId.toB58String())
   })
 })
