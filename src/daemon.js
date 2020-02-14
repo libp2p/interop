@@ -131,6 +131,9 @@ class Daemon {
       }
 
       const daemon = execa(this._binPath, execOptions)
+      if (process.env.DEBUG) {
+        daemon.stderr.pipe(process.stderr)
+      }
 
       daemon.stdout.once('data', () => {
         resolve()
