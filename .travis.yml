@@ -1,43 +1,15 @@
-language: go
-cache: npm
-stages:
-  - check
-  - latest
-  - test
-
-go:
-  - "1.13"
-
+language: node_js
 os:
   - linux
   - osx
-  - windows
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - os: windows
-
-script: echo $(node --version)
-# after_success: npx nyc report --reporter=text-lcov > coverage.lcov && npx codecov
-
-jobs:
-  include:
-    - stage: check
-      script:
-        - npx aegir dep-check
-        - npm run lint
-  include:
-    - stage: latest
-      before_install:
-        - git clone https://github.com/libp2p/go-libp2p-daemon.git
-        - cd go-libp2p-daemon && git checkout master
-        - go get ./... && go get -u github.com/libp2p/go-libp2p-noise
-        - go install ./...
-        - cd ${TRAVIS_BUILD_DIR}
-        - npm install
-      script:
-        - LIBP2P_GO_BIN=$GOPATH/bin/p2pd LIBP2P_JS_BIN=$(which jsp2pd) npm run test
-
+node_js:
+  - '12'
+dist: trusty
+sudo: false
+install:
+  - eval "$(curl -sL https://raw.githubusercontent.com/travis-ci/gimme/master/gimme | GIMME_GO_VERSION=master bash)"
+script:
+  - echo $(go version) && echo $GOPATH
+  - npm run lint
 notifications:
   email: false
