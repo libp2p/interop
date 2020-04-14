@@ -41,7 +41,7 @@
     "dirty-chai": "^2.0.1",
     "go-libp2p-dep": "~0.8.1",
     "libp2p-daemon": "libp2p/js-libp2p-daemon#chore/update-peer-store-api",
-    "libp2p-daemon-client": "^0.3.0",
+    "libp2p-daemon-client": "libp2p/js-libp2p-daemon-client#chore/remove-peer-info-from-api",
     "multiaddr": "^7.2.1",
     "rimraf": "^3.0.0"
   },
