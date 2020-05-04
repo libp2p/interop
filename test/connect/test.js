@@ -5,9 +5,13 @@ chai.use(require('dirty-chai'))
 chai.use(require('chai-bytes'))
 const expect = chai.expect
 
-module.exports = async (daemons) => {
+module.exports = async (daemons, ids) => {
   const identify1 = await daemons[0].client.identify()
   const identify2 = await daemons[1].client.identify()
+
+  // Verify ids
+  expect(identify1.peerId.toB58String()).to.eql(ids[0])
+  expect(identify2.peerId.toB58String()).to.eql(ids[1])
 
   // verify connected peers
   const knownPeersBeforeConnect1 = await daemons[0].client.listPeers()

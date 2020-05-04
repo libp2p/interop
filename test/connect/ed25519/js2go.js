@@ -27,6 +27,7 @@ describe('connect (ed25519)', () => {
   it('js peer to go peer', function () {
     this.timeout(10 * 1000)
 
-    return connectTest(daemons)
+    const ids = ['12D3KooWDaHkRyb4Nkf8L6WHbsWB9Krt491NDk8PaPGogXvj2pcY', '12D3KooWRqGdmFVwspgLBajUQacY1TrkBkAUqmjqjbHSFGEoZs9R']
+    return connectTest(daemons, ids)
   })
 })

@@ -27,6 +27,7 @@ describe('connect (secp256k1)', () => {
   it('js peer to go peer', function () {
     this.timeout(10 * 1000)
 
-    return connectTest(daemons)
+    const ids = ['16Uiu2HAm7txvwZbeK5g3oB3DrRhnARTEjTNorVreWJomfHJHbEu2', '16Uiu2HAmPu9PZESp4keskcfDkdBvDhs1Dra1aLjfeHRCFHgQoD6L']
+    return connectTest(daemons, ids)
   })
 })

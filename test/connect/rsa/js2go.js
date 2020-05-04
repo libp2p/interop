@@ -11,7 +11,10 @@ describe('connect (RSA)', () => {
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(2, ['js', 'go'])
+    daemons = await spawnDaemons(2, [
+      { type: 'js', keyType: 'rsa' },
+      { type: 'go', keyType: 'rsa' }
+    ])
   })
 
   // Stop daemons
@@ -24,6 +27,7 @@ describe('connect (RSA)', () => {
   it('js peer to go peer', function () {
     this.timeout(10 * 1000)
 
-    return connectTest(daemons)
+    const ids = ['QmPFdSzvgd1HbZSd6oX2N2vCSnhSEeocbQZsMB42UG8smE', 'QmWS3xmxj1i659VUoustPU8KGzXkziqzF7BBGXS9fDwyz1']
+    return connectTest(daemons, ids)
   })
 })
