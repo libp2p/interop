@@ -1,6 +1,5 @@
 'use strict'
 
-require('./go2go')
-require('./go2js')
-require('./js2go')
-require('./js2js')
+require('./rsa')
+require('./ed25519')
+require('./secp256k1')
