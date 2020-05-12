@@ -42,6 +42,6 @@ describe('dht.peerRouting', () => {
     // peer 1 find peer 2
     const peerInfo = await daemons[1].client.dht.findPeer(identify2.peerId)
 
-    expect(peerInfo.multiaddrs.toArray()).to.have.deep.members(identify2.addrs)
+    expect(identify2.addrs).to.include.deep.members(peerInfo.multiaddrs.toArray())
   })
 })
