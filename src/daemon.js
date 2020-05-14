@@ -10,7 +10,7 @@ const path = require('path')
 const rimraf = require('rimraf')
 
 const Client = require('libp2p-daemon-client')
-const { getMultiaddr, isWindows } = require('./utils')
+const { getMultiaddr, isWindows, DEFAULT_CONFIG } = require('./utils')
 
 // process path
 const processPath = process.cwd()
@@ -18,13 +18,13 @@ const processPath = process.cwd()
 // go-libp2p defaults
 const goDaemon = {
   defaultAddr: getMultiaddr('/tmp/p2pd-go.sock'),
-  bin: path.join('go-libp2p-dep', 'go-libp2p', isWindows ? 'p2pd.exe' : 'p2pd')
+  bin: process.env.LIBP2P_GO_BIN || path.join('go-libp2p-dep', 'go-libp2p', isWindows ? 'p2pd.exe' : 'p2pd')
 }
 
 // js-libp2p defaults
 const jsDaemon = {
   defaultAddr: getMultiaddr('/tmp/p2pd-js.sock'),
-  bin: path.join('libp2p-daemon', 'src', 'cli', 'bin.js')
+  bin: process.env.LIBP2P_JS_BIN || path.join('libp2p-daemon', 'src', 'cli', 'bin.js')
 }
 
 class Daemon {
@@ -55,6 +55,10 @@ class Daemon {
    */
   _getBinPath (type) {
     const depPath = type === 'go' ? goDaemon.bin : jsDaemon.bin
+    if (fs.existsSync(depPath)) {
+      return depPath
+    }
+
     let npmPath = path.join(processPath, '../', depPath)
 
     if (fs.existsSync(npmPath)) {
@@ -99,6 +103,8 @@ class Daemon {
    * @returns {Promise}
    */
   _startDaemon (options) {
+    options = { ...DEFAULT_CONFIG, ...options }
+
     return new Promise((resolve, reject) => {
       let execOptions
       const addr = this._addr.toString()
@@ -107,12 +113,16 @@ class Daemon {
       if (this._type === 'go') {
         execOptions = ['-listen', addr]
 
+        execOptions.push(`-secio=${options.secio}`)
+        execOptions.push(`-noise=${options.noise}`)
         options.dht && execOptions.push('-dht')
         options.pubsub && execOptions.push('-pubsub')
         options.pubsubRouter && execOptions.push('-pubsubRouter', options.pubsubRouter)
       } else {
         execOptions = ['--listen', addr]
 
+        execOptions.push(`--secio=${options.secio}`)
+        execOptions.push(`--noise=${options.noise}`)
         options.dht && execOptions.push('--dht')
         options.pubsub && execOptions.push('--pubsub')
         options.pubsubRouter && execOptions.push('--pubsubRouter', options.pubsubRouter)
@@ -122,6 +132,7 @@ class Daemon {
       }
 
       const daemon = execa(this._binPath, execOptions)
+      daemon.stderr.pipe(process.stderr)
 
       daemon.stdout.once('data', () => {
         resolve()

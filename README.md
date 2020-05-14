@@ -29,13 +29,23 @@ This repository will be used for interop tests.
 > npm test
 ```
 
-### Test with a non yet released version of js-ipfs
+#### Testing local daemons
 
-TODO
+It is possible to test local versions of the go and js daemons exporting the respective path before running the tests.
 
-### Test with a non yet released version of go-ipfs
+**Specifying the go-libp2p daemon**
+See the go-libp2p-daemon [install instructions](https://github.com/libp2p/go-libp2p-daemon#install) for building the local binary.
 
-TODO
+```sh
+$ LIBP2P_GO_BIN=$GOPATH/bin/p2pd npm run test
+```
+
+**Specifying the js-libp2p daemon**
+From the js-libp2p-daemon local repo checkout you can perform an `npm link` to create a binary, `jsp2pd` in the global npm space.
+
+```sh
+$ LIBP2P_JS_BIN=$(which jsp2pd) npm run test
+```
 
 ## Contribute
 
