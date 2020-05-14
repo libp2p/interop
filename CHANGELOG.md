@@ -1,3 +1,13 @@
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/libp2p/interop/compare/v0.0.4...v0.0.5) (2020-05-14)
+
+
+### Features
+
+* add connect tests using secio and noise ([#40](https://github.com/libp2p/interop/issues/40)) ([66e1f62](https://github.com/libp2p/interop/commit/66e1f62))
+
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/libp2p/interop/compare/v0.0.3...v0.0.4) (2020-05-13)
 
