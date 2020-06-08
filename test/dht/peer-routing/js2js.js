@@ -5,6 +5,7 @@ const chai = require('chai')
 chai.use(require('dirty-chai'))
 chai.use(require('chai-checkmark'))
 const expect = chai.expect
+const pRetry = require('p-retry')
 
 const spawnDaemons = require('../../utils/spawnDaemons')
 
@@ -36,12 +37,9 @@ describe('dht.peerRouting', () => {
     // connect 0 => 2
     await daemons[0].client.connect(identify2.peerId, identify2.addrs)
 
-    // daemons[0] will take some time to have the peers in the routing table
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    // peer 1 find peer 2, retry up to 10 times to allow the routing table to refresh
+    const peerData = await pRetry(() => daemons[1].client.dht.findPeer(identify2.peerId), { retry: 10 })
 
-    // peer 1 find peer 2
-    const peerInfo = await daemons[1].client.dht.findPeer(identify2.peerId)
-
-    expect(peerInfo.multiaddrs.toArray()).to.have.deep.members(identify2.addrs)
+    expect(peerData.addrs).to.have.deep.members(identify2.addrs)
   })
 })
