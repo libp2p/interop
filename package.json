@@ -1,6 +1,6 @@
 {
   "name": "interop-libp2p",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interoperability Tests for libp2p",
   "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
   "main": "",
