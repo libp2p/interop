@@ -16,7 +16,7 @@ exports.getMultiaddr = (sockPath, port) => isWindows
   : ma(`/unix${path.resolve(os.tmpdir(), sockPath)}`)
 
 exports.DEFAULT_CONFIG = {
-  secio: true,
-  noise: false,
+  secio: false,
+  noise: true,
   dht: false
 }
