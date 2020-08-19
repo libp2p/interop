@@ -5,9 +5,11 @@ chai.use(require('dirty-chai'))
 chai.use(require('chai-bytes'))
 const expect = chai.expect
 
+const uint8ArrayFromString = require('uint8arrays/from-string')
+
 exports.pubsubTest = async (daemons) => {
   const topic = 'test-topic'
-  const data = Buffer.from('test-data')
+  const data = uint8ArrayFromString('test-data')
 
   const subscribeIterator = await daemons[1].client.pubsub.subscribe(topic)
   const subscriber = async () => {
