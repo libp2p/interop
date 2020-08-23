@@ -6,6 +6,8 @@ chai.use(require('dirty-chai'))
 chai.use(require('chai-bytes'))
 const expect = chai.expect
 
+const uint8ArrayFromString = require('uint8arrays/from-string')
+
 const spawnDaemons = require('../../utils/spawnDaemons')
 
 describe('dht.contentFetching', () => {
@@ -36,8 +38,8 @@ describe('dht.contentFetching', () => {
   it('js peer to js peer', async function () {
     this.timeout(10 * 1000)
 
-    const key = 'keyA'
-    const value = Buffer.from('hello data')
+    const key = uint8ArrayFromString('keyA')
+    const value = uint8ArrayFromString('hello data')
 
     await daemons[0].client.dht.put(key, value)
 
