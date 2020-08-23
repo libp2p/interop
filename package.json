@@ -1,6 +1,6 @@
 {
   "name": "interop-libp2p",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Interoperability Tests for libp2p",
   "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
   "main": "",
@@ -49,9 +49,10 @@
   "contributors": [
     "Vasco Santos <vasco.santos@moxy.studio>",
     "David Dias <daviddias.p@gmail.com>",
-    "Arve Knudsen <arve.knudsen@gmail.com>",
     "Jacob Heun <jacobheun@gmail.com>",
-    "Mantas Vidutis <mantas.a.vidutis@gmail.com>"
+    "Arve Knudsen <arve.knudsen@gmail.com>",
+    "Mantas Vidutis <mantas.a.vidutis@gmail.com>",
+    "Alex Potsides <alex@achingbrain.net>"
   ],
   "dependencies": {
     "cids": "^1.0.0",
