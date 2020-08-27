@@ -111,15 +111,16 @@ class Daemon {
 
       // TODO refactor this once we daemon supports a json config
       if (this._type === 'go') {
-        execOptions = ['-listen', addr]
+        // we need to be in dht server mode for testing
+        execOptions = ['-listen', addr, '-hostAddrs=/ip4/0.0.0.0/tcp/0,/ip4/0.0.0.0/udp/0/quic']
 
         execOptions.push(`-secio=${options.secio}`)
         execOptions.push(`-noise=${options.noise}`)
-        options.dht && execOptions.push('-dht')
+        options.dht && execOptions.push('-dhtServer')
         options.pubsub && execOptions.push('-pubsub')
         options.pubsubRouter && execOptions.push('-pubsubRouter', options.pubsubRouter)
       } else {
-        execOptions = ['--listen', addr]
+        execOptions = ['--listen', addr, '-hostAddrs=/ip4/0.0.0.0/tcp/0']
 
         execOptions.push(`--secio=${options.secio}`)
         execOptions.push(`--noise=${options.noise}`)
@@ -130,6 +131,8 @@ class Daemon {
       if ((options.keyFile || '') !== '') {
         execOptions.push(`--id=${options.keyFile}`)
       }
+
+      log(this._binPath, execOptions)
 
       const daemon = execa(this._binPath, execOptions)
       daemon.stderr.pipe(process.stderr)
