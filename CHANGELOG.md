@@ -1,3 +1,22 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/libp2p/interop/compare/v0.1.1...v0.3.0) (2020-08-27)
+
+
+### Bug Fixes
+
+* replace node buffers with uint8arrays ([#42](https://github.com/libp2p/interop/issues/42)) ([ef57641](https://github.com/libp2p/interop/commit/ef57641))
+
+
+### BREAKING CHANGES
+
+* - All deps of this module now use uint8arrays in place of node buffers
+
+* chore: bump deps
+
+Co-authored-by: Jacob Heun <jacobheun@gmail.com>
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/libp2p/interop/compare/v0.1.1...v0.2.0) (2020-08-23)
 
