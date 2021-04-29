@@ -21,7 +21,7 @@ class Node extends libp2p {
           Yamux
         ],
         crypto: [
-          SECIO
+          Noise
           // TLS 1.3 (Soon™)
         ]
       },
