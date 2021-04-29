@@ -114,7 +114,6 @@ class Daemon {
         // we need to be in dht server mode for testing
         execOptions = ['-listen', addr, '-hostAddrs=/ip4/0.0.0.0/tcp/0,/ip4/0.0.0.0/udp/0/quic']
 
-        execOptions.push(`-secio=${options.secio}`)
         execOptions.push(`-noise=${options.noise}`)
         options.dht && execOptions.push('-dhtServer')
         options.pubsub && execOptions.push('-pubsub')
@@ -122,7 +121,6 @@ class Daemon {
       } else {
         execOptions = ['--listen', addr, '-hostAddrs=/ip4/0.0.0.0/tcp/0']
 
-        execOptions.push(`--secio=${options.secio}`)
         execOptions.push(`--noise=${options.noise}`)
         options.dht && execOptions.push('--dht')
         options.pubsub && execOptions.push('--pubsub')
