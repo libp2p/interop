@@ -1,3 +1,13 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/libp2p/interop/compare/v0.3.0...v0.4.0) (2021-05-04)
+
+
+### Features
+
+* remove secio support ([64823d6](https://github.com/libp2p/interop/commit/64823d6))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/libp2p/interop/compare/v0.1.1...v0.3.0) (2020-08-27)
 
