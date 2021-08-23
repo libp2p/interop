@@ -19,7 +19,7 @@ matrix:
   allow_failures:
     - os: windows
 
-script: npx nyc -s npm run test:node -- --bail --exit
+script: npx aegir test -t node --cov --bail --exit
 after_success: npx nyc report --reporter=text-lcov > coverage.lcov && npx codecov
 
 jobs:
