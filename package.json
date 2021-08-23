@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/libp2p/interop#readme",
   "devDependencies": {
-    "aegir": "^26.0.0",
+    "aegir": "^35.0.2",
     "chai": "^4.2.0",
     "chai-bytes": "^0.1.2",
     "chai-checkmark": "^1.0.1",
@@ -42,7 +42,7 @@
     "go-libp2p-dep": "^0.11.0",
     "libp2p-daemon": "^0.7.0",
     "libp2p-daemon-client": "^0.7.0",
-    "multiaddr": "^9.0.0",
+    "multiaddr": "^10.0.1",
     "p-retry": "^4.2.0",
     "rimraf": "^3.0.0"
   },
@@ -56,9 +56,9 @@
     "Steven Allen <steven@stebalien.com>"
   ],
   "dependencies": {
-    "cids": "^1.0.0",
     "debug": "^4.1.1",
     "execa": "^4.0.0",
-    "uint8arrays": "^1.1.0"
+    "multiformats": "^9.4.5",
+    "uint8arrays": "^3.0.0"
   }
 }

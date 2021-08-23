@@ -5,7 +5,7 @@ chai.use(require('dirty-chai'))
 chai.use(require('chai-bytes'))
 const expect = chai.expect
 
-const uint8ArrayFromString = require('uint8arrays/from-string')
+const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 
 exports.pubsubTest = async (daemons) => {
   const topic = 'test-topic'

@@ -40,6 +40,9 @@ describe('dht.peerRouting', () => {
     // peer 1 find peer 2, retry up to 10 times to allow the routing table to refresh
     const peerData = await pRetry(() => daemons[1].client.dht.findPeer(identify2.peerId), { retry: 10 })
 
+    console.info(peerData)
+    console.info(identify2)
+
     expect(peerData.addrs).to.have.deep.members(identify2.addrs)
   })
 })
