@@ -6,7 +6,7 @@ chai.use(require('dirty-chai'))
 chai.use(require('chai-bytes'))
 const expect = chai.expect
 
-const CID = require('cids')
+const { CID } = require('multiformats/cid')
 const spawnDaemons = require('../../utils/spawnDaemons')
 
 describe('dht.contentRouting', () => {
@@ -36,7 +36,7 @@ describe('dht.contentRouting', () => {
   })
 
   it('go peer to js peer', async function () {
-    const cid = new CID('QmVzw6MPsF96TyXBSRs1ptLoVMWRv5FCYJZZGJSVB2Hp39')
+    const cid = CID.parse('QmVzw6MPsF96TyXBSRs1ptLoVMWRv5FCYJZZGJSVB2Hp39')
 
     await daemons[0].client.dht.provide(cid)
 
