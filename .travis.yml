@@ -25,7 +25,7 @@ matrix:
   allow_failures:
     - os: windows
 
-script: npx aegir test -t node --cov --bail --exit
+script: npx aegir test -t node --cov --bail -- --exit
 after_success: npx nyc report --reporter=text-lcov > coverage.lcov && npx codecov
 
 jobs:
