@@ -1,3 +1,7 @@
+## [0.4.1](https://github.com/libp2p/interop/compare/v0.4.0...v0.4.1) (2021-08-23)
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/libp2p/interop/compare/v0.3.0...v0.4.0) (2021-05-04)
 
