@@ -1,13 +1,19 @@
 language: node_js
 cache: npm
+dist: bionic
 stages:
   - check
   - test
   - cov
 
+branches:
+  only:
+  - master
+  - /^release\/.*$/
+
 node_js:
-  - '14'
-  - '15'
+  - 'lts/*'
+  - 'node'
 
 os:
   - linux
