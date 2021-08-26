@@ -14,11 +14,12 @@
   },
   "scripts": {
     "lint": "aegir lint",
-    "test": "aegir test -t node -f test/node.js",
-    "test:node": "aegir test -t node -f test/node.js",
+    "test": "aegir test -t node -f test/node.js -- --exit",
+    "test:node": "aegir test -t node -f test/node.js -- --exit",
     "test:browser": "aegir test -t browser --no-cors -f test/browser.js",
-    "release": "aegir release --target node --build=false",
-    "release-minor": "aegir release --type minor --target node  --build=false"
+    "prerelease": "npm run test",
+    "release": "aegir release --target node --build=false --no-test",
+    "release-minor": "aegir release --type minor --target node  --build=false --no-test"
   },
   "repository": {
     "type": "git",
