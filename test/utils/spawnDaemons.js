@@ -8,9 +8,9 @@ const Daemon = require('../../src/daemon')
 const startPortNumber = 9000
 
 /**
- * @param {number} n number of nodes to spawn
- * @param {string|array} specs node specs (default: 'js')
- * @param {Object|array} options daemon options
+ * @param {number} n - number of nodes to spawn
+ * @param {string | Array} specs - node specs (default: 'js')
+ * @param {Object | Array} options - daemon options
  */
 async function spawnDaemons (n, specs = 'js', options) {
   assert(n, 'spawnDaemons require a number of nodes to start')
@@ -45,7 +45,8 @@ async function spawnDaemons (n, specs = 'js', options) {
     const spec = specs[i]
     const opts = daemonOptions[i] || {}
     opts.keyFile = spec.keyType != null
-      ? path.resolve(__dirname, `../resources/keys/${spec.type}.${spec.keyType}.key`) : null
+      ? path.resolve(__dirname, `../resources/keys/${spec.type}.${spec.keyType}.key`)
+      : null
     return daemon.start(opts)
   }))
 

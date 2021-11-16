@@ -29,10 +29,10 @@ const jsDaemon = {
 
 class Daemon {
   /**
-   * @constructor
-   * @param {String} type daemon implementation type ("go" or "js")
-   * @param {Multiaddr} addr multiaddr for the client to connect to
-   * @param {Number} port port for the client to connect to
+   * @class
+   * @param {string} type - daemon implementation type ("go" or "js")
+   * @param {Multiaddr} addr - multiaddr for the client to connect to
+   * @param {number} port - port for the client to connect to
    */
   constructor (type, addr, port) {
     assert(type === 'go' || type === 'js', 'invalid type received. Should be "go" or "js"')
@@ -49,9 +49,10 @@ class Daemon {
 
   /**
    * Get binary path according to implementation and OS
+   *
    * @private
-   * @param {String} type daemon implementation type ("go" or "js")
-   * @returns {String}
+   * @param {string} type - daemon implementation type ("go" or "js")
+   * @returns {string}
    */
   _getBinPath (type) {
     const depPath = type === 'go' ? goDaemon.bin : jsDaemon.bin
@@ -77,9 +78,9 @@ class Daemon {
   /**
    * @async
    * Starts a daemon and a client associated with it.
-   * @param {Object} options daemon options
-   * @param {bool} options.dht dht enabled (false)
-   * @param {bool} options.pubsub pubsub enabled (false)
+   * @param {Object} options - daemon options
+   * @param {bool} options.dht - dht enabled (false)
+   * @param {bool} options.pubsub - pubsub enabled (false)
    * @returns {void}
    */
   async start (options = {}) {
@@ -96,10 +97,11 @@ class Daemon {
 
   /**
    * Starts the specifiec daemon and wait for its start.
+   *
    * @private
-   * @param {Object} options daemon options
-   * @param {bool} options.dht dht enabled (false)
-   * @param {bool} options.pubsub pubsub enabled (false)
+   * @param {Object} options - daemon options
+   * @param {bool} options.dht - dht enabled (false)
+   * @param {bool} options.pubsub - pubsub enabled (false)
    * @returns {Promise}
    */
   _startDaemon (options) {
@@ -166,6 +168,7 @@ class Daemon {
 
   /**
    * Cleans the unix socket.
+   *
    * @private
    * @returns {Promise}
    */
@@ -187,6 +190,7 @@ class Daemon {
 
   /**
    * libp2p client instance
+   *
    * @type {Client}
    */
   get client () {

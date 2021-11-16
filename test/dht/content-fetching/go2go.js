@@ -1,23 +1,18 @@
 /* eslint-env mocha */
 'use strict'
 
-const chai = require('chai')
-chai.use(require('dirty-chai'))
-chai.use(require('chai-bytes'))
-const expect = chai.expect
-
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
-
+const { expect } = require('aegir/utils/chai')
 const spawnDaemons = require('../../utils/spawnDaemons')
+const record = require('../../utils/dht-record')
 
-describe.skip('dht.contentFetching', () => {
+describe('dht.contentFetching', () => {
   let daemons
 
   // Start Daemons
   before(async function () {
     this.timeout(20 * 1000)
 
-    daemons = await spawnDaemons(2, 'go', { dht: true })
+    daemons = await spawnDaemons(2, ['go', 'go'], { dht: true })
 
     // connect them
     const identify0 = await daemons[0].client.identify()
@@ -38,13 +33,9 @@ describe.skip('dht.contentFetching', () => {
   it('go peer to go peer', async function () {
     this.timeout(10 * 1000)
 
-    const key = uint8ArrayFromString('keyA')
-    const value = uint8ArrayFromString('hello data')
+    await daemons[0].client.dht.put(record.key, record.value)
 
-    await daemons[0].client.dht.put(key, value)
-
-    const data = await daemons[1].client.dht.get(key)
-
-    expect(data).to.equalBytes(data)
+    const data = await daemons[1].client.dht.get(record.key)
+    expect(data).to.equalBytes(record.value)
   })
 })

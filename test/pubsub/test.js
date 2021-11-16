@@ -1,10 +1,7 @@
 'use strict'
 
-const chai = require('chai')
-chai.use(require('dirty-chai'))
-chai.use(require('chai-bytes'))
-const expect = chai.expect
-
+const { expect } = require('aegir/utils/chai')
+const first = require('it-first')
 const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 
 exports.pubsubTest = async (daemons) => {
@@ -13,12 +10,10 @@ exports.pubsubTest = async (daemons) => {
 
   const subscribeIterator = await daemons[1].client.pubsub.subscribe(topic)
   const subscriber = async () => {
-    for await (const message of subscribeIterator) {
-      expect(message).to.exist()
-      expect(message.data).to.exist()
-      expect(message.data).to.equalBytes(data)
-      return
-    }
+    const message = await first(subscribeIterator)
+
+    expect(message).to.exist()
+    expect(message).to.have.property('data').that.equalBytes(data)
   }
 
   const publisher = async () => {

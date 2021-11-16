@@ -1,9 +1,6 @@
 'use strict'
 
-const chai = require('chai')
-chai.use(require('dirty-chai'))
-chai.use(require('chai-bytes'))
-const expect = chai.expect
+const { expect } = require('aegir/utils/chai')
 
 module.exports = async (daemons, ids) => {
   const identify1 = await daemons[0].client.identify()

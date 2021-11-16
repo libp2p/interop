@@ -33,20 +33,6 @@
     "url": "https://github.com/libp2p/interop/issues"
   },
   "homepage": "https://github.com/libp2p/interop#readme",
-  "devDependencies": {
-    "aegir": "^35.0.2",
-    "chai": "^4.2.0",
-    "chai-bytes": "^0.1.2",
-    "chai-checkmark": "^1.0.1",
-    "cross-env": "^7.0.0",
-    "dirty-chai": "^2.0.1",
-    "go-libp2p-dep": "^0.11.0",
-    "libp2p-daemon": "^0.7.0",
-    "libp2p-daemon-client": "^0.7.0",
-    "multiaddr": "^10.0.1",
-    "p-retry": "^4.2.0",
-    "rimraf": "^3.0.0"
-  },
   "contributors": [
     "Vasco Santos <vasco.santos@moxy.studio>",
     "David Dias <daviddias.p@gmail.com>",
@@ -57,9 +43,18 @@
     "Mantas Vidutis <mantas.a.vidutis@gmail.com>"
   ],
   "dependencies": {
+    "aegir": "^36.0.0",
+    "cross-env": "^7.0.0",
     "debug": "^4.1.1",
     "execa": "^4.0.0",
+    "go-libp2p-dep": "^0.11.0",
+    "it-first": "^1.0.7",
+    "libp2p-daemon": "libp2p/js-libp2p-daemon#chore/update-dht",
+    "libp2p-daemon-client": "^0.7.0",
+    "multiaddr": "^10.0.1",
     "multiformats": "^9.4.5",
+    "p-retry": "^4.2.0",
+    "rimraf": "^3.0.0",
     "uint8arrays": "^3.0.0"
   }
 }
