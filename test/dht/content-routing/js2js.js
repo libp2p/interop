@@ -1,10 +1,6 @@
 /* eslint-env mocha */
 'use strict'
-
-const chai = require('chai')
-chai.use(require('dirty-chai'))
-chai.use(require('chai-bytes'))
-const expect = chai.expect
+const { expect } = require('aegir/utils/chai')
 
 const { CID } = require('multiformats/cid')
 const spawnDaemons = require('../../utils/spawnDaemons')
