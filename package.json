@@ -50,7 +50,7 @@
     "go-libp2p-dep": "^0.11.0",
     "it-first": "^1.0.7",
     "libp2p-daemon": "^0.8.0",
-    "libp2p-daemon-client": "^0.7.0",
+    "libp2p-daemon-client": "^0.9.0",
     "multiaddr": "^10.0.1",
     "multiformats": "^9.4.5",
     "p-retry": "^4.2.0",
