@@ -1,3 +1,17 @@
+# [0.5.0](https://github.com/libp2p/interop/compare/v0.4.1...v0.5.0) (2021-11-18)
+
+
+### chore
+
+* update dht ([#51](https://github.com/libp2p/interop/issues/51)) ([fef819c](https://github.com/libp2p/interop/commit/fef819c200f6bada1e51f06d3b54a0be3eb257de))
+
+
+### BREAKING CHANGES
+
+* DHT tests are now enabled by default
+
+
+
 ## [0.4.1](https://github.com/libp2p/interop/compare/v0.4.0...v0.4.1) (2021-08-23)
 
 
