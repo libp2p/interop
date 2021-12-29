@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm install
-    - run: npx aegir lint
-    - run: npx aegir dep-check
+    - run: npm run lint
+    - run: npm run dep-check
   test-node:
     needs: check
     runs-on: ${{ matrix.os }}
@@ -28,7 +28,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install @mapbox/node-pre-gyp -g
       - run: npm install
       - run: npx aegir test -t node --cov --bail
       - uses: codecov/codecov-action@v1
