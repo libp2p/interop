@@ -9,15 +9,15 @@
     "src"
   ],
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=15.0.0",
     "npm": ">6.0.0"
   },
   "scripts": {
     "lint": "aegir lint",
-    "test": "aegir test -t node -f test/node.js -- --exit",
-    "test:node": "aegir test -t node -f test/node.js -- --exit",
+    "test": "aegir test -t node -f test/node.js",
+    "test:node": "aegir test -t node -f test/node.js",
     "test:browser": "aegir test -t browser --no-cors -f test/browser.js",
-    "prerelease": "npm run test",
+    "dep-check": "aegir dep-check",
     "release": "aegir release --target node --build=false --no-test",
     "release-minor": "aegir release --type minor --target node  --build=false --no-test"
   },
@@ -47,10 +47,10 @@
     "cross-env": "^7.0.0",
     "debug": "^4.1.1",
     "execa": "^4.0.0",
-    "go-libp2p-dep": "^0.11.0",
+    "go-libp2p-dep": "^0.11.3",
     "it-first": "^1.0.7",
-    "libp2p-daemon": "^0.8.1",
-    "libp2p-daemon-client": "^0.9.0",
+    "libp2p-daemon": "^0.9.1",
+    "libp2p-daemon-client": "^0.10.0",
     "multiaddr": "^10.0.1",
     "multiformats": "^9.4.5",
     "p-retry": "^4.2.0",
