@@ -134,17 +134,17 @@ class Daemon {
 
       log(this._binPath, execOptions)
 
-      const daemon = execa(this._binPath, execOptions)
-      daemon.stderr.pipe(process.stderr)
+      this._daemon = execa(this._binPath, execOptions)
+      this._daemon.stderr.pipe(process.stderr)
 
-      daemon.stdout.once('data', () => {
+      this._daemon.stdout.once('data', () => {
         resolve()
 
-        daemon.stdout.on('data', (data) => {
+        this._daemon.stdout.on('data', (data) => {
           log(data.toString())
         })
       })
-      daemon.on('exit', (code, signal) => {
+      this._daemon.on('exit', (code, signal) => {
         if (code !== 0) {
           reject(new Error(`daemon exited with status code ${code}`))
         } else if ((signal || '') !== '') {
@@ -162,7 +162,8 @@ class Daemon {
    * @returns {void}
    */
   async stop () {
-    await this._client && this._client.close()
+    await (this._client && this._client.close())
+    await (this._daemon && this._daemon.kill())
     await this._cleanUnixSocket()
   }
 

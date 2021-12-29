@@ -47,7 +47,7 @@
     "cross-env": "^7.0.0",
     "debug": "^4.1.1",
     "execa": "^4.0.0",
-    "go-libp2p-dep": "^0.11.2",
+    "go-libp2p-dep": "^0.11.3",
     "it-first": "^1.0.7",
     "libp2p-daemon": "^0.9.1",
     "libp2p-daemon-client": "^0.10.0",
