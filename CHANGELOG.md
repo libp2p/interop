@@ -1,3 +1,17 @@
+# [0.6.0](https://github.com/libp2p/interop/compare/v0.5.0...v0.6.0) (2021-12-29)
+
+
+### chore
+
+* update deps ([#52](https://github.com/libp2p/interop/issues/52)) ([c179ff3](https://github.com/libp2p/interop/commit/c179ff3c2440f35a2dd2e358366231dac6d51b22))
+
+
+### BREAKING CHANGES
+
+* only node15+ is supported
+
+
+
 # [0.5.0](https://github.com/libp2p/interop/compare/v0.4.1...v0.5.0) (2021-11-18)
 
 
