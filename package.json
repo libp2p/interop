@@ -1,6 +1,6 @@
 {
   "name": "libp2p-interop",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Interoperability Tests for libp2p",
   "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
   "main": "",
@@ -35,12 +35,12 @@
   "homepage": "https://github.com/libp2p/interop#readme",
   "contributors": [
     "Vasco Santos <vasco.santos@moxy.studio>",
-    "David Dias <daviddias.p@gmail.com>",
-    "Jacob Heun <jacobheun@gmail.com>",
     "Alex Potsides <alex@achingbrain.net>",
+    "Jacob Heun <jacobheun@gmail.com>",
+    "David Dias <daviddias.p@gmail.com>",
     "Arve Knudsen <arve.knudsen@gmail.com>",
-    "Steven Allen <steven@stebalien.com>",
-    "Mantas Vidutis <mantas.a.vidutis@gmail.com>"
+    "Mantas Vidutis <mantas.a.vidutis@gmail.com>",
+    "Steven Allen <steven@stebalien.com>"
   ],
   "dependencies": {
     "aegir": "^36.0.0",
