@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/libp2p/interop/compare/v0.6.0...v0.7.0) (2022-01-17)
+
+
+### Features
+
+* async peerstore ([#55](https://github.com/libp2p/interop/issues/55)) ([565813b](https://github.com/libp2p/interop/commit/565813b714a618bdb9e25b3e44a7fdfd45ba2d37))
+
+
+### BREAKING CHANGES
+
+* peerstore methods are now all async
+
+
+
 # [0.6.0](https://github.com/libp2p/interop/compare/v0.5.0...v0.6.0) (2021-12-29)
 
 
