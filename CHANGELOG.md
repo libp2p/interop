@@ -1,3 +1,7 @@
+## [0.7.1](https://github.com/libp2p/interop/compare/v0.7.0...v0.7.1) (2022-01-17)
+
+
+
 # [0.7.0](https://github.com/libp2p/interop/compare/v0.6.0...v0.7.0) (2022-01-17)
 
 
