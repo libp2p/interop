@@ -45,7 +45,7 @@
   "dependencies": {
     "aegir": "^36.0.0",
     "debug": "^4.1.1",
-    "execa": "^4.0.0",
+    "execa": "^6.1.0",
     "go-libp2p-dep": "^0.11.3",
     "it-first": "^1.0.7",
     "libp2p-daemon": "^0.10.1",
