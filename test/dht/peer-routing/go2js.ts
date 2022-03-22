@@ -3,7 +3,7 @@
 
 const { expect } = require('aegir/utils/chai')
 
-const spawnDaemons = require('../../utils/spawnDaemons')
+import spawnDaemons from '../../utils/spawn-daemons.js'
 
 describe('dht.peerRouting', () => {
   let daemons

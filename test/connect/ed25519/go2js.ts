@@ -1,8 +1,7 @@
 /* eslint-env mocha */
-'use strict'
 
-const connectTest = require('../test')
-const spawnDaemons = require('../../utils/spawnDaemons')
+import connectTest from '../test.js'
+import spawnDaemons from '../../utils/spawn-daemons.js'
 
 module.exports = (name, config) => {
   describe(`connect (ed25519) using ${name}`, () => {

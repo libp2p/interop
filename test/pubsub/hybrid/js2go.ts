@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 'use strict'
 
-const spawnDaemons = require('../../utils/spawnDaemons')
+import spawnDaemons from '../../utils/spawn-daemons.js'
 const { pubsubTest } = require('../test')
 
 describe('pubsub - hybrid', () => {

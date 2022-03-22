@@ -4,7 +4,7 @@
 const { expect } = require('aegir/utils/chai')
 const pRetry = require('p-retry')
 
-const spawnDaemons = require('../../utils/spawnDaemons')
+import spawnDaemons from '../../utils/spawn-daemons.js'
 
 describe('dht.peerRouting', () => {
   let daemons

@@ -2,7 +2,7 @@
 'use strict'
 
 const { expect } = require('aegir/utils/chai')
-const spawnDaemons = require('../../utils/spawnDaemons')
+import spawnDaemons from '../../utils/spawn-daemons.js'
 const record = require('../../utils/dht-record')
 
 describe('dht.contentFetching', () => {

@@ -4,7 +4,7 @@
 const { expect } = require('aegir/utils/chai')
 
 const { CID } = require('multiformats/cid')
-const spawnDaemons = require('../../utils/spawnDaemons')
+import spawnDaemons from '../../utils/spawn-daemons.js'
 
 describe('dht.contentRouting', () => {
   let daemons
