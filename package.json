@@ -2,57 +2,140 @@
   "name": "libp2p-interop",
   "version": "0.7.1",
   "description": "Interoperability Tests for libp2p",
-  "leadMaintainer": "Vasco Santos <santos.vasco10@gmail.com>",
-  "main": "",
-  "files": [
-    "test",
-    "src"
-  ],
-  "engines": {
-    "node": ">=15.0.0",
-    "npm": ">6.0.0"
-  },
-  "scripts": {
-    "lint": "aegir lint",
-    "test": "aegir test -t node -f test/node.js",
-    "test:node": "aegir test -t node -f test/node.js",
-    "test:browser": "aegir test -t browser --no-cors -f test/browser.js",
-    "dep-check": "aegir dep-check",
-    "release": "aegir release --target node --build=false --no-test",
-    "release-minor": "aegir release --type minor --target node  --build=false --no-test"
-  },
+  "license": "Apache-2.0 OR MIT",
+  "homepage": "https://github.com/libp2p/interop#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/libp2p/interop.git"
   },
-  "keywords": [
-    "libp2p"
-  ],
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/libp2p/interop/issues"
   },
-  "homepage": "https://github.com/libp2p/interop#readme",
-  "contributors": [
-    "Vasco Santos <vasco.santos@moxy.studio>",
-    "achingbrain <alex@achingbrain.net>",
-    "David Dias <daviddias.p@gmail.com>",
-    "Jacob Heun <jacobheun@gmail.com>",
-    "Arve Knudsen <arve.knudsen@gmail.com>",
-    "Steven Allen <steven@stebalien.com>",
-    "Mantas Vidutis <mantas.a.vidutis@gmail.com>"
+  "keywords": [
+    "libp2p"
   ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "type": "module",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "src",
+    "dist/src",
+    "!dist/test",
+    "!**/*.tsbuildinfo"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js"
+    }
+  },
+  "eslintConfig": {
+    "extends": "ipfs",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "breaking": true,
+              "release": "major"
+            },
+            {
+              "revert": true,
+              "release": "patch"
+            },
+            {
+              "type": "feat",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "release": "patch"
+            },
+            {
+              "type": "chore",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
+            },
+            {
+              "type": "test",
+              "release": "patch"
+            },
+            {
+              "scope": "no-release",
+              "release": false
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "chore",
+                "section": "Trivial Changes"
+              },
+              {
+                "type": "docs",
+                "section": "Trivial Changes"
+              },
+              {
+                "type": "test",
+                "section": "Tests"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
+  "scripts": {
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check dist/src/**/*.js dist/test/**/*.js",
+    "build": "tsc",
+    "pretest": "npm run build",
+    "test": "aegir test -f \"./dist/test/**/*.spec.js\"",
+    "test:node": "npm run test -- -t node -f ./dist/test/node.js",
+    "test:chrome": "npm run test -- -t browser -f ./dist/test/browser.js ",
+    "test:firefox": "npm run test -- -t browser -- --browser firefox -f ./dist/test/browser.js",
+    "release": "semantic-release"
+  },
   "dependencies": {
     "aegir": "^36.0.0",
-    "debug": "^4.1.1",
-    "execa": "^4.0.0",
-    "go-libp2p-dep": "^0.11.3",
+    "execa": "^6.1.0",
     "it-first": "^1.0.7",
-    "libp2p-daemon": "^0.10.1",
-    "libp2p-daemon-client": "^0.11.0",
     "multiaddr": "^10.0.1",
     "multiformats": "^9.4.5",
-    "p-retry": "^4.2.0",
+    "p-retry": "^5.1.0",
     "rimraf": "^3.0.0",
     "uint8arrays": "^3.0.0"
   }
