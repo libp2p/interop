@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/interop",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Interoperability Tests for libp2p",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/interop#readme",
@@ -123,11 +123,6 @@
     "dep-check": "aegir dep-check dist/src/**/*.js dist/test/**/*.js",
     "build": "tsc",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
-    "pretest": "npm run build",
-    "test": "aegir test -f \"./dist/test/**/*.spec.js\"",
-    "test:node": "npm run test -- -t node -f ./dist/test/node.js",
-    "test:chrome": "npm run test -- -t browser -f ./dist/test/browser.js ",
-    "test:firefox": "npm run test -- -t browser -- --browser firefox -f ./dist/test/browser.js",
     "release": "semantic-release"
   },
   "dependencies": {

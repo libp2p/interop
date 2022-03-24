@@ -24,7 +24,7 @@ export interface DaemonFactory {
   spawn: (options: SpawnOptions) => Promise<Daemon>
 }
 
-export default async function interopTests (factory: DaemonFactory) {
+export async function interopTests (factory: DaemonFactory) {
   await connectTests(factory)
   await dhtTests(factory)
   await pubsubTests(factory)
