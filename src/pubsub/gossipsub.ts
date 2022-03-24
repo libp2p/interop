@@ -29,9 +29,11 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
 
       daemons = await Promise.all([
         factory.spawn(optionsA),
-        factory.spawn(optionsB),
         factory.spawn(optionsB)
       ])
+
+      const identify1 = await daemons[1].client.identify()
+      await daemons[0].client.connect(identify1.peerId, identify1.addrs)
     })
 
     // Stop daemons
@@ -47,7 +49,7 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
       const topic = 'test-topic'
       const data = uint8ArrayFromString('test-data')
 
-      const subscribeIterator = await daemons[1].client.pubsub.subscribe(topic)
+      const subscribeIterator = daemons[1].client.pubsub.subscribe(topic)
       const subscriber = async () => {
         const message = await first(subscribeIterator)
 
