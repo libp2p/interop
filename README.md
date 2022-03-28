@@ -9,43 +9,51 @@
 
 This repository will be used for interop tests.
 
-## Lead Maintainer
-
-[Vasco Santos](https://github.com/vasco-santos)
-
 ## Usage
 
 ### Install
 
 ```
-> git clone git@github.com:libp2p/interop.git
-> cd interop
-> npm install
+> npm install @libp2p/interop
 ```
 
-### Run the tests
+### Running the tests
 
+Create a js file that configures the different types of daemon:
+
+```js
+import { interopTests } from '@libp2p/interop'
+import type { Daemon, DaemonFactory } from '@libp2p/interop'
+
+async function createGoPeer (options: SpawnOptions): Promise<Daemon> {
+  // your implementation here
+}
+
+async function createJsPeer (options: SpawnOptions): Promise<Daemon> {
+  // your implementation here
+}
+
+async function main () {
+  const factory: DaemonFactory = {
+    async spawn (options: SpawnOptions) {
+      if (options.type === 'go') {
+        return createGoPeer(options)
+      }
+
+      return createJsPeer(options)
+    }
+  }
+
+  interopTests(factory)
+}
+
+main().catch(err => {
+  console.error(err)
+  process.exit(1)
+})
 ```
-> npm test
-```
 
-#### Testing local daemons
-
-It is possible to test local versions of the go and js daemons exporting the respective path before running the tests.
-
-**Specifying the go-libp2p daemon**
-See the go-libp2p-daemon [install instructions](https://github.com/libp2p/go-libp2p-daemon#install) for building the local binary.
-
-```sh
-$ LIBP2P_GO_BIN=$GOPATH/bin/p2pd npm run test
-```
-
-**Specifying the js-libp2p daemon**
-From the js-libp2p-daemon local repo checkout you can perform an `npm link` to create a binary, `jsp2pd` in the global npm space.
-
-```sh
-$ LIBP2P_JS_BIN=$(which jsp2pd) npm run test
-```
+For an example, see the js-libp2p interop test runner.
 
 ## Contribute
 
@@ -57,4 +65,7 @@ This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/c
 
 ## License
 
-MIT
+Licensed under either of
+
+ * Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / http://www.apache.org/licenses/LICENSE-2.0)
+ * MIT ([LICENSE-MIT](LICENSE-MIT) / http://opensource.org/licenses/MIT)
