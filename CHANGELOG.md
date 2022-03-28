@@ -1,3 +1,14 @@
+## [1.0.0](https://github.com/libp2p/interop/compare/v0.7.1...v1.0.0) (2022-03-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* this module is now ESM only
+
+### Features
+
+* convert to typescript ([#58](https://github.com/libp2p/interop/issues/58)) ([1862aa7](https://github.com/libp2p/interop/commit/1862aa741beda1fdd757da2ebc3f064391c9a7c9))
+
 ## [0.7.1](https://github.com/libp2p/interop/compare/v0.7.0...v0.7.1) (2022-01-17)
 
 
@@ -146,6 +157,3 @@ Co-authored-by: Jacob Heun <jacobheun@gmail.com>
 
 * initial implementation ([86e947d](https://github.com/libp2p/interop/commit/86e947d))
 * integrate gossipsub by default ([#17](https://github.com/libp2p/interop/issues/17)) ([de0edfe](https://github.com/libp2p/interop/commit/de0edfe))
-
-
-
