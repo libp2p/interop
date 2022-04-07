@@ -1,3 +1,10 @@
+### [1.0.2](https://github.com/libp2p/interop/compare/v1.0.1...v1.0.2) (2022-04-07)
+
+
+### Trivial Changes
+
+* update project config ([#63](https://github.com/libp2p/interop/issues/63)) ([f51d05d](https://github.com/libp2p/interop/commit/f51d05d5e380a23ba67971f0bcf16bc838c5f57b))
+
 ### [1.0.1](https://github.com/libp2p/interop/compare/v1.0.0...v1.0.1) (2022-04-07)
 
 
