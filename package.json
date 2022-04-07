@@ -119,11 +119,12 @@
     ]
   },
   "scripts": {
+    "clean": "aegir clean",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check dist/src/**/*.js dist/test/**/*.js",
-    "build": "tsc",
+    "dep-check": "aegir dep-check",
+    "build": "aegir build --no-bundle",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
-    "release": "semantic-release"
+    "release": "aegir release --no-bundle"
   },
   "dependencies": {
     "@libp2p/daemon-client": "^0.0.2",
@@ -138,9 +139,9 @@
     "uint8arrays": "^3.0.0"
   },
   "peerDependencies": {
-    "aegir": "^36.0.0"
+    "aegir": "^37.0.4"
   },
   "devDependencies": {
-    "aegir": "^36.0.0"
+    "aegir": "^37.0.4"
   }
 }
