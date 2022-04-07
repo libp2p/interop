@@ -122,9 +122,9 @@
     "clean": "aegir clean",
     "lint": "aegir lint",
     "dep-check": "aegir dep-check",
-    "build": "aegir build --no-bundle",
+    "build": "aegir build",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
-    "release": "aegir release --no-bundle"
+    "release": "aegir release"
   },
   "dependencies": {
     "@libp2p/daemon-client": "^0.0.2",
