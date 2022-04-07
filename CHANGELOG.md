@@ -1,3 +1,11 @@
+### [1.0.1](https://github.com/libp2p/interop/compare/v1.0.0...v1.0.1) (2022-04-07)
+
+
+### Trivial Changes
+
+* **deps:** bump @libp2p/daemon-client from 0.0.2 to 1.0.0 ([#60](https://github.com/libp2p/interop/issues/60)) ([58ba42c](https://github.com/libp2p/interop/commit/58ba42cd71ec083dc37613e680068ec3bd4975cc))
+* update aegir ([#62](https://github.com/libp2p/interop/issues/62)) ([8ab1097](https://github.com/libp2p/interop/commit/8ab109755160f0bf4beb9bdba3e5d1db2779e9fd))
+
 ## [1.0.0](https://github.com/libp2p/interop/compare/v0.7.1...v1.0.0) (2022-03-28)
 
 
