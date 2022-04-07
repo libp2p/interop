@@ -1,4 +1,4 @@
-import { expect } from 'aegir/utils/chai.js'
+import { expect } from 'aegir/chai'
 import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType } from './index.js'
 import { keys } from './resources/keys/index.js'
 
