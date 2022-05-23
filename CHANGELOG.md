@@ -1,3 +1,10 @@
+### [1.0.4](https://github.com/libp2p/interop/compare/v1.0.3...v1.0.4) (2022-05-23)
+
+
+### Trivial Changes
+
+* **deps:** bump @libp2p/interfaces from 1.3.32 to 2.0.1 ([#65](https://github.com/libp2p/interop/issues/65)) ([6ded4c3](https://github.com/libp2p/interop/commit/6ded4c332f4d24c28dcc09963b93b293f2508147))
+
 ### [1.0.3](https://github.com/libp2p/interop/compare/v1.0.2...v1.0.3) (2022-04-09)
 
 
