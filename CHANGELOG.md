@@ -1,3 +1,14 @@
+## [2.0.0](https://github.com/libp2p/interop/compare/v1.0.4...v2.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* uses new single-issue libp2p interface modules
+
+### Features
+
+* update libp2p interfaces ([#67](https://github.com/libp2p/interop/issues/67)) ([b07e6db](https://github.com/libp2p/interop/commit/b07e6db7409bb4256dc87cbf6b62a69c92fe1a8c))
+
 ### [1.0.4](https://github.com/libp2p/interop/compare/v1.0.3...v1.0.4) (2022-05-23)
 
 
