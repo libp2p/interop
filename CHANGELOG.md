@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/libp2p/interop/compare/v2.0.0...v2.0.1) (2022-06-15)
+
+
+### Trivial Changes
+
+* update deps ([#68](https://github.com/libp2p/interop/issues/68)) ([3647c8e](https://github.com/libp2p/interop/commit/3647c8e565582c8d988365758cf03f20486a425e))
+
 ## [2.0.0](https://github.com/libp2p/interop/compare/v1.0.4...v2.0.0) (2022-06-15)
 
 
