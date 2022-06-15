@@ -28,6 +28,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./src/index.d.ts",
       "import": "./dist/src/index.js"
     }
   },
@@ -128,8 +129,8 @@
   },
   "dependencies": {
     "@libp2p/daemon-client": "^1.0.0",
-    "@libp2p/interfaces": "^2.0.1",
-    "@libp2p/logger": "^1.1.2",
+    "@libp2p/interface-peer-info": "^1.0.1",
+    "@libp2p/logger": "^2.0.0",
     "@libp2p/peer-id": "^1.1.8",
     "@multiformats/multiaddr": "^10.1.8",
     "it-all": "^1.0.6",
@@ -139,9 +140,9 @@
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
-    "aegir": "^37.0.9"
+    "aegir": "^37.2.0"
   },
   "peerDependencies": {
-    "aegir": "^37.0.9"
+    "aegir": "^37.2.0"
   }
 }

@@ -3,7 +3,7 @@
 import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import pRetry from 'p-retry'
-import type { PeerInfo } from '@libp2p/interfaces/peer-info'
+import type { PeerInfo } from '@libp2p/interface-peer-info'
 
 export function peerRoutingTests (factory: DaemonFactory) {
   const nodeTypes: NodeType[] = ['js', 'go']
