@@ -29,3 +29,9 @@ export async function interopTests (factory: DaemonFactory) {
   await dhtTests(factory)
   await pubsubTests(factory)
 }
+
+export {
+  connectTests as connectInteropTests,
+  dhtTests as dhtInteropTests,
+  pubsubTests as pubsubInteropTests
+}
