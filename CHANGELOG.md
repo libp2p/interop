@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/libp2p/interop/compare/v2.0.1...v2.1.0) (2022-08-12)
+
+
+### Features
+
+* export individual test suites ([#69](https://github.com/libp2p/interop/issues/69)) ([a6b2f68](https://github.com/libp2p/interop/commit/a6b2f68fbd2538947a0e4b00954ece22ced1eecf))
+
 ## [2.0.1](https://github.com/libp2p/interop/compare/v2.0.0...v2.0.1) (2022-06-15)
 
 
