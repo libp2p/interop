@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/libp2p/interop/compare/v2.1.0...v3.0.0) (2022-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires yamux and mplex
+
+### Features
+
+* add stream tests ([#71](https://github.com/libp2p/interop/issues/71)) ([216228d](https://github.com/libp2p/interop/commit/216228d1bdc2c1164d7f685c9280f53aa1dddc07))
+
 ## [2.1.0](https://github.com/libp2p/interop/compare/v2.0.1...v2.1.0) (2022-08-12)
 
 
