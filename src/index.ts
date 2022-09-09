@@ -1,6 +1,7 @@
 import { connectTests } from './connect.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
+import { streamTests } from './streams/index.js'
 import type { DaemonClient } from '@libp2p/daemon-client'
 
 export interface Daemon {
@@ -10,6 +11,8 @@ export interface Daemon {
 
 export type NodeType = 'js' | 'go'
 export type PeerIdType = 'rsa' | 'ed25519' | 'secp256k1'
+export type PubSubRouter = 'gossipsub' | 'floodsub'
+export type Muxer = 'mplex' | 'yamux'
 
 export interface SpawnOptions {
   type: NodeType
@@ -17,7 +20,8 @@ export interface SpawnOptions {
   noise?: true
   dht?: boolean
   pubsub?: boolean
-  pubsubRouter?: 'gossipsub' | 'floodsub'
+  pubsubRouter?: PubSubRouter
+  muxer?: Muxer
 }
 
 export interface DaemonFactory {
@@ -28,10 +32,12 @@ export async function interopTests (factory: DaemonFactory) {
   await connectTests(factory)
   await dhtTests(factory)
   await pubsubTests(factory)
+  await streamTests(factory)
 }
 
 export {
   connectTests as connectInteropTests,
   dhtTests as dhtInteropTests,
-  pubsubTests as pubsubInteropTests
+  pubsubTests as pubsubInteropTests,
+  streamTests as streamInteropTests
 }
