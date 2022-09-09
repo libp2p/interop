@@ -61,7 +61,15 @@ function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: Spa
       const input = [uint8ArrayFromString('hello world')]
 
       await daemons[1].client.registerStreamHandler(protocol, async (stream) => {
-        await pipe(stream, stream)
+        await pipe(
+          stream,
+          async function * (source) {
+            for await (const buf of source) {
+              yield buf.subarray()
+            }
+          },
+          stream
+        )
       })
 
       const stream = await daemons[0].client.openStream(receivingIdentity.peerId, protocol)
