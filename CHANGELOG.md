@@ -1,3 +1,15 @@
+## [3.0.1](https://github.com/libp2p/interop/compare/v3.0.0...v3.0.1) (2022-09-21)
+
+
+### Trivial Changes
+
+* Update .github/workflows/stale.yml [skip ci] ([c5ce31d](https://github.com/libp2p/interop/commit/c5ce31d098c58101928015766623c26578af5e53))
+
+
+### Dependencies
+
+* update @multiformats/multiaddr to 11.0.0 ([#72](https://github.com/libp2p/interop/issues/72)) ([ea87609](https://github.com/libp2p/interop/commit/ea8760989a279779e0392aea3eb7f5383ea0a0dd))
+
 ## [3.0.0](https://github.com/libp2p/interop/compare/v2.1.0...v3.0.0) (2022-09-09)
 
 
