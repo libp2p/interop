@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/libp2p/interop/compare/v3.0.1...v3.0.2) (2022-10-13)
+
+
+### Dependencies
+
+* bump uint8arrays from 3.1.1 to 4.0.2 ([#74](https://github.com/libp2p/interop/issues/74)) ([4351912](https://github.com/libp2p/interop/commit/43519125b46d812a043b31d03f03abe51247c489))
+
 ## [3.0.1](https://github.com/libp2p/interop/compare/v3.0.0...v3.0.1) (2022-09-21)
 
 
