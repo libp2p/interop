@@ -140,7 +140,7 @@
     "it-all": "^1.0.6",
     "it-first": "^1.0.7",
     "it-pipe": "^2.0.4",
-    "multiformats": "^9.4.5",
+    "multiformats": "^10.0.0",
     "p-defer": "^4.0.0",
     "p-retry": "^5.1.0",
     "uint8arrays": "^4.0.2"
