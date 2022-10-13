@@ -143,7 +143,7 @@
     "multiformats": "^9.4.5",
     "p-defer": "^4.0.0",
     "p-retry": "^5.1.0",
-    "uint8arrays": "^3.0.0"
+    "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
     "aegir": "^37.2.0"
