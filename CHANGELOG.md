@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/libp2p/interop/compare/v3.0.2...v3.0.3) (2022-10-14)
+
+
+### Dependencies
+
+* bump multiformats from 9.9.0 to 10.0.0 ([#73](https://github.com/libp2p/interop/issues/73)) ([d9f0e44](https://github.com/libp2p/interop/commit/d9f0e4420acea40fc227275ed66e8e4f4d46ec9e))
+
 ## [3.0.2](https://github.com/libp2p/interop/compare/v3.0.1...v3.0.2) (2022-10-13)
 
 
