@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/libp2p/interop/compare/v3.0.3...v3.0.4) (2022-10-17)
+
+
+### Dependencies
+
+* bump it-first from 1.0.7 to 2.0.0 ([#75](https://github.com/libp2p/interop/issues/75)) ([cd47ad6](https://github.com/libp2p/interop/commit/cd47ad6316d1b21d6df6c9e56609844642eba0d0))
+
 ## [3.0.3](https://github.com/libp2p/interop/compare/v3.0.2...v3.0.3) (2022-10-14)
 
 
