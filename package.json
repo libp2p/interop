@@ -138,7 +138,7 @@
     "@libp2p/peer-id": "^1.1.8",
     "@multiformats/multiaddr": "^11.0.0",
     "it-all": "^1.0.6",
-    "it-first": "^1.0.7",
+    "it-first": "^2.0.0",
     "it-pipe": "^2.0.4",
     "multiformats": "^10.0.0",
     "p-defer": "^4.0.0",
