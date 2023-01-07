@@ -1,3 +1,15 @@
+## [4.0.1](https://github.com/libp2p/interop/compare/v4.0.0...v4.0.1) (2023-01-07)
+
+
+### Documentation
+
+* update readme links ([#79](https://github.com/libp2p/interop/issues/79)) ([c399287](https://github.com/libp2p/interop/commit/c399287ca9df3dc2b7fa342f34ac515e32eee0e3))
+
+
+### Dependencies
+
+* bump it-all from 1.0.6 to 2.0.0 ([#76](https://github.com/libp2p/interop/issues/76)) ([b1b112c](https://github.com/libp2p/interop/commit/b1b112c0ae001bed83c4e4b12a256ce283205c2b))
+
 ## [4.0.0](https://github.com/libp2p/interop/compare/v3.0.4...v4.0.0) (2023-01-07)
 
 
