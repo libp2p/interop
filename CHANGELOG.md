@@ -1,3 +1,14 @@
+## [4.0.0](https://github.com/libp2p/interop/compare/v3.0.4...v4.0.0) (2023-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update multiformats and related dependencies (#78)
+
+### Dependencies
+
+* Update multiformats and related dependencies ([#78](https://github.com/libp2p/interop/issues/78)) ([65525b7](https://github.com/libp2p/interop/commit/65525b740fb939631fefe39cdf8e9e6630f26206))
+
 ## [3.0.4](https://github.com/libp2p/interop/compare/v3.0.3...v3.0.4) (2022-10-17)
 
 
