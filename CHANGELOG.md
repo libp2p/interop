@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/libp2p/interop/compare/v4.0.1...v4.0.2) (2023-01-07)
+
+
+### Documentation
+
+* remove duplicate readme section ([#80](https://github.com/libp2p/interop/issues/80)) ([3ac5f00](https://github.com/libp2p/interop/commit/3ac5f00305814965d9a356fb3c5db8fa61e6a263))
+
 ## [4.0.1](https://github.com/libp2p/interop/compare/v4.0.0...v4.0.1) (2023-01-07)
 
 
