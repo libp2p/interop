@@ -146,9 +146,9 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^37.2.0"
+    "aegir": "^38.1.0"
   },
   "peerDependencies": {
-    "aegir": "^37.2.0"
+    "aegir": "^38.1.0"
   }
 }
