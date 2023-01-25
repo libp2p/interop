@@ -6,7 +6,7 @@ import all from 'it-all'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import type { IdentifyResult } from '@libp2p/daemon-client'
 
-export function contentRoutingTests (factory: DaemonFactory) {
+export function contentRoutingTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
 
   for (const typeA of nodeTypes) {
@@ -25,7 +25,7 @@ export function contentRoutingTests (factory: DaemonFactory) {
   }
 }
 
-function runContentRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions) {
+function runContentRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('dht.contentRouting', () => {
     let daemons: Daemon[]
     let identify: IdentifyResult[]
@@ -55,7 +55,7 @@ function runContentRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions,
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => await daemon.stop())
+          daemons.map(async (daemon) => { await daemon.stop() })
         )
       }
     })

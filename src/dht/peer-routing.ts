@@ -5,7 +5,7 @@ import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import pRetry from 'p-retry'
 import type { PeerInfo } from '@libp2p/interface-peer-info'
 
-export function peerRoutingTests (factory: DaemonFactory) {
+export function peerRoutingTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
 
   for (const typeA of nodeTypes) {
@@ -19,7 +19,7 @@ export function peerRoutingTests (factory: DaemonFactory) {
   }
 }
 
-function runPeerRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions) {
+function runPeerRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('dht.peerRouting', () => {
     let daemons: Daemon[]
 
@@ -38,7 +38,7 @@ function runPeerRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, op
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => await daemon.stop())
+          daemons.map(async (daemon) => { await daemon.stop() })
         )
       }
     })

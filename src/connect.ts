@@ -2,7 +2,7 @@ import { expect } from 'aegir/chai'
 import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType } from './index.js'
 import { keys } from './resources/keys/index.js'
 
-export function connectTests (factory: DaemonFactory) {
+export function connectTests (factory: DaemonFactory): void {
   const keyTypes: PeerIdType[] = ['ed25519', 'rsa', 'secp256k1']
   const impls: NodeType[] = ['js', 'go']
 
@@ -20,7 +20,7 @@ export function connectTests (factory: DaemonFactory) {
   }
 }
 
-function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions) {
+function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe(`connect using ${name}`, () => {
     let daemons: Daemon[]
 
@@ -38,7 +38,7 @@ function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnO
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => await daemon.stop())
+          daemons.map(async (daemon) => { await daemon.stop() })
         )
       }
     })

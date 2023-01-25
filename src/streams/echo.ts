@@ -7,7 +7,7 @@ import { pipe } from 'it-pipe'
 import all from 'it-all'
 import defer from 'p-defer'
 
-export function echoStreamTests (factory: DaemonFactory, muxer: Muxer) {
+export function echoStreamTests (factory: DaemonFactory, muxer: Muxer): void {
   const nodeTypes: NodeType[] = ['js', 'go']
 
   for (const typeA of nodeTypes) {
@@ -22,7 +22,7 @@ export function echoStreamTests (factory: DaemonFactory, muxer: Muxer) {
   }
 }
 
-function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: SpawnOptions, optionsB: SpawnOptions) {
+function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe(`echo streams - ${muxer}`, () => {
     let daemons: Daemon[]
 
@@ -48,7 +48,7 @@ function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: Spa
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => await daemon.stop())
+          daemons.map(async (daemon) => { await daemon.stop() })
         )
       }
     })

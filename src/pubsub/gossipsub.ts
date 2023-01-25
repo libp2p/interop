@@ -5,7 +5,7 @@ import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
 
-export function gossipsubTests (factory: DaemonFactory) {
+export function gossipsubTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
 
   for (const typeA of nodeTypes) {
@@ -19,7 +19,7 @@ export function gossipsubTests (factory: DaemonFactory) {
   }
 }
 
-function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions) {
+function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('pubsub.gossipsub', () => {
     let daemons: Daemon[]
 
@@ -40,7 +40,7 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => await daemon.stop())
+          daemons.map(async (daemon) => { await daemon.stop() })
         )
       }
     })
@@ -50,14 +50,14 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
       const data = uint8ArrayFromString('test-data')
 
       const subscribeIterator = daemons[1].client.pubsub.subscribe(topic)
-      const subscriber = async () => {
+      const subscriber = async (): Promise<void> => {
         const message = await first(subscribeIterator)
 
         expect(message).to.exist()
         expect(message).to.have.property('data').that.equalBytes(data)
       }
 
-      const publisher = async () => {
+      const publisher = async (): Promise<void> => {
         // wait for subscription stream
         await new Promise(resolve => setTimeout(resolve, 800))
         await daemons[0].client.pubsub.publish(topic, data)
