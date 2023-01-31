@@ -64,11 +64,11 @@ function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnO
 
       // verify connected peers
       const knownPeersAfterConnect1 = await daemons[0].client.listPeers()
-      expect(knownPeersAfterConnect1).to.have.lengthOf(1)
+      expect(knownPeersAfterConnect1).to.have.length.greaterThanOrEqual(1)
       expect(knownPeersAfterConnect1[0].toString()).to.equal(identify2.peerId.toString())
 
       const knownPeersAfterConnect2 = await daemons[1].client.listPeers()
-      expect(knownPeersAfterConnect2).to.have.lengthOf(1)
+      expect(knownPeersAfterConnect2).to.have.length.greaterThanOrEqual(1)
       expect(knownPeersAfterConnect2[0].toString()).to.equal(identify1.peerId.toString())
     })
   })

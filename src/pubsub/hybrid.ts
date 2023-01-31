@@ -4,16 +4,19 @@ import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
+import { keys } from '../resources/keys/index.js'
 
 export function hybridTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
 
   for (const typeA of nodeTypes) {
     for (const typeB of nodeTypes) {
+      const [keyA, keyB] = [keys.js.rsa, keys.go.rsa]
       runHybridTests(
         factory,
-        { type: typeA, pubsub: true, pubsubRouter: 'floodsub' },
-        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub' }
+        // RSA key ensures the `key` field is set in the generated signed message
+        { type: typeA, pubsub: true, pubsubRouter: 'floodsub', key: keyA },
+        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub', key: keyB }
       )
     }
   }

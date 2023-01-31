@@ -4,6 +4,7 @@ import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
+import { keys } from '../resources/keys/index.js'
 
 export function floodsubTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
@@ -12,8 +13,9 @@ export function floodsubTests (factory: DaemonFactory): void {
     for (const typeB of nodeTypes) {
       runFloodsubTests(
         factory,
-        { type: typeA, pubsub: true, pubsubRouter: 'floodsub' },
-        { type: typeB, pubsub: true, pubsubRouter: 'floodsub' }
+        // RSA key ensures the `key` field is set in the generated signed message
+        { type: typeA, pubsub: true, pubsubRouter: 'floodsub', key: keys.go.rsa },
+        { type: typeB, pubsub: true, pubsubRouter: 'floodsub', key: keys.js.rsa }
       )
     }
   }
@@ -32,8 +34,9 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
         factory.spawn(optionsB)
       ])
 
-      const identify1 = await daemons[1].client.identify()
-      await daemons[0].client.connect(identify1.peerId, identify1.addrs)
+      const [peerA, peerB] = daemons
+      const identifyB = await peerB.client.identify()
+      await peerA.client.connect(identifyB.peerId, identifyB.addrs)
     })
 
     // Stop daemons
@@ -48,8 +51,9 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       const topic = 'test-topic'
       const data = uint8ArrayFromString('test-data')
+      const [peerA, peerB] = daemons
 
-      const subscribeIterator = daemons[1].client.pubsub.subscribe(topic)
+      const subscribeIterator = peerB.client.pubsub.subscribe(topic)
       const subscriber = async (): Promise<void> => {
         const message = await first(subscribeIterator)
 
@@ -60,7 +64,7 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
       const publisher = async (): Promise<void> => {
         // wait for subscription stream
         await new Promise(resolve => setTimeout(resolve, 800))
-        await daemons[0].client.pubsub.publish(topic, data)
+        await peerA.client.pubsub.publish(topic, data)
       }
 
       return await Promise.all([
