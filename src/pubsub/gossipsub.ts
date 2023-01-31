@@ -12,11 +12,10 @@ export function gossipsubTests (factory: DaemonFactory): void {
   for (const typeA of nodeTypes) {
     for (const typeB of nodeTypes) {
       // RSA key ensures the `key` field is set in the generated signed message
-      const [keyA, keyB] = [keys.js.rsa, keys.go.rsa]
       runGossipsubTests(
         factory,
-        { type: typeA, pubsub: true, pubsubRouter: 'gossipsub', key: keyA },
-        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub', key: keyB }
+        { type: typeA, pubsub: true, pubsubRouter: 'gossipsub', key: keys.js.rsa },
+        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub', key: keys.go.rsa }
       )
     }
   }

@@ -11,12 +11,11 @@ export function hybridTests (factory: DaemonFactory): void {
 
   for (const typeA of nodeTypes) {
     for (const typeB of nodeTypes) {
-      const [keyA, keyB] = [keys.js.rsa, keys.go.rsa]
       runHybridTests(
         factory,
         // RSA key ensures the `key` field is set in the generated signed message
-        { type: typeA, pubsub: true, pubsubRouter: 'floodsub', key: keyA },
-        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub', key: keyB }
+        { type: typeA, pubsub: true, pubsubRouter: 'floodsub', key: keys.js.rsa },
+        { type: typeB, pubsub: true, pubsubRouter: 'gossipsub', key: keys.go.rsa }
       )
     }
   }
