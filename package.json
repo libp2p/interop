@@ -134,9 +134,6 @@
   "dependencies": {
     "@libp2p/daemon-client": "^4.0.0",
     "@libp2p/interface-peer-info": "^1.0.7",
-    "@libp2p/logger": "^2.0.0",
-    "@libp2p/peer-id": "^2.0.0",
-    "@multiformats/multiaddr": "^11.0.0",
     "it-all": "^2.0.0",
     "it-first": "^2.0.0",
     "it-pipe": "^2.0.4",
@@ -146,9 +143,9 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^37.2.0"
+    "aegir": "^38.1.0"
   },
   "peerDependencies": {
-    "aegir": "^37.2.0"
+    "aegir": "^38.1.0"
   }
 }
