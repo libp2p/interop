@@ -2,9 +2,8 @@ import { connectTests } from './connect.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
 import { streamTests } from './streams/index.js'
-import { relayTests } from './relay.js'
+import { relayTests } from './relay/index.js'
 import type { DaemonClient } from '@libp2p/daemon-client'
-import type { PeerId } from '@libp2p/interface-peer-id'
 
 export interface Daemon {
   stop: () => Promise<void>
@@ -32,10 +31,6 @@ export interface SpawnOptions {
 
 export interface DaemonFactory {
   spawn: (options: SpawnOptions) => Promise<Daemon>
-  relay?: {
-    // make a reservation on a relay
-    reserve: (daemon: Daemon, peerId: PeerId) => Promise<void>
-  }
 }
 
 export async function interopTests (factory: DaemonFactory) {

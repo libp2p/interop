@@ -1,6 +1,8 @@
 import { multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
-import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '.'
+import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
+import { Status } from './pb/index.js'
+import { reserve } from './util.js'
 
 export function relayTests (factory: DaemonFactory) {
   const t: NodeType[] = ['go', 'js']
@@ -9,10 +11,6 @@ export function relayTests (factory: DaemonFactory) {
 
 function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType) {
   describe(`${aType} to ${bType} over relay ${relayType}`, () => {
-    if (factory.relay == null) {
-      return
-    }
-
     let daemons: Daemon[] = []
     const opts: SpawnOptions[] = [
       { type: aType, noise: true, noListen: true },
@@ -37,7 +35,8 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
 
       // connect receiver to the relay
       await bNode.client.connect(relayId.peerId, relayId.addrs)
-      await factory.relay?.reserve(bNode, relayId.peerId)
+      const reserveResponse = await reserve(bNode, relayId.peerId)
+      expect(reserveResponse.status).to.eq(Status.OK)
 
       // construct a relay address
       const addr = multiaddr(`${relayId.addrs[0].toString()}/p2p/${relayId.peerId.toString()}/p2p-circuit/p2p/${bId.peerId.toString()}`)
