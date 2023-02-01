@@ -1,3 +1,14 @@
+## [5.0.0](https://github.com/libp2p/interop/compare/v4.0.2...v5.0.0) (2023-02-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dev:** bump aegir from 37.12.1 to 38.1.0 (#82)
+
+### Dependencies
+
+* **dev:** bump aegir from 37.12.1 to 38.1.0 ([#82](https://github.com/libp2p/interop/issues/82)) ([4255edc](https://github.com/libp2p/interop/commit/4255edc703b3650fa68d6ef7930f87fd3005da59))
+
 ## [4.0.2](https://github.com/libp2p/interop/compare/v4.0.1...v4.0.2) (2023-01-07)
 
 
