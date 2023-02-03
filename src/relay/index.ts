@@ -24,17 +24,17 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
 
     before(async function () {
       this.timeout(20 * 1000)
-      daemons = await Promise.all(opts.map( o => factory.spawn(o)))
+      daemons = await Promise.all(opts.map(async o => await factory.spawn(o)))
     })
 
     after(async function () {
-      await Promise.all(daemons.map(d => d.stop()))
+      await Promise.all(daemons.map(async d => await d.stop()))
     })
 
     it('connects', async () => {
       const aNode = daemons[0]
       const bNode = daemons[1]
-      const identify = await Promise.all(daemons.map(d => d.client.identify()))
+      const identify = await Promise.all(daemons.map(async d => await d.client.identify()))
       const bId = identify[1]
       const relayId = identify[2]
 
