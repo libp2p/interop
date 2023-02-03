@@ -33,7 +33,7 @@ export interface DaemonFactory {
   spawn: (options: SpawnOptions) => Promise<Daemon>
 }
 
-export async function interopTests (factory: DaemonFactory) {
+export async function interopTests (factory: DaemonFactory): Promise<void> {
   connectTests(factory)
   relayTests(factory)
   await dhtTests(factory)

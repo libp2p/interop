@@ -8,12 +8,12 @@ import { echoHandler, reserve } from './util.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import defer from 'p-defer'
 
-export function relayTests (factory: DaemonFactory) {
+export function relayTests (factory: DaemonFactory): void {
   const t: NodeType[] = ['go', 'js']
-  t.forEach(a => t.forEach(b => t.forEach(r => { if (!(a === b && a === r)) relayTest(factory, a, b, r) })))
+  t.forEach(a => { t.forEach(b => { t.forEach(r => { if (!(a === b && a === r)) relayTest(factory, a, b, r) }) }) })
 }
 
-function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType) {
+function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType): void {
   describe(`${aType} to ${bType} over relay ${relayType}`, () => {
     let daemons: Daemon[] = []
     const opts: SpawnOptions[] = [
@@ -28,7 +28,7 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
     })
 
     after(async function () {
-      await Promise.all(daemons.map(async d => await d.stop()))
+      await Promise.all(daemons.map(async d => { await d.stop() }))
     })
 
     it('connects', async () => {
