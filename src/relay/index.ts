@@ -10,7 +10,7 @@ import defer from 'p-defer'
 
 export function relayTests (factory: DaemonFactory): void {
   const t: NodeType[] = ['go', 'js']
-  t.forEach(a => { t.forEach(b => { t.forEach(r => { if (!(a === b && a === r)) relayTest(factory, a, b, r) }) }) })
+  t.forEach(a => { t.forEach(b => { t.forEach(r => { relayTest(factory, a, b, r) }) }) })
 }
 
 function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType): void {
