@@ -35,7 +35,7 @@ export interface DaemonFactory {
 
 export async function interopTests (factory: DaemonFactory) {
   connectTests(factory)
-  await relayTests(factory)
+  relayTests(factory)
   await dhtTests(factory)
   await pubsubTests(factory)
   await streamTests(factory)

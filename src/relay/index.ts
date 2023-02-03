@@ -1,12 +1,16 @@
 import { multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
+import all from 'it-all'
+import { pipe } from 'it-pipe'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { Status } from './pb/index.js'
-import { reserve } from './util.js'
+import { echoHandler, reserve } from './util.js'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import defer from 'p-defer'
 
 export function relayTests (factory: DaemonFactory) {
   const t: NodeType[] = ['go', 'js']
-  t.forEach(a => t.forEach(b => t.forEach(r => { if (a !== b || a !== r) relayTest(factory, a, b, r) })))
+  t.forEach(a => t.forEach(b => t.forEach(r => { if (!(a === b && a === r)) relayTest(factory, a, b, r) })))
 }
 
 function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType) {
@@ -18,17 +22,18 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
       { type: relayType, noise: true, relay: true }
     ]
 
-    beforeEach(async function () {
+    before(async function () {
       this.timeout(20 * 1000)
       daemons = await Promise.all(opts.map(async o => await factory.spawn(o)))
     })
 
-    afterEach(async function () {
+    after(async function () {
       await Promise.all(daemons.map(async d => await d.stop()))
     })
 
     it('connects', async () => {
-      const [aNode, bNode] = daemons
+      const aNode = daemons[0]
+      const bNode = daemons[1]
       const identify = await Promise.all(daemons.map(async d => await d.client.identify()))
       const bId = identify[1]
       const relayId = identify[2]
@@ -44,6 +49,32 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
       await new Promise(resolve => setTimeout(resolve, 500))
       const connectedPeers = await aNode.client.listPeers()
       expect(connectedPeers.filter(p => p.equals(bId.peerId))).to.have.length(1)
+
+      // run an echo test
+      await bNode.client.registerStreamHandler(echoHandler.protocol, echoHandler.handler)
+      // const stream = await aNode.client.openStream(bId.peerId, echoHandler.protocol)
+      const stream = await aNode.client.openStream(bId.peerId, echoHandler.protocol)
+
+      // from the echo tests
+      // without this the socket can close before we receive a response
+      const responseReceived = defer()
+      const input = [uint8ArrayFromString('test')]
+      const output = await pipe(
+        input,
+        async function * (src) {
+          yield * src
+          await responseReceived.promise
+        },
+        stream,
+        async function * (src) {
+          for await (const buf of src) {
+            yield buf.subarray()
+            responseReceived.resolve()
+          }
+        },
+        async (src) => await all(src)
+      )
+      expect(output).to.deep.equal(input)
     })
   })
 }
