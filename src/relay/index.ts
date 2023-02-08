@@ -52,7 +52,6 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
 
       // run an echo test
       await bNode.client.registerStreamHandler(echoHandler.protocol, echoHandler.handler)
-      // const stream = await aNode.client.openStream(bId.peerId, echoHandler.protocol)
       const stream = await aNode.client.openStream(bId.peerId, echoHandler.protocol)
 
       // from the echo tests
