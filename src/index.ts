@@ -2,6 +2,7 @@ import { connectTests } from './connect.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
 import { streamTests } from './streams/index.js'
+import { relayTests } from './relay/index.js'
 import type { DaemonClient } from '@libp2p/daemon-client'
 
 export interface Daemon {
@@ -22,6 +23,10 @@ export interface SpawnOptions {
   pubsub?: boolean
   pubsubRouter?: PubSubRouter
   muxer?: Muxer
+  relay?: boolean
+  // the node will not listen on any
+  // addresses if true
+  noListen?: boolean
 }
 
 export interface DaemonFactory {
@@ -30,6 +35,7 @@ export interface DaemonFactory {
 
 export async function interopTests (factory: DaemonFactory): Promise<void> {
   connectTests(factory)
+  relayTests(factory)
   await dhtTests(factory)
   await pubsubTests(factory)
   await streamTests(factory)
@@ -39,5 +45,6 @@ export {
   connectTests as connectInteropTests,
   dhtTests as dhtInteropTests,
   pubsubTests as pubsubInteropTests,
-  streamTests as streamInteropTests
+  streamTests as streamInteropTests,
+  relayTests as relayInteropTests
 }

@@ -40,7 +40,7 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
     after(async function () {
       if (daemons != null) {
         await Promise.all(
-          daemons.map(async (daemon) => { await daemon.stop() })
+          daemons.map(async daemon => { await daemon.stop() })
         )
       }
     })

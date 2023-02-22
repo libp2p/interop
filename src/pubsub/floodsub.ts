@@ -32,8 +32,9 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
         factory.spawn(optionsB)
       ])
 
-      const identify1 = await daemons[1].client.identify()
-      await daemons[0].client.connect(identify1.peerId, identify1.addrs)
+      const [peerA, peerB] = daemons
+      const identifyB = await peerB.client.identify()
+      await peerA.client.connect(identifyB.peerId, identifyB.addrs)
     })
 
     // Stop daemons
@@ -48,8 +49,9 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       const topic = 'test-topic'
       const data = uint8ArrayFromString('test-data')
+      const [peerA, peerB] = daemons
 
-      const subscribeIterator = daemons[1].client.pubsub.subscribe(topic)
+      const subscribeIterator = peerB.client.pubsub.subscribe(topic)
       const subscriber = async (): Promise<void> => {
         const message = await first(subscribeIterator)
 
@@ -60,7 +62,7 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
       const publisher = async (): Promise<void> => {
         // wait for subscription stream
         await new Promise(resolve => setTimeout(resolve, 800))
-        await daemons[0].client.pubsub.publish(topic, data)
+        await peerA.client.pubsub.publish(topic, data)
       }
 
       return await Promise.all([

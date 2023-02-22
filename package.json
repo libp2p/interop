@@ -124,28 +124,38 @@
     ]
   },
   "scripts": {
+    "generate": "protons ./src/relay/pb/index.proto",
     "clean": "aegir clean",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check",
+    "dep-check": "aegir dep-check -i protons",
     "build": "aegir build",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
     "release": "aegir release"
   },
   "dependencies": {
     "@libp2p/daemon-client": "^4.0.0",
+    "@libp2p/interface-peer-id": "^2.0.1",
     "@libp2p/interface-peer-info": "^1.0.7",
+    "@multiformats/multiaddr": "^11.4.0",
     "it-all": "^2.0.0",
     "it-first": "^2.0.0",
+    "it-handshake": "^4.1.2",
+    "it-length-prefixed": "^8.0.4",
+    "it-pb-stream": "^2.0.3",
     "it-pipe": "^2.0.4",
+    "it-stream-types": "^1.0.5",
     "multiformats": "^11.0.0",
     "p-defer": "^4.0.0",
     "p-retry": "^5.1.0",
+    "protons-runtime": "^4.0.2",
+    "uint8arraylist": "^2.4.3",
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^38.1.0"
+    "aegir": "^38.1.0",
+    "protons": "^6.1.3"
   },
   "peerDependencies": {
-    "aegir": "^38.1.0"
+    "aegir": "*"
   }
 }
