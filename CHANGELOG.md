@@ -1,3 +1,14 @@
+## [6.0.0](https://github.com/libp2p/interop/compare/v5.0.0...v6.0.0) (2023-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add circuitv2 relay tests (#83)
+
+### Features
+
+* add circuitv2 relay tests ([#83](https://github.com/libp2p/interop/issues/83)) ([0512b15](https://github.com/libp2p/interop/commit/0512b15f5edbf009b545e1b84e69950760af08e3))
+
 ## [5.0.0](https://github.com/libp2p/interop/compare/v4.0.2...v5.0.0) (2023-02-01)
 
 
