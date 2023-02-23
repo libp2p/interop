@@ -4,8 +4,7 @@ import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
-import pWaitFor from 'p-wait-for'
-import type { IdentifyResult } from '@libp2p/daemon-client'
+import { waitForBothSubscribed } from './utils.js'
 
 export function hybridTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
@@ -24,7 +23,6 @@ export function hybridTests (factory: DaemonFactory): void {
 function runHybridTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('pubsub.hybrid', () => {
     let daemons: Daemon[]
-    let identify1: IdentifyResult
 
     // Start Daemons
     before(async function () {
@@ -35,7 +33,7 @@ function runHybridTests (factory: DaemonFactory, optionsA: SpawnOptions, options
         factory.spawn(optionsB)
       ])
 
-      identify1 = await daemons[1].client.identify()
+      const identify1 = await daemons[1].client.identify()
       await daemons[0].client.connect(identify1.peerId, identify1.addrs)
     })
 
@@ -61,11 +59,7 @@ function runHybridTests (factory: DaemonFactory, optionsA: SpawnOptions, options
       }
 
       const publisher = async (): Promise<void> => {
-        // wait for subscription stream
-        await pWaitFor(async () => {
-          const peers = await daemons[0].client.pubsub.getSubscribers(topic)
-          return peers.map(p => p.toString()).includes(identify1.peerId.toString())
-        })
+        await waitForBothSubscribed(topic, daemons[0], daemons[1])
         await daemons[0].client.pubsub.publish(topic, data)
       }
 
