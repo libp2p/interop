@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/libp2p/interop/compare/v6.0.1...v6.0.2) (2023-02-23)
+
+
+### Dependencies
+
+* **dev:** bump protons from 6.1.3 to 7.0.2 ([#87](https://github.com/libp2p/interop/issues/87)) ([a156e0e](https://github.com/libp2p/interop/commit/a156e0eb93d6b4592a86df0641a77379172c695e))
+
 ## [6.0.1](https://github.com/libp2p/interop/compare/v6.0.0...v6.0.1) (2023-02-23)
 
 
