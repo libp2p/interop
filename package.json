@@ -133,7 +133,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/daemon-client": "^4.0.0",
+    "@libp2p/daemon-client": "^4.1.0",
     "@libp2p/interface-peer-id": "^2.0.1",
     "@libp2p/interface-peer-info": "^1.0.7",
     "@multiformats/multiaddr": "^11.4.0",
@@ -147,6 +147,7 @@
     "multiformats": "^11.0.0",
     "p-defer": "^4.0.0",
     "p-retry": "^5.1.0",
+    "p-wait-for": "^5.0.0",
     "protons-runtime": "^5.0.0",
     "uint8arraylist": "^2.4.3",
     "uint8arrays": "^4.0.2"

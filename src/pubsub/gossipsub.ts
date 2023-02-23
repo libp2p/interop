@@ -4,6 +4,8 @@ import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
+import pWaitFor from 'p-wait-for'
+import type { IdentifyResult } from '@libp2p/daemon-client'
 
 export function gossipsubTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
@@ -22,6 +24,7 @@ export function gossipsubTests (factory: DaemonFactory): void {
 function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('pubsub.gossipsub', () => {
     let daemons: Daemon[]
+    let identify1: IdentifyResult
 
     // Start Daemons
     before(async function () {
@@ -32,7 +35,7 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
         factory.spawn(optionsB)
       ])
 
-      const identify1 = await daemons[1].client.identify()
+      identify1 = await daemons[1].client.identify()
       await daemons[0].client.connect(identify1.peerId, identify1.addrs)
     })
 
@@ -59,7 +62,11 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
 
       const publisher = async (): Promise<void> => {
         // wait for subscription stream
-        await new Promise(resolve => setTimeout(resolve, 800))
+        await pWaitFor(async () => {
+          const peers = await daemons[0].client.pubsub.getSubscribers(topic)
+          return peers.map(p => p.toString()).includes(identify1.peerId.toString())
+        })
+
         await daemons[0].client.pubsub.publish(topic, data)
       }
 
