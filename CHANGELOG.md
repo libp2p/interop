@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/libp2p/interop/compare/v6.0.2...v6.0.3) (2023-02-23)
+
+
+### Bug Fixes
+
+* wait for both peers to see each other in topic peer lists ([#90](https://github.com/libp2p/interop/issues/90)) ([4703b85](https://github.com/libp2p/interop/commit/4703b858e1c51eb308b516565aaaa90c4c05ca1c)), closes [#88](https://github.com/libp2p/interop/issues/88)
+
 ## [6.0.2](https://github.com/libp2p/interop/compare/v6.0.1...v6.0.2) (2023-02-23)
 
 
