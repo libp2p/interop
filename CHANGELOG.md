@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/libp2p/interop/compare/v6.0.0...v6.0.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* remove timeouts from pubsub tests ([#88](https://github.com/libp2p/interop/issues/88)) ([e1ac636](https://github.com/libp2p/interop/commit/e1ac636c690072022e3c89bad671606937f24117))
+
 ## [6.0.0](https://github.com/libp2p/interop/compare/v5.0.0...v6.0.0) (2023-02-22)
 
 
