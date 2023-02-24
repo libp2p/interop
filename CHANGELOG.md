@@ -1,3 +1,14 @@
+## [7.0.0](https://github.com/libp2p/interop/compare/v6.0.3...v7.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires new daemon client version
+
+### Bug Fixes
+
+* subscribe to topic separately from consuming messages ([#91](https://github.com/libp2p/interop/issues/91)) ([aaca95c](https://github.com/libp2p/interop/commit/aaca95c63254da5467d4dabd7269680d5b2bf798))
+
 ## [6.0.3](https://github.com/libp2p/interop/compare/v6.0.2...v6.0.3) (2023-02-23)
 
 
