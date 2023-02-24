@@ -33,8 +33,9 @@ function runHybridTests (factory: DaemonFactory, optionsA: SpawnOptions, options
         factory.spawn(optionsB)
       ])
 
-      const identify1 = await daemons[1].client.identify()
-      await daemons[0].client.connect(identify1.peerId, identify1.addrs)
+      const [peerA, peerB] = daemons
+      const identifyB = await peerB.client.identify()
+      await peerA.client.connect(identifyB.peerId, identifyB.addrs)
     })
 
     // Stop daemons
@@ -49,18 +50,19 @@ function runHybridTests (factory: DaemonFactory, optionsA: SpawnOptions, options
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       const topic = 'test-topic'
       const data = uint8ArrayFromString('test-data')
+      const [peerA, peerB] = daemons
 
-      const subscribeIterator = daemons[1].client.pubsub.subscribe(topic)
+      const subscription = await peerB.client.pubsub.subscribe(topic)
       const subscriber = async (): Promise<void> => {
-        const message = await first(subscribeIterator)
+        const message = await first(subscription.messages())
 
         expect(message).to.exist()
         expect(message).to.have.property('data').that.equalBytes(data)
       }
 
       const publisher = async (): Promise<void> => {
-        await waitForBothSubscribed(topic, daemons[0], daemons[1])
-        await daemons[0].client.pubsub.publish(topic, data)
+        await waitForBothSubscribed(topic, peerA, peerB)
+        await peerA.client.pubsub.publish(topic, data)
       }
 
       return await Promise.all([

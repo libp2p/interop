@@ -2,6 +2,9 @@ import pWaitFor from 'p-wait-for'
 import type { Daemon } from '..'
 
 export async function waitForBothSubscribed (topic: string, a: Daemon, b: Daemon): Promise<void> {
+  await a.client.pubsub.subscribe(topic)
+  await b.client.pubsub.subscribe(topic)
+
   const idA = await a.client.identify()
   const idB = await b.client.identify()
 
