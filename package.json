@@ -141,7 +141,7 @@
     "it-first": "^2.0.0",
     "it-handshake": "^4.1.2",
     "it-length-prefixed": "^8.0.4",
-    "it-pb-stream": "^2.0.3",
+    "it-pb-stream": "^3.0.0",
     "it-pipe": "^2.0.4",
     "it-stream-types": "^1.0.5",
     "multiformats": "^11.0.0",
