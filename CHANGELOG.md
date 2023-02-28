@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/libp2p/interop/compare/v7.0.1...v7.0.2) (2023-02-28)
+
+
+### Bug Fixes
+
+* start daemons in series ([#95](https://github.com/libp2p/interop/issues/95)) ([949b000](https://github.com/libp2p/interop/commit/949b00047c97d90efe37d402abbbc4460da333e5))
+
 ## [7.0.1](https://github.com/libp2p/interop/compare/v7.0.0...v7.0.1) (2023-02-28)
 
 
