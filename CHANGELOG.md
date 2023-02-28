@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/libp2p/interop/compare/v7.0.2...v7.0.3) (2023-02-28)
+
+
+### Bug Fixes
+
+* stop third daemon ([422b62a](https://github.com/libp2p/interop/commit/422b62ab9bd67f819c425836b4947024451a1f99))
+
 ## [7.0.2](https://github.com/libp2p/interop/compare/v7.0.1...v7.0.2) (2023-02-28)
 
 
