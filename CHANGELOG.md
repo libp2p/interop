@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/libp2p/interop/compare/v7.0.0...v7.0.1) (2023-02-28)
+
+
+### Bug Fixes
+
+* wait for gossipsub heartbeat before sending message ([#94](https://github.com/libp2p/interop/issues/94)) ([dffdff0](https://github.com/libp2p/interop/commit/dffdff06e84427f4205d2a70cdad1e1be2fc3cd3))
+
 ## [7.0.0](https://github.com/libp2p/interop/compare/v6.0.3...v7.0.0) (2023-02-24)
 
 
