@@ -1,26 +1,22 @@
 import pWaitFor from 'p-wait-for'
-import type { Daemon } from '..'
+import delay from 'delay'
+import type { Daemon } from '../index.js'
 
-export async function waitForBothSubscribed (topic: string, a: Daemon, b: Daemon): Promise<void> {
-  await a.client.pubsub.subscribe(topic)
-  await b.client.pubsub.subscribe(topic)
-
-  const idA = await a.client.identify()
+/**
+ * Wait for daemon a to see daemon b in it's subscriber list
+ * for the passed topic
+ */
+export async function waitForSubscribed (topic: string, a: Daemon, b: Daemon): Promise<void> {
   const idB = await b.client.identify()
 
   // wait for subscription stream
-  await Promise.all([
-    await pWaitFor(async () => {
-      const peers = await a.client.pubsub.getSubscribers(topic)
-      return peers.map(p => p.toString()).includes(idB.peerId.toString())
-    }, {
-      interval: 500
-    }),
-    await pWaitFor(async () => {
-      const peers = await b.client.pubsub.getSubscribers(topic)
-      return peers.map(p => p.toString()).includes(idA.peerId.toString())
-    }, {
-      interval: 500
-    })
-  ])
+  await pWaitFor(async () => {
+    const peers = await a.client.pubsub.getSubscribers(topic)
+    return peers.map(p => p.toString()).includes(idB.peerId.toString())
+  }, {
+    interval: 500
+  })
+
+  // wait for the gossipsub heartbeat to rebalance the mesh
+  await delay(2000)
 }
