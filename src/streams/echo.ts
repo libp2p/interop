@@ -24,21 +24,20 @@ export function echoStreamTests (factory: DaemonFactory, muxer: Muxer): void {
 
 function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe(`echo streams - ${muxer}`, () => {
-    let daemons: Daemon[]
+    let daemonA: Daemon
+    let daemonB: Daemon
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemons = await Promise.all([
-        factory.spawn(optionsA),
-        factory.spawn(optionsB)
-      ])
+      daemonA = await factory.spawn(optionsA)
+      daemonB = await factory.spawn(optionsB)
 
       // connect them
-      const identify0 = await daemons[0].client.identify()
+      const identify0 = await daemonA.client.identify()
 
-      await daemons[1].client.connect(identify0.peerId, identify0.addrs)
+      await daemonB.client.connect(identify0.peerId, identify0.addrs)
 
       // jsDaemon1 will take some time to get the peers
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -46,21 +45,21 @@ function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: Spa
 
     // Stop daemons
     after(async function () {
-      if (daemons != null) {
-        await Promise.all(
-          daemons.map(async (daemon) => { await daemon.stop() })
-        )
-      }
+      await Promise.all(
+        [daemonA, daemonB]
+          .filter(Boolean)
+          .map(async d => { await d.stop() })
+      )
     })
 
     it(`${optionsA.type} sender to ${optionsB.type} listener`, async function () {
       this.timeout(10 * 1000)
 
-      const receivingIdentity = await daemons[1].client.identify()
+      const receivingIdentity = await daemonB.client.identify()
       const protocol = '/echo/1.0.0'
       const input = [uint8ArrayFromString('hello world')]
 
-      await daemons[1].client.registerStreamHandler(protocol, async (stream) => {
+      await daemonB.client.registerStreamHandler(protocol, async (stream) => {
         await pipe(
           stream,
           async function * (source) {
@@ -72,7 +71,7 @@ function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: Spa
         )
       })
 
-      const stream = await daemons[0].client.openStream(receivingIdentity.peerId, protocol)
+      const stream = await daemonA.client.openStream(receivingIdentity.peerId, protocol)
 
       // without this the socket can close before we receive a response
       const responseReceived = defer()

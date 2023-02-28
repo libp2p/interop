@@ -128,7 +128,7 @@
     "clean": "aegir clean",
     "lint": "aegir lint",
     "dep-check": "aegir dep-check -i protons",
-    "build": "aegir build",
+    "build": "aegir build --bundle false",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
     "release": "aegir release"
   },

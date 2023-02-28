@@ -22,37 +22,34 @@ export function gossipsubTests (factory: DaemonFactory): void {
 
 function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('pubsub.gossipsub', () => {
-    let daemons: Daemon[]
+    let daemonA: Daemon
+    let daemonB: Daemon
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemons = await Promise.all([
-        factory.spawn(optionsA),
-        factory.spawn(optionsB)
-      ])
+      daemonA = await factory.spawn(optionsA)
+      daemonB = await factory.spawn(optionsB)
 
-      const [peerA, peerB] = daemons
-      const identifyB = await peerB.client.identify()
-      await peerA.client.connect(identifyB.peerId, identifyB.addrs)
+      const identifyB = await daemonB.client.identify()
+      await daemonA.client.connect(identifyB.peerId, identifyB.addrs)
     })
 
     // Stop daemons
     after(async function () {
-      if (daemons != null) {
-        await Promise.all(
-          daemons.map(async daemon => { await daemon.stop() })
-        )
-      }
+      await Promise.all(
+        [daemonA, daemonB]
+          .filter(Boolean)
+          .map(async d => { await d.stop() })
+      )
     })
 
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       const topic = 'test-topic'
       const data = uint8ArrayFromString('test-data')
-      const [peerA, peerB] = daemons
 
-      const subscription = await peerB.client.pubsub.subscribe(topic)
+      const subscription = await daemonB.client.pubsub.subscribe(topic)
       const subscriber = async (): Promise<void> => {
         const message = await first(subscription.messages())
 
@@ -61,8 +58,8 @@ function runGossipsubTests (factory: DaemonFactory, optionsA: SpawnOptions, opti
       }
 
       const publisher = async (): Promise<void> => {
-        await waitForSubscribed(topic, peerA, peerB)
-        await peerA.client.pubsub.publish(topic, data)
+        await waitForSubscribed(topic, daemonA, daemonB)
+        await daemonA.client.pubsub.publish(topic, data)
       }
 
       return await Promise.all([

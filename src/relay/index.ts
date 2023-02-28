@@ -29,7 +29,10 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
 
     beforeEach(async function () {
       this.timeout(20 * 1000)
-      ;[aNode, bNode, relay] = await Promise.all(opts.map(async o => await factory.spawn(o)))
+      aNode = await factory.spawn(opts[0])
+      bNode = await factory.spawn(opts[1])
+      relay = await factory.spawn(opts[2])
+
       ;[bId, relayId] = await Promise.all([bNode, relay].map(async d => await d.client.identify()))
 
       // construct a relay address
@@ -40,7 +43,11 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
     })
 
     afterEach(async function () {
-      await Promise.all([aNode, bNode, relay].map(async d => { await d.stop() }))
+      await Promise.all([aNode, bNode, relay].map(async d => {
+        if (d != null) {
+          await d.stop()
+        }
+      }))
     })
 
     it('connects', async () => {

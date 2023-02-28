@@ -29,21 +29,20 @@ export function contentFetchingTests (factory: DaemonFactory): void {
 
 function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('dht.contentFetching', () => {
-    let daemons: Daemon[]
+    let daemonA: Daemon
+    let daemonB: Daemon
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemons = await Promise.all([
-        factory.spawn(optionsA),
-        factory.spawn(optionsB)
-      ])
+      daemonA = await factory.spawn(optionsA)
+      daemonB = await factory.spawn(optionsB)
 
       // connect them
-      const identify0 = await daemons[0].client.identify()
+      const identify0 = await daemonA.client.identify()
 
-      await daemons[1].client.connect(identify0.peerId, identify0.addrs)
+      await daemonB.client.connect(identify0.peerId, identify0.addrs)
 
       // jsDaemon1 will take some time to get the peers
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -51,19 +50,19 @@ function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions
 
     // Stop daemons
     after(async function () {
-      if (daemons != null) {
-        await Promise.all(
-          daemons.map(async (daemon) => { await daemon.stop() })
-        )
-      }
+      await Promise.all(
+        [daemonA, daemonB]
+          .filter(Boolean)
+          .map(async d => { await d.stop() })
+      )
     })
 
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       this.timeout(10 * 1000)
 
-      await daemons[0].client.dht.put(record.key, record.value)
+      await daemonA.client.dht.put(record.key, record.value)
 
-      const data = await daemons[1].client.dht.get(record.key)
+      const data = await daemonB.client.dht.get(record.key)
       expect(data).to.equalBytes(record.value)
     })
   })
