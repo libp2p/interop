@@ -17,6 +17,7 @@ export async function waitForSubscribed (topic: string, a: Daemon, b: Daemon): P
     interval: 500
   })
 
-  // wait for the gossipsub heartbeat to rebalance the mesh
+  // just having a peer in the subscriber list is not a guarentee they will recieve the
+  // message - we have to also wait for the gossipsub heartbeat to rebalance the mesh
   await delay(2000)
 }

@@ -21,41 +21,41 @@ export function peerRoutingTests (factory: DaemonFactory): void {
 
 function runPeerRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('dht.peerRouting', () => {
-    let daemons: Daemon[]
+    let daemonA: Daemon
+    let daemonB: Daemon
+    let daemonC: Daemon
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemons = await Promise.all([
-        factory.spawn(optionsA),
-        factory.spawn(optionsB),
-        factory.spawn(optionsB)
-      ])
+      daemonA = await factory.spawn(optionsA)
+      daemonB = await factory.spawn(optionsB)
+      daemonC = await factory.spawn(optionsB)
     })
 
     // Stop daemons
     after(async function () {
-      if (daemons != null) {
-        await Promise.all(
-          daemons.map(async (daemon) => { await daemon.stop() })
-        )
-      }
+      await Promise.all(
+        [daemonA, daemonB, daemonC]
+          .filter(Boolean)
+          .map(async d => { await d.stop() })
+      )
     })
 
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
-      const identify1 = await daemons[1].client.identify()
-      const identify2 = await daemons[2].client.identify()
+      const identify1 = await daemonB.client.identify()
+      const identify2 = await daemonC.client.identify()
 
       // peers need at least one peer in their routing table or they fail with:
       // connect 0 => 1
-      await daemons[0].client.connect(identify1.peerId, identify1.addrs)
+      await daemonA.client.connect(identify1.peerId, identify1.addrs)
 
       // connect 0 => 2
-      await daemons[0].client.connect(identify2.peerId, identify2.addrs)
+      await daemonA.client.connect(identify2.peerId, identify2.addrs)
 
       // peer 1 find peer 2, retry up to 10 times to allow the routing table to refresh
-      const peerData: PeerInfo = await pRetry(async () => await daemons[1].client.dht.findPeer(identify2.peerId), { retries: 10 })
+      const peerData: PeerInfo = await pRetry(async () => await daemonB.client.dht.findPeer(identify2.peerId), { retries: 10 })
 
       expect(identify2.addrs.map(ma => ma.toString())).to.include.deep.members(peerData.multiaddrs.map(ma => ma.toString()))
     })
