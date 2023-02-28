@@ -56,7 +56,7 @@ function runContentRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions,
     // Stop daemons
     after(async function () {
       await Promise.all(
-        [daemonA, daemonB]
+        [daemonA, daemonB, daemonC]
           .filter(Boolean)
           .map(async d => { await d.stop() })
       )

@@ -43,11 +43,11 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
     })
 
     afterEach(async function () {
-      await Promise.all([aNode, bNode, relay].map(async d => {
-        if (d != null) {
-          await d.stop()
-        }
-      }))
+      await Promise.all(
+        [aNode, bNode, relay]
+          .filter(Boolean)
+          .map(async d => { await d.stop() })
+      )
     })
 
     it('connects', async () => {
