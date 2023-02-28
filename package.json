@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/interop",
-  "version": "6.0.3",
+  "version": "7.0.0",
   "description": "Interoperability Tests for libp2p",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/interop#readme",
@@ -133,7 +133,7 @@
     "release": "aegir release"
   },
   "dependencies": {
-    "@libp2p/daemon-client": "^4.1.0",
+    "@libp2p/daemon-client": "^5.0.0",
     "@libp2p/interface-peer-id": "^2.0.1",
     "@libp2p/interface-peer-info": "^1.0.7",
     "@multiformats/multiaddr": "^11.4.0",

@@ -52,9 +52,9 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
       const data = uint8ArrayFromString('test-data')
       const [peerA, peerB] = daemons
 
-      const subscribeIterator = peerB.client.pubsub.subscribe(topic)
+      const subscription = await peerB.client.pubsub.subscribe(topic)
       const subscriber = async (): Promise<void> => {
-        const message = await first(subscribeIterator)
+        const message = await first(subscription.messages())
 
         expect(message).to.exist()
         expect(message).to.have.property('data').that.equalBytes(data)
