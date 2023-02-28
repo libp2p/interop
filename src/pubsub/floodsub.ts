@@ -4,7 +4,7 @@ import { expect } from 'aegir/chai'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import first from 'it-first'
-import { waitForBothSubscribed } from './utils.js'
+import { waitForSubscribed } from './utils.js'
 
 export function floodsubTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
@@ -61,7 +61,7 @@ function runFloodsubTests (factory: DaemonFactory, optionsA: SpawnOptions, optio
       }
 
       const publisher = async (): Promise<void> => {
-        await waitForBothSubscribed(topic, peerA, peerB)
+        await waitForSubscribed(topic, peerA, peerB)
         await peerA.client.pubsub.publish(topic, data)
       }
 
