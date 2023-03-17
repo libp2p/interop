@@ -1,3 +1,10 @@
+## [7.0.4](https://github.com/libp2p/interop/compare/v7.0.3...v7.0.4) (2023-03-17)
+
+
+### Dependencies
+
+* bump @multiformats/multiaddr from 11.6.1 to 12.0.0 ([#98](https://github.com/libp2p/interop/issues/98)) ([9140e5b](https://github.com/libp2p/interop/commit/9140e5b141c97f16a41bfce0c01bb96efae25839))
+
 ## [7.0.3](https://github.com/libp2p/interop/compare/v7.0.2...v7.0.3) (2023-02-28)
 
 
