@@ -10,6 +10,7 @@ const RELAY_V2_HOP = '/libp2p/circuit/relay/0.2.0/hop'
 
 export const reserve = async (d: Daemon, peerID: PeerId, message?: Partial<HopMessage>): Promise<HopMessage> => {
   const stream = await d.client.openStream(peerID, RELAY_V2_HOP)
+  // @ts-expect-error FIXME: @libp2p/daemon needs to be converted to use pbStream instead of it's own StreamHandler
   const pb = pbStream(stream)
   pb.writePB({
     type: HopMessage.Type.RESERVE,
