@@ -1,3 +1,10 @@
+## [7.0.5](https://github.com/libp2p/interop/compare/v7.0.4...v7.0.5) (2023-03-31)
+
+
+### Dependencies
+
+* bump it-pipe from 2.0.5 to 3.0.0 ([#100](https://github.com/libp2p/interop/issues/100)) ([6add7ff](https://github.com/libp2p/interop/commit/6add7ffe2c992f93758b2c0e0b4a84ed0b2a5cee))
+
 ## [7.0.4](https://github.com/libp2p/interop/compare/v7.0.3...v7.0.4) (2023-03-17)
 
 
