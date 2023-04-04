@@ -144,7 +144,7 @@
     "it-length-prefixed": "^9.0.0",
     "it-pb-stream": "^3.0.0",
     "it-pipe": "^3.0.0",
-    "it-stream-types": "^1.0.5",
+    "it-stream-types": "^2.0.1",
     "multiformats": "^11.0.0",
     "p-defer": "^4.0.0",
     "p-retry": "^5.1.0",
