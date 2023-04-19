@@ -1,7 +1,7 @@
 import type { PeerId } from '@libp2p/interface-peer-id'
 import type { Daemon } from '../index.js'
 import { HopMessage } from './pb/index.js'
-import type { Duplex } from 'it-stream-types'
+import type { Duplex, Source } from 'it-stream-types'
 import type { Uint8ArrayList } from 'uint8arraylist'
 import { pipe } from 'it-pipe'
 import { pbStream } from 'it-pb-stream'
@@ -22,7 +22,7 @@ export const reserve = async (d: Daemon, peerID: PeerId, message?: Partial<HopMe
 
 export const echoHandler = {
   protocol: '/echo/1.0.0',
-  handler: async (stream: Duplex<Uint8ArrayList | Uint8Array, Uint8Array, Promise<void>>) => {
+  handler: async (stream: Duplex<AsyncIterable<Uint8ArrayList | Uint8Array>, Source<Uint8Array>, Promise<void>>) => {
     await pipe(
       stream,
       async function * (src) {
