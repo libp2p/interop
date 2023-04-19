@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/libp2p/interop/compare/v8.0.0...v8.0.1) (2023-04-19)
+
+
+### Dependencies
+
+* update it-pb-stream to v4.x.x ([#105](https://github.com/libp2p/interop/issues/105)) ([e56573d](https://github.com/libp2p/interop/commit/e56573de0bb74308acb36ded46412dd503868e7e))
+
 ## [8.0.0](https://github.com/libp2p/interop/compare/v7.0.5...v8.0.0) (2023-04-19)
 
 
