@@ -1,3 +1,15 @@
+## [8.0.0](https://github.com/libp2p/interop/compare/v7.0.5...v8.0.0) (2023-04-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* update it-stream-deps and libp2p-daemon-client (#104)
+
+### Dependencies
+
+* update all it-* deps to the latest versions ([#102](https://github.com/libp2p/interop/issues/102)) ([d3e0a45](https://github.com/libp2p/interop/commit/d3e0a4574e84189b5e32e93af80b80e280c4faca))
+* update it-stream-deps and libp2p-daemon-client ([#104](https://github.com/libp2p/interop/issues/104)) ([6729cf2](https://github.com/libp2p/interop/commit/6729cf2bbb9c16786ad28f163f5220580b16d5d1))
+
 ## [7.0.5](https://github.com/libp2p/interop/compare/v7.0.4...v7.0.5) (2023-03-31)
 
 
