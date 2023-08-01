@@ -1,3 +1,20 @@
+## [9.0.0](https://github.com/libp2p/interop/compare/v8.0.1...v9.0.0) (2023-08-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires libp2p@0.46.x or later
+
+### Bug Fixes
+
+* gracefully close streams ([#118](https://github.com/libp2p/interop/issues/118)) ([484b7db](https://github.com/libp2p/interop/commit/484b7dbc7a5fb8526fdeaebf73f388e1259ef76f))
+
+
+### Trivial Changes
+
+* Update .github/workflows/stale.yml [skip ci] ([13542c0](https://github.com/libp2p/interop/commit/13542c0a280d6a071ec7dff343e34806aded2bd9))
+* Update .github/workflows/stale.yml [skip ci] ([6357d68](https://github.com/libp2p/interop/commit/6357d68ffc3c4c80401583d96e244150129f9ea0))
+
 ## [8.0.1](https://github.com/libp2p/interop/compare/v8.0.0...v8.0.1) (2023-04-19)
 
 
