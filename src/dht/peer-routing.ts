@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import pRetry from 'p-retry'
+import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import type { PeerInfo } from '@libp2p/interface-peer-info'
 
 export function peerRoutingTests (factory: DaemonFactory): void {
@@ -55,7 +55,7 @@ function runPeerRoutingTests (factory: DaemonFactory, optionsA: SpawnOptions, op
       await daemonA.client.connect(identify2.peerId, identify2.addrs)
 
       // peer 1 find peer 2, retry up to 10 times to allow the routing table to refresh
-      const peerData: PeerInfo = await pRetry(async () => await daemonB.client.dht.findPeer(identify2.peerId), { retries: 10 })
+      const peerData: PeerInfo = await pRetry(async () => daemonB.client.dht.findPeer(identify2.peerId), { retries: 10 })
 
       expect(identify2.addrs.map(ma => ma.toString())).to.include.deep.members(peerData.multiaddrs.map(ma => ma.toString()))
     })

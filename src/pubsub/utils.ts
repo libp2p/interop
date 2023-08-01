@@ -1,5 +1,5 @@
-import pWaitFor from 'p-wait-for'
 import delay from 'delay'
+import pWaitFor from 'p-wait-for'
 import type { Daemon } from '../index.js'
 
 /**

@@ -1,11 +1,11 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import type { Daemon, DaemonFactory, Muxer, NodeType, SpawnOptions } from '../index.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import { pipe } from 'it-pipe'
 import all from 'it-all'
+import { pipe } from 'it-pipe'
 import defer from 'p-defer'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Daemon, DaemonFactory, Muxer, NodeType, SpawnOptions } from '../index.js'
 
 export function echoStreamTests (factory: DaemonFactory, muxer: Muxer): void {
   const nodeTypes: NodeType[] = ['js', 'go']
@@ -89,7 +89,7 @@ function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: Spa
             responseReceived.resolve()
           }
         },
-        async (source) => await all(source)
+        async (source) => all(source)
       )
 
       expect(output).to.deep.equal(input)

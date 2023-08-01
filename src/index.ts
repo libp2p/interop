@@ -1,8 +1,8 @@
 import { connectTests } from './connect.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
-import { streamTests } from './streams/index.js'
 import { relayTests } from './relay/index.js'
+import { streamTests } from './streams/index.js'
 import type { DaemonClient } from '@libp2p/daemon-client'
 
 export interface Daemon {
