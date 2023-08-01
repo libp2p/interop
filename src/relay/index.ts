@@ -1,11 +1,11 @@
-import { Multiaddr, multiaddr } from '@multiformats/multiaddr'
+import { type Multiaddr, multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
-import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
+import { handshake } from 'it-handshake'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { Status } from './pb/index.js'
 import { echoHandler, reserve } from './util.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import type { IdentifyResult } from '@libp2p/daemon-client'
-import { handshake } from 'it-handshake'
 
 export function relayTests (factory: DaemonFactory): void {
   const t: NodeType[] = ['go', 'js']
@@ -33,7 +33,7 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
       bNode = await factory.spawn(opts[1])
       relay = await factory.spawn(opts[2])
 
-      ;[bId, relayId] = await Promise.all([bNode, relay].map(async d => await d.client.identify()))
+      ;[bId, relayId] = await Promise.all([bNode, relay].map(async d => d.client.identify()))
 
       // construct a relay address
       bAddrViaRelay = multiaddr(`${relayId.addrs[0].toString()}/p2p/${relayId.peerId.toString()}/p2p-circuit/p2p/${bId.peerId.toString()}`)

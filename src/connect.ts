@@ -1,6 +1,6 @@
 import { expect } from 'aegir/chai'
-import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType } from './index.js'
 import { keys } from './resources/keys/index.js'
+import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType } from './index.js'
 
 export function connectTests (factory: DaemonFactory): void {
   const keyTypes: PeerIdType[] = ['ed25519', 'rsa', 'secp256k1']

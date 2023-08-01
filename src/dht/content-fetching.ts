@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { concat as uint8ArrayConcat } from 'uint8arrays/concat'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 
 const record = {
   key: uint8ArrayConcat([

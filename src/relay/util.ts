@@ -1,10 +1,10 @@
-import type { PeerId } from '@libp2p/interface-peer-id'
-import type { Daemon } from '../index.js'
+import { pbStream } from 'it-pb-stream'
+import { pipe } from 'it-pipe'
 import { HopMessage } from './pb/index.js'
+import type { Daemon } from '../index.js'
+import type { PeerId } from '@libp2p/interface-peer-id'
 import type { Duplex, Source } from 'it-stream-types'
 import type { Uint8ArrayList } from 'uint8arraylist'
-import { pipe } from 'it-pipe'
-import { pbStream } from 'it-pb-stream'
 
 const RELAY_V2_HOP = '/libp2p/circuit/relay/0.2.0/hop'
 
@@ -16,7 +16,7 @@ export const reserve = async (d: Daemon, peerID: PeerId, message?: Partial<HopMe
     ...(message ?? {})
   }, HopMessage)
 
-  return await pb.readPB(HopMessage)
+  return pb.readPB(HopMessage)
 }
 
 export const echoHandler = {
