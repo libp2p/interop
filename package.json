@@ -127,7 +127,7 @@
     "generate": "protons ./src/relay/pb/index.proto",
     "clean": "aegir clean",
     "lint": "aegir lint",
-    "dep-check": "aegir dep-check -i protons",
+    "dep-check": "aegir dep-check",
     "build": "aegir build --bundle false",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
     "release": "aegir release"
@@ -141,7 +141,6 @@
     "it-all": "^3.0.1",
     "it-first": "^3.0.1",
     "it-handshake": "^4.1.2",
-    "it-length-prefixed": "^9.0.0",
     "it-pb-stream": "^4.0.0",
     "it-pipe": "^3.0.0",
     "it-stream-types": "^2.0.1",
