@@ -1,5 +1,5 @@
-import { pbStream } from 'it-protobuf-stream'
 import { pipe } from 'it-pipe'
+import { pbStream } from 'it-protobuf-stream'
 import { HopMessage } from './pb/index.js'
 import type { Daemon } from '../index.js'
 import type { PeerId } from '@libp2p/interface-peer-id'
