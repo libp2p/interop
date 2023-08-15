@@ -141,7 +141,7 @@
     "it-all": "^3.0.1",
     "it-first": "^3.0.1",
     "it-handshake": "^4.1.2",
-    "it-pb-stream": "^4.0.0",
+    "it-protobuf-stream": "^1.0.0",
     "it-pipe": "^3.0.0",
     "it-stream-types": "^2.0.1",
     "multiformats": "^12.0.1",
