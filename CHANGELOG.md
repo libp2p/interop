@@ -1,3 +1,16 @@
+## [9.0.1](https://github.com/libp2p/interop/compare/v9.0.0...v9.0.1) (2023-08-15)
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#120](https://github.com/libp2p/interop/issues/120)) ([2577b74](https://github.com/libp2p/interop/commit/2577b74185c6bf002e22368efd892e76638ed70c))
+* delete templates [skip ci] ([#119](https://github.com/libp2p/interop/issues/119)) ([a83288b](https://github.com/libp2p/interop/commit/a83288bdf4201ae41141215221299658948af9cd))
+
+
+### Dependencies
+
+* switch it-pb-stream for it-protobuf-stream ([#121](https://github.com/libp2p/interop/issues/121)) ([76633f7](https://github.com/libp2p/interop/commit/76633f7d7795dff72102a55976bae6459840a4c7))
+
 ## [9.0.0](https://github.com/libp2p/interop/compare/v8.0.1...v9.0.0) (2023-08-01)
 
 
