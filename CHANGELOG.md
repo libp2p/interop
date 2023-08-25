@@ -1,3 +1,15 @@
+## [9.0.2](https://github.com/libp2p/interop/compare/v9.0.1...v9.0.2) (2023-08-25)
+
+
+### Trivial Changes
+
+* Update CODEOWNERS [skip ci] ([f46f712](https://github.com/libp2p/interop/commit/f46f7125e75f9b6d4e9431d2b1661314c60ddee0))
+
+
+### Dependencies
+
+* bump p-retry from 5.1.2 to 6.0.0 ([#122](https://github.com/libp2p/interop/issues/122)) ([5e1e196](https://github.com/libp2p/interop/commit/5e1e196957df86e9c3c7334fe144dc8ec33c1b65))
+
 ## [9.0.1](https://github.com/libp2p/interop/compare/v9.0.0...v9.0.1) (2023-08-15)
 
 
