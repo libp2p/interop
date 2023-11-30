@@ -1,3 +1,14 @@
+## [10.0.0](https://github.com/libp2p/interop/compare/v9.0.3...v10.0.0) (2023-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* updates to libp2p v1
+
+### Dependencies
+
+* update libp2p daemon to use libp2p v1 ([#139](https://github.com/libp2p/interop/issues/139)) ([357b5f8](https://github.com/libp2p/interop/commit/357b5f83eccaa4de3cc4345119bff588fa3b0aea))
+
 ## [9.0.3](https://github.com/libp2p/interop/compare/v9.0.2...v9.0.3) (2023-11-30)
 
 
