@@ -1,3 +1,47 @@
+/**
+ * @packageDocumentation
+ *
+ * This repository holds interop tests for testing compatibility between different libp2p implementations.
+ *
+ * @example How to run the tests
+ *
+ * Create a js file that configures the different types of daemon:
+ *
+ * ```js
+ * import { interopTests } from '@libp2p/interop'
+ * import type { Daemon, DaemonFactory } from '@libp2p/interop'
+ *
+ * async function createGoPeer (options: SpawnOptions): Promise<Daemon> {
+ *   // your implementation here
+ * }
+ *
+ * async function createJsPeer (options: SpawnOptions): Promise<Daemon> {
+ *   // your implementation here
+ * }
+ *
+ * async function main () {
+ *   const factory: DaemonFactory = {
+ *     async spawn (options: SpawnOptions) {
+ *       if (options.type === 'go') {
+ *         return createGoPeer(options)
+ *       }
+ *
+ *       return createJsPeer(options)
+ *     }
+ *   }
+ *
+ *   interopTests(factory)
+ * }
+ *
+ * main().catch(err => {
+ *   console.error(err)
+ *   process.exit(1)
+ * })
+ * ```
+ *
+ * For an example, see the js-libp2p interop test runner.
+ */
+
 import { connectTests } from './connect.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
@@ -6,7 +50,7 @@ import { streamTests } from './streams/index.js'
 import type { DaemonClient } from '@libp2p/daemon-client'
 
 export interface Daemon {
-  stop: () => Promise<void>
+  stop(): Promise<void>
   client: DaemonClient
 }
 
@@ -30,7 +74,7 @@ export interface SpawnOptions {
 }
 
 export interface DaemonFactory {
-  spawn: (options: SpawnOptions) => Promise<Daemon>
+  spawn(options: SpawnOptions): Promise<Daemon>
 }
 
 export async function interopTests (factory: DaemonFactory): Promise<void> {
