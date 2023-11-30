@@ -2,7 +2,7 @@ import { pipe } from 'it-pipe'
 import { pbStream } from 'it-protobuf-stream'
 import { HopMessage } from './pb/index.js'
 import type { Daemon } from '../index.js'
-import type { PeerId } from '@libp2p/interface-peer-id'
+import type { PeerId } from '@libp2p/interface'
 import type { Duplex, Source } from 'it-stream-types'
 import type { Uint8ArrayList } from 'uint8arraylist'
 
