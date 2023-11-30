@@ -1,6 +1,6 @@
 import { type Multiaddr, multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
-import { handshake } from 'it-handshake'
+import { lpStream } from 'it-length-prefixed-stream'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { Status } from './pb/index.js'
 import { echoHandler, reserve } from './util.js'
@@ -67,9 +67,9 @@ function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, re
 
       // send some data, read the response
       const input = uint8ArrayFromString('test')
-      const shake = handshake(stream)
-      shake.write(input)
-      const output = await shake.read()
+      const lp = lpStream(stream)
+      await lp.write(input)
+      const output = await lp.read()
 
       expect(output?.subarray()).to.deep.equal(input)
     })
