@@ -11,13 +11,13 @@
   "bugs": {
     "url": "https://github.com/libp2p/interop/issues"
   },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "keywords": [
     "libp2p"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
@@ -35,12 +35,13 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
   "release": {
     "branches": [
-      "master"
+      "main"
     ],
     "plugins": [
       [
@@ -130,7 +131,8 @@
     "dep-check": "aegir dep-check",
     "build": "aegir build --bundle false",
     "postbuild": "cp src/resources/keys/*.key dist/src/resources/keys",
-    "release": "aegir release"
+    "release": "aegir release",
+    "docs": "aegir docs"
   },
   "dependencies": {
     "@libp2p/daemon-client": "^7.0.0",
@@ -141,8 +143,8 @@
     "it-all": "^3.0.1",
     "it-first": "^3.0.1",
     "it-handshake": "^4.1.2",
-    "it-protobuf-stream": "^1.0.0",
     "it-pipe": "^3.0.0",
+    "it-protobuf-stream": "^1.0.0",
     "it-stream-types": "^2.0.1",
     "multiformats": "^12.0.1",
     "p-defer": "^4.0.0",
