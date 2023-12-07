@@ -1,3 +1,15 @@
+## [10.0.1](https://github.com/libp2p/interop/compare/v10.0.0...v10.0.1) (2023-12-07)
+
+
+### Trivial Changes
+
+* update .github/workflows/js-test-and-release.yml ([#141](https://github.com/libp2p/interop/issues/141)) ([0974c1e](https://github.com/libp2p/interop/commit/0974c1e59dd3e0198bb62fb3c0ae77ddf4fa7e94))
+
+
+### Dependencies
+
+* bump uint8arrays from 4.0.10 to 5.0.0 ([#142](https://github.com/libp2p/interop/issues/142)) ([7f78fac](https://github.com/libp2p/interop/commit/7f78fac17fecac3ca0b9bf113436b0fb417a0fee))
+
 ## [10.0.0](https://github.com/libp2p/interop/compare/v9.0.3...v10.0.0) (2023-11-30)
 
 
