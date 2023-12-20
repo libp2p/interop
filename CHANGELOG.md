@@ -1,3 +1,10 @@
+## [10.0.2](https://github.com/libp2p/interop/compare/v10.0.1...v10.0.2) (2023-12-20)
+
+
+### Dependencies
+
+* bump multiformats from 12.1.3 to 13.0.0 ([#143](https://github.com/libp2p/interop/issues/143)) ([1f4e87d](https://github.com/libp2p/interop/commit/1f4e87d1250e981f1927843ff8c7c4ac5abc4f54))
+
 ## [10.0.1](https://github.com/libp2p/interop/compare/v10.0.0...v10.0.1) (2023-12-07)
 
 
