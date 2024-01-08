@@ -1,3 +1,17 @@
+## [10.0.3](https://github.com/libp2p/interop/compare/v10.0.2...v10.0.3) (2024-01-08)
+
+
+### Trivial Changes
+
+* Update .github/pull_request_template.md [skip ci] ([d936f92](https://github.com/libp2p/interop/commit/d936f9231af7d700c9f866accfc7501bf0dc94e5))
+* Update .github/workflows/semantic-pull-request.yml [skip ci] ([a354274](https://github.com/libp2p/interop/commit/a354274e01dcc779336419e2ab4385194188a7f9))
+* Update .github/workflows/stale.yml [skip ci] ([95acf99](https://github.com/libp2p/interop/commit/95acf99d158a1871200566abbb86a6ec642d2c72))
+
+
+### Dependencies
+
+* **dev:** bump aegir from 41.3.5 to 42.0.1 ([#144](https://github.com/libp2p/interop/issues/144)) ([8e30f42](https://github.com/libp2p/interop/commit/8e30f4269b46ef27f933d7de6948dc0af8f08f00))
+
 ## [10.0.2](https://github.com/libp2p/interop/compare/v10.0.1...v10.0.2) (2023-12-20)
 
 
