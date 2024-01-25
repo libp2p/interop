@@ -1,20 +1,23 @@
 import { expect } from 'aegir/chai'
 import { keys } from './resources/keys/index.js'
-import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType } from './index.js'
+import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType, Encryption } from './index.js'
 
 export function connectTests (factory: DaemonFactory): void {
   const keyTypes: PeerIdType[] = ['ed25519', 'rsa', 'secp256k1']
   const impls: NodeType[] = ['js', 'go']
+  const encrypters: Encryption[] = ['noise', 'tls']
 
   for (const keyType of keyTypes) {
     for (const implA of impls) {
       for (const implB of impls) {
-        runConnectTests(
-          `noise/${keyType}`,
-          factory,
-          { type: implA, noise: true, key: keys.go[keyType] },
-          { type: implB, noise: true, key: keys.js[keyType] }
-        )
+        for (const encrypter of encrypters) {
+          runConnectTests(
+            `${encrypter}/${keyType}`,
+            factory,
+            { type: implA, encryption: encrypter, key: keys.go[keyType] },
+            { type: implB, encryption: encrypter, key: keys.js[keyType] }
+          )
+        }
       }
     }
   }
