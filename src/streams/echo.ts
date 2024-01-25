@@ -5,25 +5,10 @@ import all from 'it-all'
 import { pipe } from 'it-pipe'
 import defer from 'p-defer'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import type { Daemon, DaemonFactory, Muxer, NodeType, SpawnOptions } from '../index.js'
+import type { Daemon, DaemonFactory, SpawnOptions } from '../index.js'
 
-export function echoStreamTests (factory: DaemonFactory, muxer: Muxer): void {
-  const nodeTypes: NodeType[] = ['js', 'go']
-
-  for (const typeA of nodeTypes) {
-    for (const typeB of nodeTypes) {
-      runEchoStreamTests(
-        factory,
-        muxer,
-        { type: typeA, muxer },
-        { type: typeB, muxer }
-      )
-    }
-  }
-}
-
-function runEchoStreamTests (factory: DaemonFactory, muxer: Muxer, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
-  describe(`echo streams - ${muxer}`, () => {
+export function echoStreamTests (name: string, factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
+  describe(name, () => {
     let daemonA: Daemon
     let daemonB: Daemon
 

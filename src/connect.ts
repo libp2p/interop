@@ -1,30 +1,13 @@
 import { expect } from 'aegir/chai'
-import { keys } from './resources/keys/index.js'
-import type { Daemon, NodeType, SpawnOptions, DaemonFactory, PeerIdType, Encryption } from './index.js'
+import { runTests } from './utils/test-matrix.js'
+import type { Daemon, SpawnOptions, DaemonFactory } from './index.js'
 
 export function connectTests (factory: DaemonFactory): void {
-  const keyTypes: PeerIdType[] = ['ed25519', 'rsa', 'secp256k1']
-  const impls: NodeType[] = ['js', 'go']
-  const encrypters: Encryption[] = ['noise', 'tls']
-
-  for (const keyType of keyTypes) {
-    for (const implA of impls) {
-      for (const implB of impls) {
-        for (const encrypter of encrypters) {
-          runConnectTests(
-            `${encrypter}/${keyType}`,
-            factory,
-            { type: implA, encryption: encrypter, key: keys.go[keyType] },
-            { type: implB, encryption: encrypter, key: keys.js[keyType] }
-          )
-        }
-      }
-    }
-  }
+  runTests('connect', runConnectTests, factory)
 }
 
 function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
-  describe(`connect using ${name}`, () => {
+  describe(name, () => {
     let daemonA: Daemon
     let daemonB: Daemon
 
