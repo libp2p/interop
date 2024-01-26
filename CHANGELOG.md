@@ -1,3 +1,14 @@
+## [11.0.0](https://github.com/libp2p/interop/compare/v10.0.3...v11.0.0) (2024-01-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* tls support is required
+
+### Features
+
+* test tls encryption ([#145](https://github.com/libp2p/interop/issues/145)) ([a19a735](https://github.com/libp2p/interop/commit/a19a735de66b2bbf236b354b13e12b7579256f80))
+
 ## [10.0.3](https://github.com/libp2p/interop/compare/v10.0.2...v10.0.3) (2024-01-08)
 
 
