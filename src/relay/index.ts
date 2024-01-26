@@ -15,9 +15,9 @@ export function relayTests (factory: DaemonFactory): void {
 function relayTest (factory: DaemonFactory, aType: NodeType, bType: NodeType, relayType: NodeType): void {
   describe(`${aType} to ${bType} over relay ${relayType}`, () => {
     const opts: SpawnOptions[] = [
-      { type: aType, noise: true, noListen: true },
-      { type: bType, noise: true, noListen: true },
-      { type: relayType, noise: true, relay: true }
+      { type: aType, encryption: 'noise', noListen: true },
+      { type: bType, encryption: 'noise', noListen: true },
+      { type: relayType, encryption: 'noise', relay: true }
     ]
 
     let aNode: Daemon

@@ -58,11 +58,12 @@ export type NodeType = 'js' | 'go'
 export type PeerIdType = 'rsa' | 'ed25519' | 'secp256k1'
 export type PubSubRouter = 'gossipsub' | 'floodsub'
 export type Muxer = 'mplex' | 'yamux'
+export type Encryption = 'noise' | 'tls'
 
 export interface SpawnOptions {
   type: NodeType
   key?: string
-  noise?: true
+  encryption?: Encryption
   dht?: boolean
   pubsub?: boolean
   pubsubRouter?: PubSubRouter
