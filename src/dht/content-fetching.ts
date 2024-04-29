@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
+import delay from 'delay'
 import { concat as uint8ArrayConcat } from 'uint8arrays/concat'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
@@ -31,27 +32,40 @@ function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions
   describe('dht.contentFetching', () => {
     let daemonA: Daemon
     let daemonB: Daemon
+    let daemonC: Daemon
+    let daemonD: Daemon
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
       daemonA = await factory.spawn(optionsA)
-      daemonB = await factory.spawn(optionsB)
+      daemonB = await factory.spawn(optionsA)
+      daemonC = await factory.spawn(optionsB)
+      daemonD = await factory.spawn(optionsB)
 
-      // connect them
-      const identify0 = await daemonA.client.identify()
+      const identifyA = await daemonA.client.identify()
+      const identifyB = await daemonB.client.identify()
+      const identifyC = await daemonC.client.identify()
+      const identifyD = await daemonD.client.identify()
 
-      await daemonB.client.connect(identify0.peerId, identify0.addrs)
+      // connect them A -> B -> C -> D
+      await daemonA.client.connect(identifyB.peerId, identifyB.addrs)
+      await daemonB.client.connect(identifyC.peerId, identifyC.addrs)
+      await daemonC.client.connect(identifyD.peerId, identifyD.addrs)
 
-      // jsDaemon1 will take some time to get the peers
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      // wait for identify
+      await delay(1000)
+
+      // B can find D and C can find A, so their routing tables are not empty
+      await expect(daemonB.client.dht.findPeer(identifyD.peerId)).to.eventually.be.ok()
+      await expect(daemonC.client.dht.findPeer(identifyA.peerId)).to.eventually.be.ok()
     })
 
     // Stop daemons
     after(async function () {
       await Promise.all(
-        [daemonA, daemonB]
+        [daemonA, daemonB, daemonC, daemonD]
           .filter(Boolean)
           .map(async d => { await d.stop() })
       )
@@ -60,9 +74,9 @@ function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       this.timeout(10 * 1000)
 
-      await daemonA.client.dht.put(record.key, record.value)
+      await daemonB.client.dht.put(record.key, record.value)
 
-      const data = await daemonB.client.dht.get(record.key)
+      const data = await daemonC.client.dht.get(record.key)
       expect(data).to.equalBytes(record.value)
     })
   })
