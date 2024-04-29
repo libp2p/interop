@@ -1,3 +1,10 @@
+## [12.0.2](https://github.com/libp2p/interop/compare/v12.0.1...v12.0.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* ensure all nodes are connected ([41a1f2f](https://github.com/libp2p/interop/commit/41a1f2f1773f038541976b300f3a260c8abee6d4))
+
 ## [12.0.1](https://github.com/libp2p/interop/compare/v12.0.0...v12.0.1) (2024-04-29)
 
 
