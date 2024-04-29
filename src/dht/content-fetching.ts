@@ -30,42 +30,57 @@ export function contentFetchingTests (factory: DaemonFactory): void {
 
 function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
   describe('dht.contentFetching', () => {
-    let daemonA: Daemon
-    let daemonB: Daemon
-    let daemonC: Daemon
-    let daemonD: Daemon
+    let nodes: Daemon[]
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemonA = await factory.spawn(optionsA)
-      daemonB = await factory.spawn(optionsA)
-      daemonC = await factory.spawn(optionsB)
-      daemonD = await factory.spawn(optionsB)
+      nodes = await Promise.all([
+        factory.spawn(optionsA),
+        ...new Array(3).fill(0).map(async () => factory.spawn(optionsB))
+      ])
 
-      const identifyA = await daemonA.client.identify()
-      const identifyB = await daemonB.client.identify()
-      const identifyC = await daemonC.client.identify()
-      const identifyD = await daemonD.client.identify()
+      const identify = await Promise.all(
+        nodes.map(async node => node.client.identify())
+      )
 
-      // connect them A -> B -> C -> D
-      await daemonA.client.connect(identifyB.peerId, identifyB.addrs)
-      await daemonB.client.connect(identifyC.peerId, identifyC.addrs)
-      await daemonC.client.connect(identifyD.peerId, identifyD.addrs)
+      // connect them all
+      for (let i = 0; i < nodes.length; i++) {
+        for (let k = 0; k < nodes.length; k++) {
+          if (i === k) {
+            continue
+          }
+
+          const a = nodes[i]
+          const b = identify[k]
+
+          await a.client.connect(b.peerId, b.addrs)
+        }
+      }
 
       // wait for identify
       await delay(1000)
 
-      // B can find D and C can find A, so their routing tables are not empty
-      await expect(daemonB.client.dht.findPeer(identifyD.peerId)).to.eventually.be.ok()
-      await expect(daemonC.client.dht.findPeer(identifyA.peerId)).to.eventually.be.ok()
+      // ensure they can all find each other
+      for (let i = 0; i < nodes.length; i++) {
+        for (let k = 0; k < nodes.length; k++) {
+          if (i === k) {
+            continue
+          }
+
+          const a = nodes[i]
+          const b = identify[k]
+
+          await expect(a.client.dht.findPeer(b.peerId)).to.eventually.be.ok()
+        }
+      }
     })
 
     // Stop daemons
     after(async function () {
       await Promise.all(
-        [daemonA, daemonB, daemonC, daemonD]
+        nodes
           .filter(Boolean)
           .map(async d => { await d.stop() })
       )
@@ -74,9 +89,9 @@ function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions
     it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
       this.timeout(10 * 1000)
 
-      await daemonB.client.dht.put(record.key, record.value)
+      await nodes[0].client.dht.put(record.key, record.value)
 
-      const data = await daemonC.client.dht.get(record.key)
+      const data = await nodes[1].client.dht.get(record.key)
       expect(data).to.equalBytes(record.value)
     })
   })
