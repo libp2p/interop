@@ -1,3 +1,10 @@
+## [12.0.1](https://github.com/libp2p/interop/compare/v12.0.0...v12.0.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* ensure DHT routing tables are not empty ([#150](https://github.com/libp2p/interop/issues/150)) ([d603d5b](https://github.com/libp2p/interop/commit/d603d5bddc333694c7963b256bd1c82244cd6a9a))
+
 ## [12.0.0](https://github.com/libp2p/interop/compare/v11.0.0...v12.0.0) (2024-04-29)
 
 
