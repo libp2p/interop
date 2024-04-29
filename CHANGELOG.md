@@ -1,3 +1,22 @@
+## [12.0.0](https://github.com/libp2p/interop/compare/v11.0.0...v12.0.0) (2024-04-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* test different transports (#149)
+
+### Features
+
+* test different transports ([#149](https://github.com/libp2p/interop/issues/149)) ([48bbf8b](https://github.com/libp2p/interop/commit/48bbf8ba5462a849d6b5b2a1d209feada931283e))
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#147](https://github.com/libp2p/interop/issues/147)) ([d77fac4](https://github.com/libp2p/interop/commit/d77fac4e746b6de36f65b553c264c9a8706e7c37))
+* Update .github/pull_request_template.md [skip ci] ([060a12e](https://github.com/libp2p/interop/commit/060a12e77428b442b657de827fd0247a63124211))
+* Update .github/workflows/semantic-pull-request.yml [skip ci] ([a14dbfc](https://github.com/libp2p/interop/commit/a14dbfc1830c1f22ed1a21d2a96818870647cc54))
+* Update .github/workflows/stale.yml [skip ci] ([3848a61](https://github.com/libp2p/interop/commit/3848a61a9c652a8bf848ad7e8c0fef070d4943da))
+
 ## [11.0.0](https://github.com/libp2p/interop/compare/v10.0.3...v11.0.0) (2024-01-26)
 
 
