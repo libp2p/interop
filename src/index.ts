@@ -42,7 +42,7 @@
  * For an example, see the js-libp2p interop test runner.
  */
 
-import { connectTests } from './connect.js'
+import { connectTests } from './connect/index.js'
 import { dhtTests } from './dht/index.js'
 import { pubsubTests } from './pubsub/index.js'
 import { relayTests } from './relay/index.js'
@@ -59,6 +59,7 @@ export type PeerIdType = 'rsa' | 'ed25519' | 'secp256k1'
 export type PubSubRouter = 'gossipsub' | 'floodsub'
 export type Muxer = 'mplex' | 'yamux'
 export type Encryption = 'noise' | 'tls'
+export type TransportType = 'tcp' | 'webtransport'
 
 export interface SpawnOptions {
   type: NodeType
@@ -72,6 +73,7 @@ export interface SpawnOptions {
   // the node will not listen on any
   // addresses if true
   noListen?: boolean
+  transport?: TransportType
 }
 
 export interface DaemonFactory {

@@ -1,13 +1,26 @@
 import { expect } from 'aegir/chai'
-import { runTests } from './utils/test-matrix.js'
-import type { Daemon, SpawnOptions, DaemonFactory } from './index.js'
+import type { Daemon, DaemonFactory, NodeType, SpawnOptions, TransportType } from '../index.js'
 
 export function connectTests (factory: DaemonFactory): void {
-  runTests('connect', runConnectTests, factory)
+  const nodeTypes: NodeType[] = ['js', 'go']
+  const transportTypes: TransportType[] = ['tcp', 'webtransport']
+
+  for (const typeA of nodeTypes) {
+    for (const typeB of nodeTypes) {
+      transportTypes.forEach(transport => {
+        runConnectTests(
+          transport,
+          factory,
+          { type: typeA, transport },
+          { type: typeB, transport }
+        )
+      })
+    }
+  }
 }
 
 function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnOptions, optionsB: SpawnOptions): void {
-  describe(name, () => {
+  describe(`connection.${name}`, () => {
     let daemonA: Daemon
     let daemonB: Daemon
 
@@ -28,7 +41,7 @@ function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnO
       )
     })
 
-    it(`${optionsA.type} peer to ${optionsB.type} peer`, async function () {
+    it(`${optionsA.type} peer to ${optionsB.type} peer over ${name}`, async function () {
       this.timeout(10 * 1000)
 
       const identify1 = await daemonA.client.identify()
