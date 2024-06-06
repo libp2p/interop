@@ -59,7 +59,7 @@ export type PeerIdType = 'rsa' | 'ed25519' | 'secp256k1'
 export type PubSubRouter = 'gossipsub' | 'floodsub'
 export type Muxer = 'mplex' | 'yamux'
 export type Encryption = 'noise' | 'tls'
-export type TransportType = 'tcp' | 'webtransport'
+export type TransportType = 'tcp' | 'webtransport' | 'webrtc-direct'
 
 export interface SpawnOptions {
   type: NodeType
@@ -94,4 +94,16 @@ export {
   pubsubTests as pubsubInteropTests,
   streamTests as streamInteropTests,
   relayTests as relayInteropTests
+}
+
+/**
+ * Some tests allow skipping certain configurations. When this is necessary,
+ * `DaemonFactory.spawn` should thow an instance of this error.
+ */
+export class UnsupportedError extends Error {
+  constructor (message = 'Unsupported test configuration') {
+    super(message)
+
+    this.name = 'UnsupportedError'
+  }
 }

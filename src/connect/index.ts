@@ -3,7 +3,7 @@ import type { Daemon, DaemonFactory, NodeType, SpawnOptions, TransportType } fro
 
 export function connectTests (factory: DaemonFactory): void {
   const nodeTypes: NodeType[] = ['js', 'go']
-  const transportTypes: TransportType[] = ['tcp', 'webtransport']
+  const transportTypes: TransportType[] = ['tcp', 'webtransport', 'webrtc-direct']
 
   for (const typeA of nodeTypes) {
     for (const typeB of nodeTypes) {
@@ -11,7 +11,7 @@ export function connectTests (factory: DaemonFactory): void {
         runConnectTests(
           transport,
           factory,
-          { type: typeA, transport },
+          { type: typeA, transport, noListen: true },
           { type: typeB, transport }
         )
       })
@@ -23,13 +23,23 @@ function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnO
   describe(`connection.${name}`, () => {
     let daemonA: Daemon
     let daemonB: Daemon
+    let skipped: boolean
 
     // Start Daemons
     before(async function () {
       this.timeout(20 * 1000)
 
-      daemonA = await factory.spawn(optionsA)
-      daemonB = await factory.spawn(optionsB)
+      try {
+        daemonA = await factory.spawn(optionsA)
+        daemonB = await factory.spawn(optionsB)
+      } catch (err: any) {
+        if (err.name === 'UnsupportedError') {
+          skipped = true
+          return
+        }
+
+        throw err
+      }
     })
 
     // Stop daemons
@@ -43,6 +53,10 @@ function runConnectTests (name: string, factory: DaemonFactory, optionsA: SpawnO
 
     it(`${optionsA.type} peer to ${optionsB.type} peer over ${name}`, async function () {
       this.timeout(10 * 1000)
+
+      if (skipped) {
+        return this.skip()
+      }
 
       const identify1 = await daemonA.client.identify()
       const identify2 = await daemonB.client.identify()
