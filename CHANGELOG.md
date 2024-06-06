@@ -1,3 +1,15 @@
+## [12.1.0](https://github.com/libp2p/interop/compare/v12.0.2...v12.1.0) (2024-06-06)
+
+
+### Features
+
+* add webrtc-direct connect tests ([#153](https://github.com/libp2p/interop/issues/153)) ([2221128](https://github.com/libp2p/interop/commit/22211280f1471f31fce37dc248865193cebb5421))
+
+
+### Dependencies
+
+* **dev:** bump aegir from 42.2.11 to 43.0.1 ([#152](https://github.com/libp2p/interop/issues/152)) ([18f616c](https://github.com/libp2p/interop/commit/18f616c30d6d4ef2bd253b1e20a7ee03f490443b))
+
 ## [12.0.2](https://github.com/libp2p/interop/compare/v12.0.1...v12.0.2) (2024-04-29)
 
 
