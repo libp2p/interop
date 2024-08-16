@@ -1,3 +1,9 @@
+## [12.1.1](https://github.com/libp2p/interop/compare/v12.1.0...v12.1.1) (2024-08-16)
+
+### Dependencies
+
+* **dev:** bump aegir from 43.0.3 to 44.1.1 ([#157](https://github.com/libp2p/interop/issues/157)) ([7e531d6](https://github.com/libp2p/interop/commit/7e531d6e35e2b493a02fb6291f7f11a54c0a331f))
+
 ## [12.1.0](https://github.com/libp2p/interop/compare/v12.0.2...v12.1.0) (2024-06-06)
 
 
