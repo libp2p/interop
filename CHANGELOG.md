@@ -1,3 +1,9 @@
+## [12.2.0](https://github.com/libp2p/interop/compare/v12.1.1...v12.2.0) (2024-08-16)
+
+### Features
+
+* add plaintext encryption tests ([#158](https://github.com/libp2p/interop/issues/158)) ([e54a851](https://github.com/libp2p/interop/commit/e54a851dcfaa6db2e69ce4d3585d53943eb4c347))
+
 ## [12.1.1](https://github.com/libp2p/interop/compare/v12.1.0...v12.1.1) (2024-08-16)
 
 ### Dependencies
