@@ -8,7 +8,7 @@ export interface TestFunction {
 export function runTests (name: string, fn: TestFunction, factory: DaemonFactory): void {
   const keyTypes: PeerIdType[] = ['ed25519', 'rsa', 'secp256k1']
   const impls: NodeType[] = ['js', 'go']
-  const encrypters: Encryption[] = ['noise', 'tls']
+  const encrypters: Encryption[] = ['noise', 'tls', 'plaintext']
   const muxers: Muxer[] = ['mplex', 'yamux']
 
   for (const keyType of keyTypes) {
