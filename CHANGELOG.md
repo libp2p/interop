@@ -1,3 +1,13 @@
+## [13.0.0](https://github.com/libp2p/interop/compare/v12.2.0...v13.0.0) (2024-09-11)
+
+### ⚠ BREAKING CHANGES
+
+* bump @libp2p/interface from 1.7.0 to 2.0.0 (#159)
+
+### Dependencies
+
+* bump @libp2p/interface from 1.7.0 to 2.0.0 ([#159](https://github.com/libp2p/interop/issues/159)) ([9c4e475](https://github.com/libp2p/interop/commit/9c4e4757fd1c697bbe2128a9ee7a8700237a2b71))
+
 ## [12.2.0](https://github.com/libp2p/interop/compare/v12.1.1...v12.2.0) (2024-08-16)
 
 ### Features
