@@ -1,3 +1,9 @@
+## [13.0.1](https://github.com/libp2p/interop/compare/v13.0.0...v13.0.1) (2025-02-06)
+
+### Dependencies
+
+* **dev:** bump aegir from 44.1.4 to 45.0.8 ([#163](https://github.com/libp2p/interop/issues/163)) ([15fc0ee](https://github.com/libp2p/interop/commit/15fc0eef11d1032e7dc6974f26c97f308528000f))
+
 ## [13.0.0](https://github.com/libp2p/interop/compare/v12.2.0...v13.0.0) (2024-09-11)
 
 ### ⚠ BREAKING CHANGES
