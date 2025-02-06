@@ -80,7 +80,7 @@ function runContentFetchingTests (factory: DaemonFactory, optionsA: SpawnOptions
     // Stop daemons
     after(async function () {
       await Promise.all(
-        nodes
+        (nodes ?? [])
           .filter(Boolean)
           .map(async d => { await d.stop() })
       )
