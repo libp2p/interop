@@ -1,3 +1,9 @@
+## [13.0.2](https://github.com/libp2p/interop/compare/v13.0.1...v13.0.2) (2025-02-06)
+
+### Bug Fixes
+
+* guard on nodes ([#164](https://github.com/libp2p/interop/issues/164)) ([0ad22eb](https://github.com/libp2p/interop/commit/0ad22eb17c31285a1b2a0ff24a074410752e2ff1))
+
 ## [13.0.1](https://github.com/libp2p/interop/compare/v13.0.0...v13.0.1) (2025-02-06)
 
 ### Dependencies
