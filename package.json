@@ -141,7 +141,7 @@
     "delay": "^6.0.0",
     "it-all": "^3.0.1",
     "it-first": "^3.0.1",
-    "it-length-prefixed-stream": "^1.1.4",
+    "it-length-prefixed-stream": "^2.0.1",
     "it-pipe": "^3.0.0",
     "it-protobuf-stream": "^1.0.0",
     "it-stream-types": "^2.0.1",
