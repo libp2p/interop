@@ -1,8 +1,8 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
-import type { NodeType, PeerIdType } from '../..'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import type { NodeType, PeerIdType } from '../../index.js'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 type KeyCollection = Record<PeerIdType, string>
 

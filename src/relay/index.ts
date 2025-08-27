@@ -1,4 +1,4 @@
-import { type Multiaddr, multiaddr } from '@multiformats/multiaddr'
+import { multiaddr } from '@multiformats/multiaddr'
 import { expect } from 'aegir/chai'
 import { lpStream } from 'it-length-prefixed-stream'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
@@ -6,6 +6,7 @@ import { Status } from './pb/index.js'
 import { echoHandler, reserve } from './util.js'
 import type { Daemon, DaemonFactory, NodeType, SpawnOptions } from '../index.js'
 import type { IdentifyResult } from '@libp2p/daemon-client'
+import type { Multiaddr } from '@multiformats/multiaddr'
 
 export function relayTests (factory: DaemonFactory): void {
   const t: NodeType[] = ['go', 'js']
