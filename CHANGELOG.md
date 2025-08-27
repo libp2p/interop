@@ -1,3 +1,11 @@
+## [13.0.3](https://github.com/libp2p/interop/compare/v13.0.2...v13.0.3) (2025-08-27)
+
+### Dependencies
+
+* bump it-length-prefixed-stream from 1.2.1 to 2.0.3 ([#180](https://github.com/libp2p/interop/issues/180)) ([9db6885](https://github.com/libp2p/interop/commit/9db6885436b9c49015b95cd3136191a36acf0fec))
+* bump it-protobuf-stream from 1.1.6 to 2.0.3 ([#179](https://github.com/libp2p/interop/issues/179)) ([7882288](https://github.com/libp2p/interop/commit/7882288122eb0384cc7b7859e26156672ee356a7))
+* bump p-retry from 6.2.1 to 7.0.0 ([#186](https://github.com/libp2p/interop/issues/186)) ([c635fbf](https://github.com/libp2p/interop/commit/c635fbf6f4f6a59c38740074f289f9f90680ce66))
+
 ## [13.0.2](https://github.com/libp2p/interop/compare/v13.0.1...v13.0.2) (2025-02-06)
 
 ### Bug Fixes
